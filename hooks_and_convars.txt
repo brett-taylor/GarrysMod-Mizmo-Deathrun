@@ -1,0 +1,255 @@
+List of hooks and convars for them for Arizard's deathrun gamemode
+-------------------------------------
+
+-------------
+-- CONVARS --
+-------------
+
+SERVER CONVARS:
+
+	deathrun_round_duration <0-999>
+		How many seconds each round lasts. Not including preptime.
+
+	deathrun_preptime_duration <0-999>
+		How many seconds the preparation time lasts before the round.
+
+	deathrun_finishtime_duration <0-999>
+		How many seconds to wait when the round ends before starting a new round.
+
+	deathrun_death_ratio <0.0-1.0>
+		The ratio between Deaths and Runners. Higher values mean more deaths. Default 0.15 .
+
+	deathrun_max_deaths <1-64>
+		The maximum amount of players on the Death team at any given time.
+
+	deathrun_allow_autojump <0-1>
+		Allow players to use autojump
+		
+	deathrun_autojump_velocity_cap <0-999>
+		The velocity to limit players to when they enable autojump. A value of 0 will make this unlimited.
+
+	deathrun_help_url <string url>
+		The url to open when the player types !help.
+
+		NB: THIS IS BROKEN (???)
+
+	deathrun_round_limit <0-20>
+		How many rounds should be played before the map changes?
+
+	mapvote_rtv_ratio <0.0-1.0>
+		The ratio between votes and players online. 0.5 means that 1/2 of the players online need to type !rtv before the vote is initiated.
+
+	deathrun_pointshop_finish_reward <0-999>
+		Reward for finishing the map, in points. Will automatically check for pointshop or pointshop2 installation.
+
+	deathrun_pointshop_kill_reward <0-999>
+		Reward for killing another player, in points. Will automatically check for pointshop or pointshop2 installation.
+
+	deathrun_pointshop_win_reward <0-999>
+		Reward for winning the round. Checks for pointshop and pointshop2 installation.
+
+	deathrun_pointshop_notify <0-1>
+		Notify the player when they are rewarded by the pointshop for completing a map objective
+
+	deathrun_death_avoid_punishment <0-99>
+		How many rounds of Death should the player have to serve after he attempts to death avoid.
+
+	deathrun_max_deaths <0-100>
+		The maximum amount of Deaths at any given time.
+
+	deathrun_death_sprint <0-1000>
+		The sprint speed for the death (holding shift). Sometimes maps don't give the death a speed boost, so they can hold shift to move at this speed. 
+
+	deathrun_finish_balloons <0-25>
+		The amount of balloons to spawn when the player finishes the map. :)
+
+	deathrun_autoslay_delay <0-999>
+		How long to wait after a round starts to slay the AFK players. Measured in seconds. (Thanks Omega for reminding me to add this here.)
+
+	deathrun_idle_kick_time <0-999>
+		How long to wait before putting an idle player in spec (seconds)
+		This used to kick, but kicking seems to be too harsh, especially on a false positive. Staff will take care of kicking players.
+
+	deathrun_alltalk <0-1>
+		Enable alltalk - 1 for enabled, 0 to stop living players from hearing dead players.
+
+	deathrun_death_model <string model path>
+		The default model for the Deaths.
+
+	deathrun_disable_default_deathspeed <0/1>
+		Removes the player_speedmod entities from maps to disable the default deathspeed.
+
+	deathrun_motd_enabled <0/1>
+		0 to disable the MOTD (info menu) and 1 to enable
+
+	deathrun_motd_title <string title>
+		Changes the title of the MOTD
+
+	deathrun_motd_url <string url>
+		Changes the URL that is opened inside the MOTD
+
+	deathrun_unstuck_cooldown <0-1000>
+		Time between when a player takes damage or uses !stuck and their next use of !stuck
+		
+	deathrun_starting_weapon <string weapon name>
+		Default starting weapon
+
+CLIENT CONVARS:
+
+	deathrun_crosshair_thickness <0-999>
+		Stroke thickness of the crosshair, in pixels.
+
+	deathrun_crosshair_gap <0-999>
+		Gap on the inside of the crosshair (e.g. top line and bottom line), in pixels.
+
+	deathrun_crosshair_size <0-999>
+		Length of each stroke in the crosshair, in pixels.
+
+	deathrun_crosshair_red <0-255>
+	deathrun_crosshair_blue <0-255>
+	deathrun_crosshair_green <0-255>
+	deathrun_crosshair_alpha <0-255>
+		Color components for the crosshair. Alpha controls the transparency.
+
+	deathrun_hud_position <0-8>
+		Position of the main HUD (Health, Velocity).
+		Values: 
+		0.Top Left, 1.Top Center, 2.Top Right, 3.Center Left, 4. Center Center, 5.Center Right, 6.Bottom Left, 7.Bottom Center, 8.Bottom Right
+
+	deathrun_hud_ammo_position <0-8>
+		Position of the ammo HUD (Magazine, Remaining) - values same as above, defaults to 8.
+
+	deathrun_hud_alpha <0-255>
+		Changes the transparency of the HUD background.
+
+	deathrun_targetid_fade_duration <0-999>
+		How many seconds it takes for player's names to dissapear after looking away from them.
+
+	deathrun_autojump <0-1>
+		0 to disable autojump, 1 to enable autojump.
+
+	deathrun_announcement_interval <0-500>
+		Seconds between announcements/help messages.
+
+	deathrun_enable_announcements <0-1>
+		Enables announcements/help messages.
+
+	deathrun_thirdperson_enabled <0-1>
+		Enables thirdperson mode.
+
+	deathrun_thirdperson_offset_x <-100 - 100>
+	deathrun_thirdperson_offset_y <-100 - 100>
+	deathrun_thirdperson_offset_z <-100 - 100>
+	deathrun_thirdperson_offset_pitch
+	deathrun_thirdperson_offset_yaw
+	deathrun_thirdperson_offset_roll
+		Offsets for thirdperson mode.
+
+	deathrun_zones_visibility <0-1>
+		Enables zone visibility, defaults to 1.
+
+	deathrun_stats_visibility <0-1>
+		Enabled the YOUR STATS popup when the player spawns.
+
+
+-----------
+-- HOOKS --
+-----------
+
+SERVER:
+
+	DeathrunPlayerLoadout ( PLAYER ply ) 
+		Called when the player finishes spawning from dead/spectator and weapons are given.
+
+	DeathrunDeadToSpectator ( PLAYER ply )
+		Called when a dead player starts spectating (but not TEAM_SPECTATE)
+
+	DeathrunTeamDamage ( PLAYER attacker, PLAYER victim, DAMAGEINFO dmginfo, FLOAT originalDamage )
+		Called when a player attacks a teammate. Called AFTER the damage is set to 0. Hook this to allow team damage?????
+
+	DeathrunFallDamage ( PLAYER ply, FLOAT speed )
+		Called to calculate fall damage. Return a value to override the default fall damage.
+
+	DeathrunShouldMapSwitch ( INT roundsPlayed )
+		Called on round end to determine whether mapvote should be started immediately or not. Return true to do so. (Useful for custom rtv and similar stuff)
+
+	DeathrunStartMapvote ( INT roundsPlayed )
+		Called before built in map voting system is about to be initiated. Return true to suppress the mapvote and replace it with your own.
+
+	DeathrunPlayerEnteredZone ( PLAYER ply, STRING name, TABLE zone )
+		Called when a player enters a zone. name = identifier of that zone. zone = table storing zone data.
+
+	DeathrunPlayerExitedZone ( PLAYER ply, STRING name, TABLE zone )
+		Same as above, except for exiting zones.
+
+	DeathrunPlayerFinishMap (PLAYER ply, STRING name, TABLE zone, INT place, FLOAT seconds)
+		Arguments are the same as above. place = which place did the player finish at, e.g. 1st, 2nd, 3rd, 4th. place will be an integer such as 1, 2, 3, or 4. secons will be how long it took for the player to finish the map (starting from the end of preptime) Use this to hand out pointshop points or other rewards for finishing maps.
+
+	DeathrunPlayerDeath ( PLAYER victim, ENTITY inflictor, PLAYER attacker )
+		Same as PlayerDeath, although this attempts to find the player responsible for activating traps that kill the victim.
+
+SHARED:
+
+	DeathrunBeginWaiting ()
+		Called when round state is switched to ROUND_WAITING ( 3 )
+
+	DeathrunBeginPrep ()
+		Called when round state is switched to ROUND_PREP ( 4 )
+
+	DeathrunBeginActive ()
+		Called when round state is switched to ROUND_ACTIVE ( 5 )
+
+	DeathrunBeginOver ()
+		Called when round state is switched to ROUND_OVER ( 6 )
+
+	DeathrunRoundWin( INT winner )
+		Called when a team wins the round. Runners = WIN_RUNNER, Deaths = WIN_DEATH, Stalemate = WIN_STALEMATE
+
+	DeathrunPreventPreptimeMovement ()
+		Called when preventing player movement during Prep Time. Return false to allow players to move.
+
+
+CLIENT:
+	GetScoreboardNameColor( PLAYER ply )
+		Return a color in this hook and it will display the player's scoreboard name in that color.
+
+	GetScoreboardIcon( PLAYER ply )
+		Return the path to an icon in this hook and it will show on the player's scoreboard row. e.g. "icon16/heart.png"
+
+	GetScoreboardTag( PLAYER ply )
+		Return the text you want displayed in the second column on the scoreboard.
+
+	GetScoreboardRank( PLAYER ply )
+		Return the staff rank of the player. By default this returns ply:GetUserGroup().
+
+	DeathrunOpenScoreboard( )
+		Return false to prevent the scoreboard from opening and replace it with your own.
+
+	DeathrunChangeColors( )
+		Call the following functions inside this hook to make sure they are applied at the right time:
+
+			DR:SetMainColor( COLOR col )
+			DR:SetMainTextColor( COLOR col )
+			DR:SetAnnouncerColor( COLOR col )
+
+
+If you want players to be frozen during preptime, copy the following into a serverside autorun file (e.g. garrysmod/lua/autorun/server/freezetime.lua):
+
+	hook.Add("DeathrunBeginPrep", "FreezePlayers", function()
+		for k, v in ipairs( player.GetAll() ) do
+			v:Freeze( true )
+		end
+	end)
+
+	hook.Add("DeathrunBeginActive", "FreezePlayers", function()
+		for k, v in ipairs( player.GetAll() ) do
+			v:Freeze( false )
+		end
+	end)
+
+If you want to disable F1 HELP menu, copy the following code into a clientside autorun file (e.g. garrysmod/lua/autorun/client/change_deathrun_gui.lua):
+(Request by Owzmo)
+
+	hook.Add("DeathrunChangeColors", "OwzmoHook", function( cols )
+		function DR:OpenHelp() print("Help has been disabled on this server.") end -- disable HELP menu (F1)
+	end)
