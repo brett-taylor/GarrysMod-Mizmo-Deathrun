@@ -1,33 +1,18 @@
-include( "hexcolor.lua" )
-
+include("hud/cl_hud.lua")
+include("hexcolor.lua")
 include("config.lua")
-
-include( "cl_derma.lua" )
-
-include( "shared.lua" )
-
-include( "cl_scoreboard.lua" )
-
-include( "mapvote/sh_mapvote.lua" )
-include( "mapvote/cl_mapvote.lua" )
-
-include( "roundsystem/sh_round.lua" )
-include( "roundsystem/cl_round.lua" )
-include( "sh_definerounds.lua" )
-
-include( "zones/sh_zone.lua" )
-include( "zones/cl_zone.lua" )
-
-include( "cl_hud.lua" )
-include( "cl_menus.lua" )
-
-include( "sh_buttonclaiming.lua" )
-
-include( "cl_announcer.lua" )
-
-include( "sh_pointshopsupport.lua" )
-
-include( "sh_statistics.lua" )
+include("cl_derma.lua")
+include("shared.lua")
+include("mapvote/sh_mapvote.lua")
+include("mapvote/cl_mapvote.lua")
+include("roundsystem/sh_round.lua")
+include("roundsystem/cl_round.lua")
+include("sh_definerounds.lua")
+include("zones/sh_zone.lua")
+include("zones/cl_zone.lua")
+include("sh_buttonclaiming.lua")
+include("sh_pointshopsupport.lua")
+include("sh_statistics.lua")
 
 concommand.Add("dr_test_menu", function()
 	local frame = vgui.Create("arizard_window")

@@ -2,74 +2,38 @@ if not file.Exists("deathrun", "DATA") then -- creates a folder in data for the 
 	file.CreateDir("deathrun")
 end
 
---hexcolor
-AddCSLuaFile( "hexcolor.lua" )
-
-include( "hexcolor.lua" )
-
---derma
-AddCSLuaFile( "cl_derma.lua" )
-
-
--- base
-AddCSLuaFile( "cl_hud.lua" )
-AddCSLuaFile( "cl_init.lua" )
-AddCSLuaFile( "cl_menus.lua" )
-AddCSLuaFile( "shared.lua" )
-AddCSLuaFile( "config.lua" )
-
-
-include("config.lua")
-
-include( "shared.lua" )
-
--- scoreboard
-AddCSLuaFile("cl_scoreboard.lua")
-
--- commands
-include("sv_commands.lua")
-
--- Round System
-AddCSLuaFile( "roundsystem/sh_round.lua" )
-AddCSLuaFile( "roundsystem/cl_round.lua" )
-AddCSLuaFile( "sh_definerounds.lua" )
-
-include( "roundsystem/sh_round.lua" )
-include( "roundsystem/sv_round.lua" )
-include( "sh_definerounds.lua" )
-
--- zones
-AddCSLuaFile( "zones/sh_zone.lua" )
-AddCSLuaFile( "zones/cl_zone.lua" )
-
-include( "zones/sh_zone.lua" )
-include( "zones/sv_zone.lua" )
-
-
--- map votes
-AddCSLuaFile( "mapvote/sh_mapvote.lua" )
-AddCSLuaFile( "mapvote/cl_mapvote.lua" )
-
-include( "mapvote/sh_mapvote.lua" )
-include( "mapvote/sv_mapvote.lua" )
-
---player
-include( "sv_player.lua" )
-
---button claiming
-include( "sh_buttonclaiming.lua" )
-AddCSLuaFile( "sh_buttonclaiming.lua" )
-
--- announcements
-AddCSLuaFile( "cl_announcer.lua" )
-
--- pointshop support
-include("sh_pointshopsupport.lua")
-AddCSLuaFile( "sh_pointshopsupport.lua" )
-
--- statistics
-include("sh_statistics.lua")
+AddCSLuaFile("hud/cl_hud.lua")
+AddCSLuaFile("hexcolor.lua")
+AddCSLuaFile("cl_derma.lua")
+AddCSLuaFile("cl_init.lua")
+AddCSLuaFile("shared.lua")
+AddCSLuaFile("config.lua")
+AddCSLuaFile("roundsystem/sh_round.lua")
+AddCSLuaFile("sh_definerounds.lua")
+AddCSLuaFile("roundsystem/cl_round.lua")
+AddCSLuaFile("zones/sh_zone.lua")
+AddCSLuaFile("zones/cl_zone.lua")
+AddCSLuaFile("mapvote/sh_mapvote.lua")
+AddCSLuaFile("mapvote/cl_mapvote.lua")
+AddCSLuaFile("sh_buttonclaiming.lua")
+AddCSLuaFile("sh_pointshopsupport.lua")
 AddCSLuaFile("sh_statistics.lua")
+
+include("hexcolor.lua")
+include("config.lua")
+include("shared.lua")
+include("sv_commands.lua")
+include("roundsystem/sh_round.lua")
+include("roundsystem/sv_round.lua")
+include("sh_definerounds.lua")
+include("zones/sh_zone.lua")
+include("zones/sv_zone.lua")
+include("mapvote/sh_mapvote.lua")
+include("mapvote/sv_mapvote.lua")
+include("sv_player.lua")
+include("sh_buttonclaiming.lua")
+include("sh_pointshopsupport.lua")
+include("sh_statistics.lua")
 
 util.AddNetworkString("DeathrunChatMessage")
 util.AddNetworkString("DeathrunSyncMutelist")
@@ -109,18 +73,10 @@ hook.Add("PlayerInitialSpawn", "DeathrunPlayerInitialSpawn", function( ply )
 
 	ply.FirstSpawn = true
 	ply:SetTeam( TEAM_SPECTATOR )
-	--ply:Spawn()
-	DR:ChatBroadcast(ply:Nick().." has joined the server.")
-
-end)
-
-hook.Add("PlayerDisconnected", "DeathrunPlayerDisconnectMessage", function( ply )
-	DR:ChatBroadcast( ply:Nick().." has left the server." )
 end)
 
 CreateConVar("deathrun_death_model", "models/player/monk.mdl", defaultFlags, "The default model for the Deaths." )
 local deathModel = GetConVar( "deathrun_death_model" )
-
 local dropWeaponsOnDeath = CreateConVar("deathrun_drop_weapons_on_death", 1, defaultFlags, "Should players drop weapons on death?")
 
 hook.Add("PlayerSpawn", "DeathrunSetPlayerModels", function( ply )
@@ -696,7 +652,6 @@ timer.Create("CheckIdlePlayers", 0.95, 0, function()
 			ply:ConCommand("deathrun_spectate_only 1")
 			net.Start("DeathrunSpectatorNotification")
 			net.Send( ply )
-			DR:ChatBroadcast( ply:Nick().." was specced for being idle too long." )
 		end
 	end
 end)
