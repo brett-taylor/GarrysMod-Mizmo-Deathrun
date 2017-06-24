@@ -29,6 +29,7 @@ local HideElements = {
 
 hook.Add("HUDPaint","FixCHudAmmo", function()
 	draw.RoundedBox( 4, 20, 20, 512, 512, Color(150, 10, 255))
+	draw.RoundedBox( 4, 700, 700, 200, 200, Color(5, 130, 130))
 	if HudTheme:GetInt() == 2 then
 		HideElements["CHudAmmo"] = true
 	else
