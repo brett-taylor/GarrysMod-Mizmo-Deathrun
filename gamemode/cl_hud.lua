@@ -28,13 +28,13 @@ local HideElements = {
 }
 
 hook.Add("HUDPaint","FixCHudAmmo", function()
-
+	draw.RoundedBox( 4, 20, 20, 512, 512, Color(150, 10, 255))
 	if HudTheme:GetInt() == 2 then
 		HideElements["CHudAmmo"] = true
 	else
 		HideElements["CHudAmmo"] = false
 	end
-	hook.Remove("HUDPaint", "FixCHudAmmo")
+	--hook.Remove("HUDPaint", "FixCHudAmmo")
 end)
 
 local hudThemeCache = HudTheme:GetInt()
@@ -47,7 +47,6 @@ cvars.AddChangeCallback( "deathrun_hud_theme", function( cv, o, n )
 end)
 
 function GM:HUDShouldDraw( el )
-	draw.RoundedBox( 4, 20, 20, 512, 512, Color(255, 0, 0))
 	local hide = HideElements[ el ]
 	if hide == false then
 		return false
