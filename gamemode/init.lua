@@ -18,6 +18,7 @@ AddCSLuaFile("mapvote/cl_mapvote.lua")
 AddCSLuaFile("sh_buttonclaiming.lua")
 AddCSLuaFile("sh_pointshopsupport.lua")
 AddCSLuaFile("sh_statistics.lua")
+AddCSLuaFile("CutScene/cl_cutscene.lua");
 
 include("hexcolor.lua")
 include("config.lua")
@@ -33,7 +34,7 @@ include("mapvote/sv_mapvote.lua")
 include("sv_player.lua")
 include("sh_buttonclaiming.lua")
 include("sh_pointshopsupport.lua")
-include("sh_statistics.lua")
+include("cutscene/sv_cutscene.lua")
 
 util.AddNetworkString("DeathrunChatMessage")
 util.AddNetworkString("DeathrunSyncMutelist")
