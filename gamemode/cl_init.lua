@@ -1,4 +1,4 @@
-include("hud/cl_hud.lua")
+include("DisplayElements/cl_hud.lua")
 include("hexcolor.lua")
 include("config.lua")
 include("cl_derma.lua")
@@ -12,7 +12,8 @@ include("zones/sh_zone.lua")
 include("zones/cl_zone.lua")
 include("sh_buttonclaiming.lua")
 include("sh_pointshopsupport.lua")
-include("cutscene/cl_cutscene.lua")
+include("CameraController/cl_CameraController.lua")
+include("CameraController/cl_CutSceneSystem.lua");
 
 concommand.Add("dr_test_menu", function()
 	local frame = vgui.Create("arizard_window")

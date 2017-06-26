@@ -1,4 +1,7 @@
-local CutsceneSystem = {}
+local CameraController = {}
+
+function CameraController.LoadCutScene(nameOfCutscene)
+end
 
 -- "Cutscene State"
 -- Player:RunCutscene(tableOfPositions)
