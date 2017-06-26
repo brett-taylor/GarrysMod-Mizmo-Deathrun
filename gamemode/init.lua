@@ -2,6 +2,7 @@ if not file.Exists("deathrun", "DATA") then -- creates a folder in data for the 
 	file.CreateDir("deathrun")
 end
 
+AddCSLuaFile("DisplayElements/cl_fonts.lua")
 AddCSLuaFile("DisplayElements/cl_hud.lua")
 AddCSLuaFile("hexcolor.lua")
 AddCSLuaFile("cl_derma.lua")
@@ -19,7 +20,8 @@ AddCSLuaFile("sh_buttonclaiming.lua")
 AddCSLuaFile("sh_pointshopsupport.lua")
 AddCSLuaFile("sh_statistics.lua")
 AddCSLuaFile("CameraController/cl_CameraController.lua");
-AddCSLuaFile("CameraController/cl_CutSceneSystem.lua");
+AddCSLuaFile("CameraController/cl_CutsceneSystem.lua");
+AddCSLuaFile("CameraController/cl_CutsceneIntroductionOverlay.lua");
 
 include("hexcolor.lua")
 include("config.lua")
@@ -35,7 +37,10 @@ include("mapvote/sv_mapvote.lua")
 include("sv_player.lua")
 include("sh_buttonclaiming.lua")
 include("sh_pointshopsupport.lua")
-include("CameraController/sv_CameraController.lua")
+include("CameraController/sv_CutsceneSystem.lua")
+include("CameraController/sv_CutsceneData.lua")
+include("CameraController/sv_CutscenePlayerMethods.lua")
+include("CameraController/sv_CutsceneULXCommands.lua")
 
 util.AddNetworkString("DeathrunChatMessage")
 util.AddNetworkString("DeathrunSyncMutelist")

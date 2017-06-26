@@ -1,96 +1,96 @@
-CameraController.CutSceneSystem = {}
-CameraController.CutSceneSystem.SpeedMultipler = 100;
+CameraController.CutsceneSystem = {}
+CameraController.CutsceneSystem.SpeedMultipler = 100;
 
-CameraController.CutSceneSystem.InCutscene = false;
-CameraController.CutSceneSystem.ReplayCutScene = false;
-CameraController.CutSceneSystem.Positions = {}
-CameraController.CutSceneSystem.CurrentStage = 1;
-CameraController.CutSceneSystem.LerpPercentage = 0;
-CameraController.CutSceneSystem.StartingPosition = nil;
-CameraController.CutSceneSystem.EndingPosition = nil;
-CameraController.CutSceneSystem.CurrentPosition = nil;
-CameraController.CutSceneSystem.StartingAngle = nil;
-CameraController.CutSceneSystem.EndingAngle = nil;
-CameraController.CutSceneSystem.CurrentAngle = nil;
+CameraController.CutsceneSystem.InCutscene = false;
+CameraController.CutsceneSystem.ReplayCutScene = false;
+CameraController.CutsceneSystem.Positions = {}
+CameraController.CutsceneSystem.CurrentStage = 1;
+CameraController.CutsceneSystem.LerpPercentage = 0;
+CameraController.CutsceneSystem.StartingPosition = nil;
+CameraController.CutsceneSystem.EndingPosition = nil;
+CameraController.CutsceneSystem.CurrentPosition = nil;
+CameraController.CutsceneSystem.StartingAngle = nil;
+CameraController.CutsceneSystem.EndingAngle = nil;
+CameraController.CutsceneSystem.CurrentAngle = nil;
 
-function CameraController.CutSceneSystem.StartCutScene(positionsTable, replayCutscene)
-	CameraController.CutSceneSystem.InCutscene = true;
-	CameraController.CutSceneSystem.Positions = positionsTable;
-	CameraController.CutSceneSystem.ReplayCutScene  = replayCutscene;
-	CameraController.CutSceneSystem.CurrentStage = 0;
-	CameraController.CutSceneSystem.LerpPercentage = 0;
+function CameraController.CutsceneSystem.StartCutScene(positionsTable, replayCutscene)
+	CameraController.CutsceneSystem.InCutscene = true;
+	CameraController.CutsceneSystem.Positions = positionsTable;
+	CameraController.CutsceneSystem.ReplayCutScene  = replayCutscene;
+	CameraController.CutsceneSystem.CurrentStage = 0;
+	CameraController.CutsceneSystem.LerpPercentage = 0;
 end
 
-function CameraController.CutSceneSystem.EndCutScene()
- 	CameraController.CutSceneSystem.ResetCutScene()
-	CameraController.CutSceneSystem.Positions = {}
-	CameraController.CutSceneSystem.InCutscene = false;
+function CameraController.CutsceneSystem.EndCutScene()
+ 	CameraController.CutsceneSystem.ResetCutScene()
+	CameraController.CutsceneSystem.Positions = {}
+	CameraController.CutsceneSystem.InCutscene = false;
 end
 
-function CameraController.CutSceneSystem.ResetCutScene()
-	CameraController.CutSceneSystem.CurrentStage = 0;
-	CameraController.CutSceneSystem.LerpPercentage = 0;
-	CameraController.CutSceneSystem.StartingPosition = nil;
-	CameraController.CutSceneSystem.EndingPosition = nil;
-	CameraController.CutSceneSystem.CurrentPosition = nil;
-	CameraController.CutSceneSystem.StartingAngle = nil;
-	CameraController.CutSceneSystem.EndingAngle = nil;
-	CameraController.CutSceneSystem.CurrentAngle = nil;
+function CameraController.CutsceneSystem.ResetCutScene()
+	CameraController.CutsceneSystem.CurrentStage = 0;
+	CameraController.CutsceneSystem.LerpPercentage = 0;
+	CameraController.CutsceneSystem.StartingPosition = nil;
+	CameraController.CutsceneSystem.EndingPosition = nil;
+	CameraController.CutsceneSystem.CurrentPosition = nil;
+	CameraController.CutsceneSystem.StartingAngle = nil;
+	CameraController.CutsceneSystem.EndingAngle = nil;
+	CameraController.CutsceneSystem.CurrentAngle = nil;
 end
 
-function CameraController.CutSceneSystem.GenerateViewMatrix(ply, pos, angles, fov)
-	if (CameraController.CutSceneSystem.InCutscene == true) then
-		return CameraController.CutSceneSystem.GenerateViewMatrix(ply, pos, angles, fov);
+function CameraController.CutsceneSystem.GenerateViewMatrix(ply, pos, angles, fov)
+	if (CameraController.CutsceneSystem.InCutscene == true) then
+		return CameraController.CutsceneSystem.GenerateViewMatrix(ply, pos, angles, fov);
 	end
 end
-hook.Add("CalcView", "MizmoCutSceneGenerateViewMatrix", CameraController.CutSceneSystem.GenerateViewMatrix)
+hook.Add("CalcView", "MizmoCutSceneGenerateViewMatrix", CameraController.CutsceneSystem.GenerateViewMatrix)
 
-function CameraController.CutSceneSystem.GenerateViewMatrix(ply, pos, angles, fov)
+function CameraController.CutsceneSystem.GenerateViewMatrix(ply, pos, angles, fov)
 	local matrix = {}
-	matrix.origin = CameraController.CutSceneSystem.CurrentPosition;
-	matrix.angles = CameraController.CutSceneSystem.CurrentAngle;
+	matrix.origin = CameraController.CutsceneSystem.CurrentPosition;
+	matrix.angles = CameraController.CutsceneSystem.CurrentAngle;
 	matrix.fov = fov;
 	matrix.drawviewer = true;
 	return matrix;
 end
 
-function CameraController.CutSceneSystem.Think()
+function CameraController.CutsceneSystem.Think()
 	-- If we arent in a cutscene return
-	if (CameraController.CutSceneSystem.InCutscene == false) then
+	if (CameraController.CutsceneSystem.InCutscene == false) then
 		return
 	end
 
 	-- Firstly check if our startingPosition and endingposition are null or equal together.
-	if ((CameraController.CutSceneSystem.StartingPosition == nil || CameraController.CutSceneSystem.EndingPosition == nil) || CameraController.CutSceneSystem.StartngPosition == CameraController.CutSceneSystem.EndingPosition || CameraController.CutSceneSystem.LerpPercentage >= 1) then
-		CameraController.CutSceneSystem.CurrentStage = CameraController.CutSceneSystem.CurrentStage + 1;
+	if ((CameraController.CutsceneSystem.StartingPosition == nil || CameraController.CutsceneSystem.EndingPosition == nil) || CameraController.CutsceneSystem.StartngPosition == CameraController.CutsceneSystem.EndingPosition || CameraController.CutsceneSystem.LerpPercentage >= 1) then
+		CameraController.CutsceneSystem.CurrentStage = CameraController.CutsceneSystem.CurrentStage + 1;
 
 		-- Check the new values exist
-		if (CameraController.CutSceneSystem.Positions[CameraController.CutSceneSystem.CurrentStage] == nil || CameraController.CutSceneSystem.Positions[CameraController.CutSceneSystem.CurrentStage + 1] == nil || CameraController.CutSceneSystem.CurrentStage > #CameraController.CutSceneSystem.Positions) then
-			print(CameraController.CutSceneSystem.ReplayCutScene);
-			if (CameraController.CutSceneSystem.ReplayCutScene == true) then
-				CameraController.CutSceneSystem.ResetCutScene()
+		if (CameraController.CutsceneSystem.Positions[CameraController.CutsceneSystem.CurrentStage] == nil || CameraController.CutsceneSystem.Positions[CameraController.CutsceneSystem.CurrentStage + 1] == nil || CameraController.CutsceneSystem.CurrentStage > #CameraController.CutsceneSystem.Positions) then
+			if (CameraController.CutsceneSystem.ReplayCutScene == true) then
+				CameraController.CutsceneSystem.ResetCutScene()
 			else
-				CameraController.CutSceneSystem.EndCutScene()
+				CameraController.CutsceneSystem.EndCutScene()
 			end
-
 			return;
 		end
 		
-		CameraController.CutSceneSystem.LerpPercentage = 0;
-		CameraController.CutSceneSystem.StartingPosition = CameraController.CutSceneSystem.Positions[CameraController.CutSceneSystem.CurrentStage][1];
-		CameraController.CutSceneSystem.EndingPosition = CameraController.CutSceneSystem.Positions[CameraController.CutSceneSystem.CurrentStage + 1][1];
-		CameraController.CutSceneSystem.CurrentPosition = nil;
-		CameraController.CutSceneSystem.StartingAngle = CameraController.CutSceneSystem.Positions[CameraController.CutSceneSystem.CurrentStage][2];
-		CameraController.CutSceneSystem.EndingAngle = CameraController.CutSceneSystem.Positions[CameraController.CutSceneSystem.CurrentStage + 1][2];
-		CameraController.CutSceneSystem.CurrentAngle = nil;
+		CameraController.CutsceneSystem.LerpPercentage = 0;
+		CameraController.CutsceneSystem.StartingPosition = CameraController.CutsceneSystem.Positions[CameraController.CutsceneSystem.CurrentStage].Position;
+		CameraController.CutsceneSystem.EndingPosition = CameraController.CutsceneSystem.Positions[CameraController.CutsceneSystem.CurrentStage + 1].Position;
+		CameraController.CutsceneSystem.CurrentPosition = nil;
+		CameraController.CutsceneSystem.StartingAngle = CameraController.CutsceneSystem.Positions[CameraController.CutsceneSystem.CurrentStage].Angle;
+		CameraController.CutsceneSystem.EndingAngle = CameraController.CutsceneSystem.Positions[CameraController.CutsceneSystem.CurrentStage + 1].Angle;
+		CameraController.CutsceneSystem.CurrentAngle = nil;
 	end
 
 	-- If Both starting and ending positions are valid then lerp our progress abit using FrameTime()
-	if (CameraController.CutSceneSystem.StartingPosition ~= nil && CameraController.CutSceneSystem.EndingPosition ~= nil) then
-		local percentageToBeIncreasedBy = (FrameTime() * CameraController.CutSceneSystem.SpeedMultipler) / CameraController.CutSceneSystem.StartingPosition:Distance(CameraController.CutSceneSystem.EndingPosition);
-		CameraController.CutSceneSystem.LerpPercentage = math.Clamp(CameraController.CutSceneSystem.LerpPercentage + percentageToBeIncreasedBy, 0, 1);
-		CameraController.CutSceneSystem.CurrentPosition = LerpVector(CameraController.CutSceneSystem.LerpPercentage, CameraController.CutSceneSystem.StartingPosition, CameraController.CutSceneSystem.EndingPosition);
-		CameraController.CutSceneSystem.CurrentAngle = LerpVector(CameraController.CutSceneSystem.LerpPercentage, CameraController.CutSceneSystem.StartingAngle, CameraController.CutSceneSystem.EndingAngle);
+	if (CameraController.CutsceneSystem.StartingPosition ~= nil && CameraController.CutsceneSystem.EndingPosition ~= nil) then
+		local percentageToBeIncreasedBy = (FrameTime() * CameraController.CutsceneSystem.SpeedMultipler) / CameraController.CutsceneSystem.StartingPosition:Distance(CameraController.CutsceneSystem.EndingPosition);
+		CameraController.CutsceneSystem.LerpPercentage = math.Clamp(CameraController.CutsceneSystem.LerpPercentage + percentageToBeIncreasedBy, 0, 1);
+		CameraController.CutsceneSystem.CurrentPosition = LerpVector(CameraController.CutsceneSystem.LerpPercentage, CameraController.CutsceneSystem.StartingPosition, CameraController.CutsceneSystem.EndingPosition);
+		CameraController.CutsceneSystem.CurrentAngle = LerpVector(CameraController.CutsceneSystem.LerpPercentage, CameraController.CutsceneSystem.StartingAngle, CameraController.CutsceneSystem.EndingAngle);
 	end
+
+	hook.Run("MizmoInCutscene");
 end
-hook.Add("Think", "MizmoCutsceneThink", CameraController.CutSceneSystem.Think);
+hook.Add("Think", "MizmoCutsceneThink", CameraController.CutsceneSystem.Think);
