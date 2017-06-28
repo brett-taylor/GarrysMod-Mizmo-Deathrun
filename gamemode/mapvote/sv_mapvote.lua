@@ -176,12 +176,8 @@ function MV:FinishMapVote()
 
 	if win == "" then win = table.Random( MV.VotingMapsNoVotes ) end
 
-	DR:ChatBroadcast("The next map will be "..win..". Map will change in 5 seconds.")
-
 	local nextmap = win
-
 	timer.Simple(5, function()
-		DR:ChatBroadcast("Changing to the next map...")
 		RunConsoleCommand("changelevel", nextmap)
 	end)
 

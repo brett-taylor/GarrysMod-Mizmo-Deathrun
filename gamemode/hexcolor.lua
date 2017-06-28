@@ -17,8 +17,6 @@ local hexvals = {
     ["F"] = 15,
 }
 
-
-
 function Hex( hex ) -- utility functions
 
     hex = string.upper( hex )

@@ -79,7 +79,6 @@ local function checkdeathavoid( ply )
 	local avoided = (ply:Team() == TEAM_DEATH and ply:Alive()) and true or false
 	if avoided == true and (ROUND:GetCurrent() == ROUND_PREP or ROUND:GetCurrent() == ROUND_ACTIVE) and #player.GetAllPlaying() > 2 then
 		DR:PunishDeathAvoid( ply, GetConVarNumber("deathrun_death_avoid_punishment") )
-		DR:ChatBroadcast("Player "..ply:Nick().." will be punished for attempting to avoid being on the Death team!")
 	end
 end
 hook.Add("PlayerDisconnected", "DeathrunWatchDeathAvoid", checkdeathavoid)
@@ -89,7 +88,6 @@ hook.Add("PlayerInitialSpawn", "DeathrunCleanupSinglePlayer", function( ply )
 	ROUND:SyncTimerPlayer( ply )
 	if #player.GetAll() <= 1 then
 		game.CleanUpMap()
-		DR:ChatBroadcast("Cleaned up the map.")
 	end
 end)
 ROUND:AddState( ROUND_WAITING,
@@ -126,11 +124,6 @@ ROUND:AddState( ROUND_PREP,
 	function()
 		print("Round State: PREP")
 		hook.Call("DeathrunBeginPrep", nil )
-		if CLIENT then
-			if GetConVar("deathrun_round_cues"):GetBool() == true then
-				surface.PlaySound("ui/achievement_earned.wav") -- round start cue
-			end
-		end
 
 		if SERVER then
 

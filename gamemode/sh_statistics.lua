@@ -1,4 +1,4 @@
--- script to keep track of all statistics for players
+/*-- script to keep track of all statistics for players
 -- kills, deaths, round wins
 -- if a runner dies, then that's 1 kill for everyone on the Death team.
 print("Loading Statistics...")
@@ -515,4 +515,4 @@ if SERVER then
 	DR:AddChatCommand("records",function(ply, args)
 		ply:ConCommand("deathrun_records_menu")
 	end)
-end
+end*/

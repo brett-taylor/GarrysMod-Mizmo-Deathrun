@@ -11,7 +11,6 @@ function PLAYER:BeginSpectate()
 	if avoided == true and (ROUND:GetCurrent() == ROUND_PREP or ROUND:GetCurrent() == ROUND_ACTIVE) and (#player.GetAllPlaying()) > 1 then
 		print("Punish death avoider..")
 		DR:PunishDeathAvoid( self, DR.DeathAvoidPunishment:GetInt() )
-		DR:ChatBroadcast("Player "..self:Nick().." will be punished for attempting to avoid being on the Death team!")
 	end
 
 	--self:StripWeapons()
@@ -226,12 +225,11 @@ function PLAYER:DeathrunChatPrint( msg )
 end
 
 function DR:ChatBroadcast( msg )
-	--for k,v in ipairs(player.GetAll()) do
-		net.Start("DeathrunChatMessage")
-		net.WriteString( msg )
-		net.Broadcast()
-		MsgC(DR.Colors.Turq, "Server Broadcast: "..msg.."\n")
-	--end
+	print("Attempted to call ChatBroadcast "..msg..".");
+	print("Attempted to call ChatBroadcast "..msg..".");
+	print("Attempted to call ChatBroadcast "..msg..".");
+	print("Attempted to call ChatBroadcast "..msg..".");
+	print("Attempted to call ChatBroadcast "..msg..".");
 end
 
 timer.Create("MoveSpectatorsToCorrectTeam", 5, 0, function()
