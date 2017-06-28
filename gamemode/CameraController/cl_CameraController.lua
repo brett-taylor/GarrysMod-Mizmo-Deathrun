@@ -2,5 +2,5 @@ CameraController = {}
 
 net.Receive( "TriggerCutScene", function()
 	local cutsceneData = net.ReadTable();
-	CameraController.CutsceneSystem.StartCutScene(cutsceneData.Nodes, false);
+	CameraController.CutsceneSystem.StartCutScene(cutsceneData.Name, cutsceneData.Nodes, false);
 end)

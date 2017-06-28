@@ -1,6 +1,6 @@
 CameraController.CutsceneSystem = {}
+CameraController.CutsceneSystem.Name = nil;
 CameraController.CutsceneSystem.SpeedMultipler = 100;
-
 CameraController.CutsceneSystem.InCutscene = false;
 CameraController.CutsceneSystem.ReplayCutScene = false;
 CameraController.CutsceneSystem.Positions = {}
@@ -13,7 +13,8 @@ CameraController.CutsceneSystem.StartingAngle = nil;
 CameraController.CutsceneSystem.EndingAngle = nil;
 CameraController.CutsceneSystem.CurrentAngle = nil;
 
-function CameraController.CutsceneSystem.StartCutScene(positionsTable, replayCutscene)
+function CameraController.CutsceneSystem.StartCutScene(name, positionsTable, replayCutscene)
+	CameraController.CutsceneSystem.Name = name;
 	CameraController.CutsceneSystem.InCutscene = true;
 	CameraController.CutsceneSystem.Positions = positionsTable;
 	CameraController.CutsceneSystem.ReplayCutScene  = replayCutscene;
@@ -24,6 +25,7 @@ end
 function CameraController.CutsceneSystem.EndCutScene()
  	CameraController.CutsceneSystem.ResetCutScene()
 	CameraController.CutsceneSystem.Positions = {}
+	CameraController.CutsceneSystem.Name = nil;
 	CameraController.CutsceneSystem.InCutscene = false;
 end
 

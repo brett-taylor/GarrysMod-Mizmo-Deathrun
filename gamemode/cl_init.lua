@@ -1,5 +1,9 @@
-include("DisplayElements/cl_fonts.lua")
-include("DisplayElements/cl_hud.lua")
+include("Util/sh_Colours.lua")
+include("Util/sh_LerpColour.lua");
+
+include("DisplayElements/cl_Fonts.lua")
+include("DisplayElements/cl_HUD.lua")
+
 include("hexcolor.lua")
 include("config.lua")
 include("cl_derma.lua")
