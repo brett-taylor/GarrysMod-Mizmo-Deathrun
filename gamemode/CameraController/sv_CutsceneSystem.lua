@@ -11,10 +11,14 @@ function CameraController.RunCutscene(ply, cutsceneName)
 	end
 end
 
-function CameraController:CalculateIntroductionSceneName()
+function CameraController.CalculateIntroductionSceneName()
 	return game.GetMap().."-introduction";
 end
 
 concommand.Add("loadcutscene", function(ply, cmd, args)
-	player.GetAll()[1]:RunCutscene(CameraController:CalculateIntroductionSceneName());
+	player.GetAll()[1]:RunCutscene(CameraController.CalculateIntroductionSceneName());
 end)
+
+concommand.Add("printcutscene", function(ply, cmd, args)
+	CameraController.Data.SaveCutsceneDataToFile(CameraController.CalculateIntroductionSceneName());
+end);

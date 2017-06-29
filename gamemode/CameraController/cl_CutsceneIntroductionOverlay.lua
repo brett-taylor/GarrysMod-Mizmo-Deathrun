@@ -5,7 +5,6 @@ function CameraController.CutsceneSystem.Introduction.DrawOverlay()
 	if (CameraController.CutsceneSystem.InCutscene == false) then
 		return;
 	end
-
 	if (CameraController.CutsceneSystem.Name ~= game.GetMap().."-introduction") then
 		return;
 	end
