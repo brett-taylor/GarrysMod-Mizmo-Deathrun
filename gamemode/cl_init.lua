@@ -4,9 +4,10 @@ include("Util/sh_LerpColour.lua");
 include("DisplayElements/cl_Fonts.lua")
 include("DisplayElements/cl_HUD.lua")
 
+include("ButtonClaiming/cl_ShowButtonClaimed.lua");
+
 include("hexcolor.lua")
 include("config.lua")
-include("cl_derma.lua")
 include("shared.lua")
 include("mapvote/sh_mapvote.lua")
 include("mapvote/cl_mapvote.lua")
@@ -15,7 +16,6 @@ include("roundsystem/cl_round.lua")
 include("sh_definerounds.lua")
 include("zones/sh_zone.lua")
 include("zones/cl_zone.lua")
-include("sh_buttonclaiming.lua")
 include("sh_pointshopsupport.lua")
 include("CameraController/cl_CameraController.lua")
 include("CameraController/cl_CutsceneSystem.lua");

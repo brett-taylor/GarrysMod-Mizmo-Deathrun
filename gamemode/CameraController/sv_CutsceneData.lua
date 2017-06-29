@@ -57,6 +57,10 @@ function CameraController.Data.AddNewCutscenePosition(cutsceneName, position, an
 end
 
 function CameraController.Data.SaveCutsceneDataToFile(cutsceneName)
+	if (CameraController.Data.DoesCutsceneExist(cutsceneName) == false) then
+		return;
+	end
+
 	file.CreateDir("Mizmo-Cutscene-Print/");
 	local sqlStrings = CameraController.Data.GetCutsceneToSQL(cutsceneName);
 	file.Delete("Mizmo-Cutscene-Print/"..cutsceneName..".txt");
@@ -78,5 +82,37 @@ function CameraController.Data.GetCutsceneToSQL(cutsceneName)
 			sqlStrings[i] = sqlStrings[i].."; \n";
 		end
 		return sqlStrings;
+	end
+end
+
+function CameraController.Data.DoesCutsceneExist(cutsceneName)
+	local result = sql.Query("Select CutsceneName, PositionX, PositionY, PositionZ, AngleX, AngleY, AngleZ, ShouldTeleport From Mizmo_CutScene Where CutsceneName='" ..cutsceneName.. "'");
+
+	if (result == nil) then
+		return false;
+	else
+		return true;
+	end
+end
+
+function CameraController.Data.SaveAllCutscenes()
+	file.CreateDir("Mizmo-Cutscene-Print/");
+	file.Delete("Mizmo-Cutscene-Print/AllCutscenesInformation.txt");
+
+	local sqlStrings = {};
+	local result = sql.Query("Select CutsceneName, PositionX, PositionY, PositionZ, AngleX, AngleY, AngleZ, ShouldTeleport From Mizmo_CutScene");
+
+	if (result ~= nil) then
+		for i=1, #result do
+			sqlStrings[i] = string.format(
+				"Insert Into Mizmo_CutScene (CutsceneName, PositionX, PositionY, PositionZ, AngleX, AngleY, AngleZ, ShouldTeleport) Values ('%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s')", 
+				result[i]["CutsceneName"], result[i]["PositionX"], result[i]["PositionY"], result[i]["PositionZ"], result[i]["AngleX"], result[i]["AngleY"], result[i]["AngleZ"], result[i]["ShouldTeleport"]);
+
+			sqlStrings[i] = sqlStrings[i].."; \n";
+		end
+	end
+
+	for i=1, #sqlStrings do
+		file.Append("Mizmo-Cutscene-Print/AllCutscenesInformation.txt", sqlStrings[i]);
 	end
 end
