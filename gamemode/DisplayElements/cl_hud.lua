@@ -135,6 +135,9 @@ function HUD.DrawHUD()
     HUD.DrawBasicElements();
     HUD.DrawHUDText();
     HUD.DrawElements();
+
+    -- TEMP
+    HUD.TempDrawRoundstatus()
 end
 
 function HUD.TakeDamageAnim()
@@ -178,6 +181,15 @@ function HUD.RemoveGarrysmodDefaultHud(name)
     if (HUD.HideElements[name]) then
         return false;
     end
+end
+
+-- TEMP FUNCTION
+function HUD.TempDrawRoundstatus()
+    draw.SimpleTextOutlined("Round State: "..ROUND:GetCurrent(), "MizmoGaming-Intro-Subhead", ScrW() / 2, 10, Colours.Gold, TEXT_ALIGN_CENTER, TEXT_ALIGN_TOP, 1, Colours.Grey)
+    draw.SimpleTextOutlined("Time Left: "..string.ToMinutesSeconds(math.Clamp(ROUND:GetTimer(), 0, 99999)), "MizmoGaming-Intro-Subhead", ScrW() / 2, 40, Colours.Gold, TEXT_ALIGN_CENTER, TEXT_ALIGN_TOP, 1, Colours.Grey)
+
+    --deathrunShadowTextSimple(string.upper( RoundNames[ ROUND:GetCurrent() ]  or "TIME LEFT" ), "deathrun_hud_Small", dx+4,  dy + 16/2, otcol, TEXT_ALIGN_LEFT, TEXT_ALIGN_CENTER)
+    --deathrunShadowTextSimple(string.ToMinutesSeconds( math.Clamp( ROUND:GetTimer(), 0, 99999 ) ), "deathrun_hud_Small", dx + 228-4,  dy + 16/2, otcol, TEXT_ALIGN_RIGHT, TEXT_ALIGN_CENTER)
 end
 
 hook.Add("HUDPaint", "MizmoDrawHUD", HUD.DrawHUD); //Draws the HUD every frame

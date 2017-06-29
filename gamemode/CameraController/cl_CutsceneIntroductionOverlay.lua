@@ -33,7 +33,7 @@ function CameraController.CutsceneSystem.Introduction.Skip(ply, key)
 	end
 
 	if (key == 2)then
-		CameraController.CutsceneSystem.EndCutScene()
+		CameraController.SendRequestToEndCutscene();
 	end
 end
 hook.Add("KeyPress", "MizmoIntroductionOveralKeyPressed", CameraController.CutsceneSystem.Introduction.Skip)
