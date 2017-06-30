@@ -9,8 +9,9 @@ AddCSLuaFile("DisplayElements/cl_Fonts.lua")
 AddCSLuaFile("DisplayElements/cl_HUD.lua")
 AddCSLuaFile("DisplayElements/cl_voiceHUD.lua")
 
+AddCSLuaFile("ButtonClaiming/cl_ShowButtonClaimed.lua");
+
 AddCSLuaFile("hexcolor.lua")
-AddCSLuaFile("cl_derma.lua")
 AddCSLuaFile("cl_init.lua")
 AddCSLuaFile("shared.lua")
 AddCSLuaFile("config.lua")
@@ -21,7 +22,6 @@ AddCSLuaFile("zones/sh_zone.lua")
 AddCSLuaFile("zones/cl_zone.lua")
 AddCSLuaFile("mapvote/sh_mapvote.lua")
 AddCSLuaFile("mapvote/cl_mapvote.lua")
-AddCSLuaFile("sh_buttonclaiming.lua")
 AddCSLuaFile("sh_pointshopsupport.lua")
 AddCSLuaFile("sh_statistics.lua")
 
@@ -31,6 +31,8 @@ AddCSLuaFile("CameraController/cl_CutsceneIntroductionOverlay.lua");
 
 include("Util/sh_Colours.lua")
 include("Util/sh_LerpColour.lua");
+
+include("ButtonClaiming/sv_ButtonClaiming.lua");
 
 include("hexcolor.lua")
 include("config.lua")
@@ -44,7 +46,6 @@ include("zones/sv_zone.lua")
 include("mapvote/sh_mapvote.lua")
 include("mapvote/sv_mapvote.lua")
 include("sv_player.lua")
-include("sh_buttonclaiming.lua")
 include("sh_pointshopsupport.lua")
 
 include("CameraController/sv_CutsceneSystem.lua")

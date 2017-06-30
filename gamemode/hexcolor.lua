@@ -71,6 +71,4 @@ function HexColor(hex, alpha)
         col.a = alpha or 255
         return col
     end
-
 end
-
