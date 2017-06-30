@@ -17,7 +17,6 @@ include("roundsystem/cl_round.lua")
 include("sh_definerounds.lua")
 include("zones/sh_zone.lua")
 include("zones/cl_zone.lua")
-include("sh_pointshopsupport.lua")
 include("CameraController/cl_CameraController.lua")
 include("CameraController/cl_CutsceneSystem.lua");
 include("CameraController/cl_CutsceneIntroductionOverlay.lua");

@@ -22,8 +22,6 @@ AddCSLuaFile("zones/sh_zone.lua")
 AddCSLuaFile("zones/cl_zone.lua")
 AddCSLuaFile("mapvote/sh_mapvote.lua")
 AddCSLuaFile("mapvote/cl_mapvote.lua")
-AddCSLuaFile("sh_pointshopsupport.lua")
-AddCSLuaFile("sh_statistics.lua")
 
 AddCSLuaFile("CameraController/cl_CameraController.lua");
 AddCSLuaFile("CameraController/cl_CutsceneSystem.lua");
@@ -46,7 +44,6 @@ include("zones/sv_zone.lua")
 include("mapvote/sh_mapvote.lua")
 include("mapvote/sv_mapvote.lua")
 include("sv_player.lua")
-include("sh_pointshopsupport.lua")
 
 include("CameraController/sv_CutsceneSystem.lua")
 include("CameraController/sv_CutsceneData.lua")
