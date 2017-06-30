@@ -3,6 +3,7 @@ include("Util/sh_LerpColour.lua");
 
 include("DisplayElements/cl_Fonts.lua")
 include("DisplayElements/cl_HUD.lua")
+include("DisplayElements/cl_voiceHUD.lua")
 
 include("hexcolor.lua")
 include("config.lua")

@@ -7,6 +7,7 @@ AddCSLuaFile("Util/sh_LerpColour.lua");
 
 AddCSLuaFile("DisplayElements/cl_Fonts.lua")
 AddCSLuaFile("DisplayElements/cl_HUD.lua")
+AddCSLuaFile("DisplayElements/cl_voiceHUD.lua")
 
 AddCSLuaFile("hexcolor.lua")
 AddCSLuaFile("cl_derma.lua")
