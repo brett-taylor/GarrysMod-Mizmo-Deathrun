@@ -17,9 +17,13 @@ include("roundsystem/cl_round.lua")
 include("sh_definerounds.lua")
 include("zones/sh_zone.lua")
 include("zones/cl_zone.lua")
+
 include("CameraController/cl_CameraController.lua")
 include("CameraController/cl_CutsceneSystem.lua");
 include("CameraController/cl_CutsceneIntroductionOverlay.lua");
+
+include("ThirdPersonSystem/cl_ThirdPersonSystem.lua");
+include("ThirdPersonSystem/cl_ThirdPersonSystemControls.lua");
 
 concommand.Add("dr_test_menu", function()
 	local frame = vgui.Create("arizard_window")

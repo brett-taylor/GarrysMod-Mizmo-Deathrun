@@ -5,6 +5,11 @@ function CameraController.CutsceneSystem.Introduction.DrawOverlay()
 	if (CameraController.CutsceneSystem.InCutscene == false) then
 		return;
 	end
+
+	draw.SimpleTextOutlined(CameraController.CutsceneSystem.LerpPercentage, "MizmoGaming-Intro-Small", 5, 5, Color(255, 255, 255), TEXT_ALIGN_LEFT, TEXT_ALIGN_TOP, 1, Color(0, 0, 0))
+	draw.SimpleTextOutlined(CameraController.CutsceneSystem.CurrentStage, "MizmoGaming-Intro-Small", 5, 40, Color(255, 255, 255), TEXT_ALIGN_LEFT, TEXT_ALIGN_TOP, 1, Color(0, 0, 0))
+	draw.SimpleTextOutlined(CameraController.CutsceneSystem.InCutscene, "MizmoGaming-Intro-Small", 5, 80, Color(255, 255, 255), TEXT_ALIGN_LEFT, TEXT_ALIGN_TOP, 1, Color(0, 0, 0))
+	
 	if (CameraController.CutsceneSystem.Name ~= game.GetMap().."-introduction") then
 		return;
 	end

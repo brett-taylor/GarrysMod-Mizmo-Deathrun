@@ -27,6 +27,9 @@ AddCSLuaFile("CameraController/cl_CameraController.lua");
 AddCSLuaFile("CameraController/cl_CutsceneSystem.lua");
 AddCSLuaFile("CameraController/cl_CutsceneIntroductionOverlay.lua");
 
+AddCSLuaFile("ThirdPersonSystem/cl_ThirdPersonSystem.lua");
+AddCSLuaFile("ThirdPersonSystem/cl_ThirdPersonSystemControls.lua");
+
 include("Util/sh_Colours.lua")
 include("Util/sh_LerpColour.lua");
 
@@ -45,10 +48,16 @@ include("mapvote/sh_mapvote.lua")
 include("mapvote/sv_mapvote.lua")
 include("sv_player.lua")
 
+include("PlayerSettings/sv_PlayerSettingsEnums.lua")
+include("PlayerSettings/sv_PlayerSettingsData.lua")
+include("PlayerSettings/sv_PlayerSettings.lua")
+
 include("CameraController/sv_CutsceneSystem.lua")
 include("CameraController/sv_CutsceneData.lua")
 include("CameraController/sv_CutscenePlayerMethods.lua")
 include("CameraController/sv_CutsceneULXCommands.lua")
+
+include("ThirdPersonSystem/sv_ThirdPersonSystem.lua");
 
 util.AddNetworkString("DeathrunChatMessage")
 util.AddNetworkString("DeathrunSyncMutelist")
