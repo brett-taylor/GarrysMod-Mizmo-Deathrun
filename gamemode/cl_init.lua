@@ -1,5 +1,6 @@
 include("Util/sh_Colours.lua")
 include("Util/sh_LerpColour.lua");
+include("Util/sh_SendMessage.lua");
 
 include("PlayerSettings/sh_PlayerSettingsEnums.lua")
 
@@ -31,7 +32,7 @@ include("Playtime/cl_playtime.lua");
 
 include("Pointshop/cl_init.lua");
 
---PS:Initialize();
+PS:Initialize();
 
 concommand.Add("dr_test_menu", function()
 	local frame = vgui.Create("arizard_window")

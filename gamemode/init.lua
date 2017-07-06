@@ -4,6 +4,7 @@ end
 
 AddCSLuaFile("Util/sh_Colours.lua")
 AddCSLuaFile("Util/sh_LerpColour.lua");
+AddCSLuaFile("Util/sh_SendMessage.lua");
 
 AddCSLuaFile("PlayerSettings/sh_PlayerSettingsEnums.lua")
 
@@ -38,6 +39,7 @@ AddCSLuaFile("Pointshop/cl_init.lua");
 
 include("Util/sh_Colours.lua")
 include("Util/sh_LerpColour.lua");
+include("Util/sh_SendMessage.lua");
 
 include("ButtonClaiming/sv_ButtonClaiming.lua");
 
@@ -71,6 +73,8 @@ include("Pointshop/sv_init.lua");
 
 include("ULXCommands/sv_AutoJumpCommand.lua");
 
+include("EndOfRound/sv_endRound.lua");
+
 util.AddNetworkString("DeathrunChatMessage")
 util.AddNetworkString("DeathrunSyncMutelist")
 util.AddNetworkString("DeathrunNotification")
@@ -84,7 +88,7 @@ RunConsoleCommand("sv_sticktoground", 0)
 RunConsoleCommand("sv_airaccelerate", 0)
 RunConsoleCommand("sv_gravity", 800)
 
---PS:Initialize();
+PS:Initialize();
 
 local playermodels = {
 	"models/player/group01/male_01.mdl",
