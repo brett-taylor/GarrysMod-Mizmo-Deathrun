@@ -1,30 +1,13 @@
-util.AddNetworkString("MizmoThirdPerson");
-util.AddNetworkString("MizmoRequestThirdPersonSetting");
-ThirdPersonSystemServer = {};
-
-net.Receive("MizmoRequestThirdPersonSetting", function(len, ply)
-	ThirdPersonSystemServer.SendSettingToPlayer(ply);
-end)
-
-function ThirdPersonSystemServer.CreateNecessarilyDatabaseTables(ply)
-		if not (sql.TableExists("Mizmo_Settings")) then
-		sql.Query("Create Table Mizmo_Settings (ID varchar(255), ThirdPersonOn varchar(255))");
+function ulx.ToggleThirdPerson(callingPlayer)
+	local currentSetting = callingPlayer:GetSetting(PlayerSettings.Enums.THIRD_PERSON.Name);
+	print(currentSetting);
+	if (tonumber(currentSetting) >= 1) then
+		callingPlayer:SetSetting(PlayerSettings.Enums.THIRD_PERSON.Name, 0);
+	else
+		callingPlayer:SetSetting(PlayerSettings.Enums.THIRD_PERSON.Name, 1);
 	end
 end
 
-function ThirdPersonSystemServer.SendSettingToPlayer(ply)
-	/*local result = sql.Query("Select ThirdPersonOn From Mizmo_Settings Where ID='" ..ply:SteamID().. "'");
-	if (result ~= nil) then
-		local thirdPersonOnResult = tonumber(result[1]["ThirdPersonOn"]);
-
-		if (thirdPersonOnResult == 0 || thirdPersonOnResult == 1) then
-			net.Start("MizmoThirdPerson");
-				if (thirdPersonOnResult == 0) then
-					net.WriteBool(false);
-				else
-					net.WriteBool(true);
-				end
-			net.Send(ply);
-		end
-	end*/
-end
+local toggleTP = ulx.command("togglethirdperson", "ulx togglethirdperson", ulx.ToggleThirdPerson, {"!thirdperson", "!tp", "!thirdp",  "!thirdpersonview", "!third"});
+toggleTP:defaultAccess(ULib.ACCESS_ALL);
+toggleTP:help("Toggles your view point between third person and first person.");

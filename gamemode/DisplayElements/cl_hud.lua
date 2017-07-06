@@ -187,6 +187,8 @@ end
 function HUD.TempDrawRoundstatus()
     draw.SimpleTextOutlined("Round State: "..ROUND:GetCurrent(), "MizmoGaming-Intro-Subhead", ScrW() / 2, 10, Colours.Gold, TEXT_ALIGN_CENTER, TEXT_ALIGN_TOP, 1, Colours.Grey)
     draw.SimpleTextOutlined("Time Left: "..string.ToMinutesSeconds(math.Clamp(ROUND:GetTimer(), 0, 99999)), "MizmoGaming-Intro-Subhead", ScrW() / 2, 40, Colours.Gold, TEXT_ALIGN_CENTER, TEXT_ALIGN_TOP, 1, Colours.Grey)
+    draw.SimpleTextOutlined("Miniutes Played: "..LocalPlayer():GetPlaytime(), "MizmoGaming-Intro-Subhead", ScrW() / 2 - 2, 70, Colours.Gold, TEXT_ALIGN_RIGHT, TEXT_ALIGN_TOP, 1, Colours.Grey)
+    draw.SimpleTextOutlined("Hours Played: "..LocalPlayer():GetPlaytimeHours(), "MizmoGaming-Intro-Subhead", ScrW() / 2 + 2, 70, Colours.Gold, TEXT_ALIGN_LEFT, TEXT_ALIGN_TOP, 1, Colours.Grey)
 end
 
 hook.Add("HUDPaint", "MizmoDrawHUD", HUD.DrawHUD); //Draws the HUD every frame

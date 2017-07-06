@@ -1,23 +1,8 @@
 ThirdPersonSystemClient = {};
-ThirdPersonSystemClient.IsInThirdPerson = false;
-
-net.Receive("MizmoThirdPerson", function()
-	ThirdPersonSystemClient.EnableThirdPerson(net.ReadBool());
-end)
-
-function ThirdPersonSystemClient.EnableThirdPerson(enabled)
-	ThirdPersonSystemClient.IsInThirdPerson = enabled;
-end
-
-function ThirdPersonSystemClient.GetPlayerSetting()
-	net.Start("MizmoRequestThirdPersonSetting");
- 	net.SendToServer();
-end
-ThirdPersonSystemClient.GetPlayerSetting();
 
 function ThirdPersonSystemClient.ThirdPersonView(ply, pos, angles, fov)
 	-- Check the user actually wants third person.
-	if (ThirdPersonSystemClient.IsInThirdPerson == false) then
+	if (tonumber(ply:GetNWString(PlayerSettings.Enums.THIRD_PERSON.Name)) == 0) then
 		return;
 	end
 

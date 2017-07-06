@@ -519,7 +519,7 @@ if CLIENT then
 
 		if self:GetIronsights() and self.Scope then
 			local x,y = 0,0
-			if GetConVar("deathrun_thirdperson_enabled"):GetBool() == true then
+			if tonumber(LocalPlayer():GetNWString(PlayerSettings.Enums.THIRD_PERSON.Name)) == 1 then
 				local tr = LocalPlayer():GetEyeTrace()
 				x = tr.HitPos:ToScreen().x - ScrW()/2
 				y = tr.HitPos:ToScreen().y - ScrH()/2

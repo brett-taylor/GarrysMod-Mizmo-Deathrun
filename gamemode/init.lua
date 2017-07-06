@@ -5,9 +5,12 @@ end
 AddCSLuaFile("Util/sh_Colours.lua")
 AddCSLuaFile("Util/sh_LerpColour.lua");
 
+AddCSLuaFile("PlayerSettings/sh_PlayerSettingsEnums.lua")
+
 AddCSLuaFile("DisplayElements/cl_Fonts.lua")
 AddCSLuaFile("DisplayElements/cl_HUD.lua")
 AddCSLuaFile("DisplayElements/cl_voiceHUD.lua")
+AddCSLuaFile("DisplayElements/cl_Scoreboard.lua")
 
 AddCSLuaFile("ButtonClaiming/cl_ShowButtonClaimed.lua");
 
@@ -28,7 +31,10 @@ AddCSLuaFile("CameraController/cl_CutsceneSystem.lua");
 AddCSLuaFile("CameraController/cl_CutsceneIntroductionOverlay.lua");
 
 AddCSLuaFile("ThirdPersonSystem/cl_ThirdPersonSystem.lua");
-AddCSLuaFile("ThirdPersonSystem/cl_ThirdPersonSystemControls.lua");
+
+AddCSLuaFile("Playtime/cl_playtime.lua");
+
+AddCSLuaFile("Pointshop/cl_init.lua");
 
 include("Util/sh_Colours.lua")
 include("Util/sh_LerpColour.lua");
@@ -48,7 +54,7 @@ include("mapvote/sh_mapvote.lua")
 include("mapvote/sv_mapvote.lua")
 include("sv_player.lua")
 
-include("PlayerSettings/sv_PlayerSettingsEnums.lua")
+include("PlayerSettings/sh_PlayerSettingsEnums.lua")
 include("PlayerSettings/sv_PlayerSettingsData.lua")
 include("PlayerSettings/sv_PlayerSettings.lua")
 
@@ -58,6 +64,12 @@ include("CameraController/sv_CutscenePlayerMethods.lua")
 include("CameraController/sv_CutsceneULXCommands.lua")
 
 include("ThirdPersonSystem/sv_ThirdPersonSystem.lua");
+
+include("Playtime/sv_playtime.lua");
+
+include("Pointshop/sv_init.lua");
+
+include("ULXCommands/sv_AutoJumpCommand.lua");
 
 util.AddNetworkString("DeathrunChatMessage")
 util.AddNetworkString("DeathrunSyncMutelist")
@@ -71,6 +83,8 @@ RunConsoleCommand("sv_friction", 8)
 RunConsoleCommand("sv_sticktoground", 0)
 RunConsoleCommand("sv_airaccelerate", 0)
 RunConsoleCommand("sv_gravity", 800)
+
+--PS:Initialize();
 
 local playermodels = {
 	"models/player/group01/male_01.mdl",

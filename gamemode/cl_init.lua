@@ -1,9 +1,12 @@
 include("Util/sh_Colours.lua")
 include("Util/sh_LerpColour.lua");
 
+include("PlayerSettings/sh_PlayerSettingsEnums.lua")
+
 include("DisplayElements/cl_Fonts.lua")
 include("DisplayElements/cl_HUD.lua")
 include("DisplayElements/cl_voiceHUD.lua")
+include("DisplayElements/cl_Scoreboard.lua")
 
 include("ButtonClaiming/cl_ShowButtonClaimed.lua");
 
@@ -23,7 +26,12 @@ include("CameraController/cl_CutsceneSystem.lua");
 include("CameraController/cl_CutsceneIntroductionOverlay.lua");
 
 include("ThirdPersonSystem/cl_ThirdPersonSystem.lua");
-include("ThirdPersonSystem/cl_ThirdPersonSystemControls.lua");
+
+include("Playtime/cl_playtime.lua");
+
+include("Pointshop/cl_init.lua");
+
+--PS:Initialize();
 
 concommand.Add("dr_test_menu", function()
 	local frame = vgui.Create("arizard_window")
