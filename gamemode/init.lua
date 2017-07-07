@@ -37,6 +37,11 @@ AddCSLuaFile("Playtime/cl_playtime.lua");
 
 AddCSLuaFile("Pointshop/cl_init.lua");
 
+AddCSLuaFile("EndOfRound/cl_endRound.lua");
+
+AddCSLuaFile("Autojump/cl_autojump.lua");
+AddCSLuaFile("Autojump/sh_autojump.lua");
+
 include("Util/sh_Colours.lua")
 include("Util/sh_LerpColour.lua");
 include("Util/sh_SendMessage.lua");
@@ -74,6 +79,9 @@ include("Pointshop/sv_init.lua");
 include("ULXCommands/sv_AutoJumpCommand.lua");
 
 include("EndOfRound/sv_endRound.lua");
+
+include("Autojump/sv_autojump.lua");
+include("Autojump/sh_autojump.lua");
 
 util.AddNetworkString("DeathrunChatMessage")
 util.AddNetworkString("DeathrunSyncMutelist")

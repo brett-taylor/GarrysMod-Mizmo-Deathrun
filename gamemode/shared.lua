@@ -79,7 +79,7 @@ function InverseLerp( pos, p1, p2 )
 
 end
 
-local function intToBool( i )
+function intToBool( i )
 	if tonumber(i) == 0 then
 		return false
 	else
@@ -246,25 +246,6 @@ function GM:Move( ply, data )
 	data:SetVelocity( vel )
 	return false
 end
-
-
-local function AutoHop( ply, data )
-	
-	if CLIENT then
-		LocalPlayer().AutoJumpEnabled = intToBool( GetConVar("deathrun_autojump"):GetInt() )
-	end
-
-	if lp and ply ~= lp() then return end
-	if tonumber(ply:GetNWString(PlayerSettings.Enums.AUTO_JUMP.Name)) == 0 then return end
-	
-	local ButtonData = data:GetButtons()
-	if ba( ButtonData, IN_JUMP ) > 0 then
-		if ply:WaterLevel() < 2 and ply:GetMoveType() ~= MOVETYPE_LADDER and not ply:IsOnGround() then
-			data:SetButtons( ba( ButtonData, bn( IN_JUMP ) ) )
-		end
-	end
-end
-hook.Add( "SetupMove", "AutoHop", AutoHop )
 
 -- get rid of some default hooks
 hook.Remove("PlayerTick", "TickWidgets")

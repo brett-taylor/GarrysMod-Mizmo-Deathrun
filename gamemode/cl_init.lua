@@ -32,6 +32,11 @@ include("Playtime/cl_playtime.lua");
 
 include("Pointshop/cl_init.lua");
 
+include("EndOfRound/cl_endRound.lua");
+
+include("Autojump/cl_autojump.lua");
+include("Autojump/sh_autojump.lua");
+
 PS:Initialize();
 
 concommand.Add("dr_test_menu", function()

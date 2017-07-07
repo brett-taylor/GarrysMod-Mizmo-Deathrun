@@ -34,4 +34,4 @@ function PlaytimeServer.UpdatePlayers()
 		end
 	end
 end
-timer.Create("MizmoPlayTimeIncrement", 1, 0, PlaytimeServer.UpdatePlayers);
+timer.Create("MizmoPlayTimeIncrement", 60, 0, PlaytimeServer.UpdatePlayers);

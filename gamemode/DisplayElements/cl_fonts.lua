@@ -28,7 +28,6 @@ surface.CreateFont("MizmoGaming-Intro-Subhead", {
 	shadow = true,
 });
 
-
 /*
  * The Following Is For The Main HUD Element.
  */
@@ -58,6 +57,41 @@ surface.CreateFont("MizmoGaming-Button-Claimed", {
 	font = "Roboto Thin",
 	size = 25,
 	weight = 300,
+	antialias = true,
+	shadow = true,
+});
+
+-- Used in the banner at the end of the round
+surface.CreateFont("MizmoGaming-EndOfRound-Big", {
+	font = "Roboto Medium",
+	size = 50,
+	weight = 500,
+	antialias = true,
+	shadow = true,
+});
+
+-- Used in the banner at the end of the round
+surface.CreateFont("MizmoGaming-EndOfRound-Small", {
+	font = "Roboto Thin",
+	size = 40,
+	weight = 200,
+	antialias = true,
+	shadow = true,
+});
+
+-- Used in the twenty second autojump countdown timer
+surface.CreateFont("MizmoGaming-AutoJump-Notifier", {
+	font = "Roboto Thin",
+	size = 25,
+	weight = 200,
+	antialias = true,
+	shadow = true,
+});
+
+surface.CreateFont("MizmoGaming-AutoJump-Notifier-Countdown", {
+	font = "Roboto Medium",
+	size = 25,
+	weight = 200,
 	antialias = true,
 	shadow = true,
 });
