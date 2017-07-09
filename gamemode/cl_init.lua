@@ -37,6 +37,11 @@ include("EndOfRound/cl_endRound.lua");
 include("Autojump/cl_autojump.lua");
 include("Autojump/sh_autojump.lua");
 
+include("NotificationSystem/cl_NotificationSystemAlert.lua");
+include("NotificationSystem/cl_NotificationSystemMenu.lua");
+
+include("DisplayElements/cl_betapopup.lua");
+
 PS:Initialize();
 
 concommand.Add("dr_test_menu", function()
@@ -63,35 +68,6 @@ end)
 
 CreateClientConVar("deathrun_teammate_fade_distance", 75, true, false)
 CreateClientConVar("deathrun_thirdperson_opacity", 255, true, false)
-
-hook.Add("PrePlayerDraw", "TransparencyPlayers", function( ply )
-
-	if ply:GetRenderMode() ~= RENDERMODE_TRANSALPHA then
-		ply:SetRenderMode( RENDERMODE_TRANSALPHA )
-	end
-
-	local fadedistance = GetConVarNumber("deathrun_teammate_fade_distance") or 75
-
-	local eyedist = LocalPlayer():EyePos():Distance( ply:EyePos() )
-	local col = ply:GetColor()
-
-	if eyedist < fadedistance and LocalPlayer() ~= ply then
-		local frac = InverseLerp( eyedist, 5, fadedistance )
-		
-		col.a = Lerp( frac, 20, 255 )
-
-		if ply:Team() ~= LocalPlayer():Team() then col.a = 255 end
-
-		ply:SetColor( col )
-	elseif LocalPlayer() == ply then
-		col.a = GetConVarNumber("deathrun_thirdperson_opacity") or 255
-		ply:SetColor( col )
-	else
-		col.a = 255
-		ply:SetColor( col )
-	end
-
-end)
 
 function GM:PreDrawViewModel( vm, ply, wep )
 	local ply = LocalPlayer()

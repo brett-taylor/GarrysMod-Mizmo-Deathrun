@@ -137,7 +137,9 @@ function HUD.DrawHUD()
     HUD.DrawElements();
 
     -- TEMP
-    HUD.TempDrawRoundstatus()
+    if (LocalPlayer():GetNWString(PlayerSettings.Enums.IS_DEBUGGING.Name) == "1") then
+        HUD.TempDrawRoundstatus();
+    end
 end
 
 function HUD.TakeDamageAnim()

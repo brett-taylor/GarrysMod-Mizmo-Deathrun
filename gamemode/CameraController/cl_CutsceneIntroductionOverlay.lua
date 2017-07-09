@@ -6,10 +6,14 @@ function CameraController.CutsceneSystem.Introduction.DrawOverlay()
 		return;
 	end
 
-	draw.SimpleTextOutlined(CameraController.CutsceneSystem.LerpPercentage, "MizmoGaming-Intro-Small", 5, 5, Color(255, 255, 255), TEXT_ALIGN_LEFT, TEXT_ALIGN_TOP, 1, Color(0, 0, 0))
-	draw.SimpleTextOutlined(CameraController.CutsceneSystem.CurrentStage, "MizmoGaming-Intro-Small", 5, 40, Color(255, 255, 255), TEXT_ALIGN_LEFT, TEXT_ALIGN_TOP, 1, Color(0, 0, 0))
-	draw.SimpleTextOutlined(CameraController.CutsceneSystem.InCutscene, "MizmoGaming-Intro-Small", 5, 80, Color(255, 255, 255), TEXT_ALIGN_LEFT, TEXT_ALIGN_TOP, 1, Color(0, 0, 0))
-	
+	if (LocalPlayer():GetNWString(PlayerSettings.Enums.IS_DEBUGGING.Name) == "1") then
+		draw.SimpleTextOutlined("In Cutscene: "..tostring(CameraController.CutsceneSystem.InCutscene), "MizmoGaming-Intro-Small", 5, 40, Color(255, 255, 255), TEXT_ALIGN_LEFT, TEXT_ALIGN_TOP, 1, Color(0, 0, 0))
+		draw.SimpleTextOutlined("Lerp: "..tostring(CameraController.CutsceneSystem.LerpPercentage), "MizmoGaming-Intro-Small", 5, 80, Color(255, 255, 255), TEXT_ALIGN_LEFT, TEXT_ALIGN_TOP, 1, Color(0, 0, 0))
+		draw.SimpleTextOutlined("C. Stage: "..tostring(CameraController.CutsceneSystem.CurrentStage), "MizmoGaming-Intro-Small", 5, 120, Color(255, 255, 255), TEXT_ALIGN_LEFT, TEXT_ALIGN_TOP, 1, Color(0, 0, 0))
+		draw.SimpleTextOutlined("Teleport: "..tostring(CameraController.CutsceneSystem.ShouldTeleport), "MizmoGaming-Intro-Small", 5, 160, Color(255, 255, 255), TEXT_ALIGN_LEFT, TEXT_ALIGN_TOP, 1, Color(0, 0, 0))
+		draw.SimpleTextOutlined("CurrentPosition: "..tostring(CameraController.CutsceneSystem.CurrentPosition), "MizmoGaming-Intro-Small", 5, 200, Color(255, 255, 255), TEXT_ALIGN_LEFT, TEXT_ALIGN_TOP, 1, Color(0, 0, 0))
+	end
+
 	if (CameraController.CutsceneSystem.Name ~= game.GetMap().."-introduction") then
 		return;
 	end

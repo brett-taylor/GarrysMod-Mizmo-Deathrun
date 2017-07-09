@@ -1,46 +1,25 @@
 EndOfRound = {};
 EndOfRound.ParentPanel = nil;
-EndOfRound.Lerp = 0;
-EndOfRound.SpeedMultipler = 1;
-EndOfRound.Closing = 0;
+EndOfRound.RunnersPicture = nil;
+EndOfRound.DeathsPicture = nil;
+EndOfRound.LastWinner = nil;
 
-function EndOfRound.CreatePanel(winner, mizmosToGive, expToGive)
-	EndOfRound.Lerp = 0;
-	EndOfRound.Closing = 0;
-	EndOfRound.ParentPanel = vgui.Create("DFrame");
-	EndOfRound.ParentPanel:SetPos(-5, 150);
-	EndOfRound.ParentPanel:SetSize(ScrW() + 10, 150);
-	EndOfRound.ParentPanel:SetTitle("");
-	EndOfRound.ParentPanel:ShowCloseButton(false);
-	EndOfRound.ParentPanel:SetDeleteOnClose(true);
+function EndOfRound.CreatePanel(winner)
+	EndOfRound.ParentPanel =  vgui.Create("DPanel");
+	EndOfRound.ParentPanel:SetSize((ScrW() / 100) * 50, (ScrH() / 100) * 50);
+	EndOfRound.ParentPanel:Center();
+	EndOfRound.LastWinner = winner;
 	EndOfRound.ParentPanel.Paint = function(self, w, h)
-		local slantedRectangle = {
-			{ x = 0, y = 0 },
-			{ x = w * EndOfRound.Lerp, y = 16 },
-			{ x = w * EndOfRound.Lerp, y = h - 16 },
-			{ x = 0, y = h },
-		}
-
-		surface.SetDrawColor(ColorAlpha(Colours.Gold, math.Clamp(230 * EndOfRound.Lerp, 100, 230)));
-		draw.NoTexture();
-		surface.DrawPoly(slantedRectangle);
-
-		draw.SimpleText(winner, "MizmoGaming-EndOfRound-Big", ScrW() / 2, 75, Color(255, 255, 255, 255 * EndOfRound.Lerp), TEXT_ALIGN_CENTER, TEXT_ALIGN_BOTTOM);
-		draw.SimpleText("You recieved "..mizmosToGive.." Mizmos and "..expToGive.." Experience.", "MizmoGaming-EndOfRound-Small", ScrW() / 2, 80, Color(255, 255, 255, 255 * EndOfRound.Lerp), TEXT_ALIGN_CENTER, TEXT_ALIGN_TOP);
-	end
-	EndOfRound.ParentPanel.Think = function()
-		if (EndOfRound.Closing == 0) then
-			EndOfRound.Lerp = math.Clamp(EndOfRound.Lerp + (FrameTime() * EndOfRound.SpeedMultipler), 0, 1);
+		surface.SetDrawColor(255, 255, 255, 255);
+		if (tonumber(winner) == 2) then
+			surface.SetMaterial(EndOfRound.DeathsPicture);
 		else
-			EndOfRound.Lerp = math.Clamp(EndOfRound.Lerp - (FrameTime() * EndOfRound.SpeedMultipler), 0, 1);
+			surface.SetMaterial(EndOfRound.RunnersPicture);
 		end
-
-		if (EndOfRound.Closing == 1 && EndOfRound.Lerp == 0) then
-			EndOfRound.HidePanel();
-		end
+		surface.DrawTexturedRect(0, 0, w, h);
 	end
 
-	timer.Simple(5, function() EndOfRound.Closing = 1 end);
+	timer.Simple(7, function() EndOfRound.HidePanel() end);
 end
 
 function EndOfRound.HidePanel()
@@ -48,9 +27,22 @@ function EndOfRound.HidePanel()
 	EndOfRound.ParentPanel = nil;
 end
 
+function EndOfRound.GetMaterials()
+	EndOfRound.RunnersPicture = Material("Mizmo-Gaming-Downloads/End-Of-Round-Banners/mizmorunnervfour.png");
+	EndOfRound.DeathsPicture = Material("Mizmo-Gaming-Downloads/End-Of-Round-Banners/mizmodeathvfour.png");
+end
+EndOfRound.GetMaterials();
+
 net.Receive("MizmoEndOfRoundBannerTrigger", function()
 	local winnerTeam = net.ReadString();
-	local points = net.ReadString();
-	local exp = net.ReadString();
-	timer.Simple(1, function() EndOfRound.CreatePanel(winnerTeam, points, exp) end)
+	local mizmosGiven = net.ReadFloat();
+	local expGiven = net.ReadFloat();
+	timer.Simple(1, function() 
+		EndOfRound.CreatePanel(winnerTeam);
+		NotificationSystemMenu.Notify("You recieved "..tostring(mizmosGiven).." Mizmos & "..tonumber(expGiven).." Experience points.", 7);
+	end)
+end)
+
+concommand.Add("test", function()
+	EndOfRound.CreatePanel(2);
 end)

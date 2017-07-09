@@ -6,6 +6,10 @@ function ThirdPersonSystemClient.ThirdPersonView(ply, pos, angles, fov)
 		return;
 	end
 
+	if (LocalPlayer():Alive() == false) then
+		return;
+	end
+
 	-- Checks the user is not in a cut scene.
 	if (CameraController.CutsceneSystem.InCutscene == true) then
 		return;

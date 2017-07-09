@@ -95,3 +95,10 @@ surface.CreateFont("MizmoGaming-AutoJump-Notifier-Countdown", {
 	antialias = true,
 	shadow = true,
 });
+
+--Used in the notification system
+surface.CreateFont("MizmoGaming-Notification-Title", {
+	font = "Roboto Thin",
+	size = 13,
+	weight = 30;
+});

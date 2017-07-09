@@ -42,6 +42,12 @@ AddCSLuaFile("EndOfRound/cl_endRound.lua");
 AddCSLuaFile("Autojump/cl_autojump.lua");
 AddCSLuaFile("Autojump/sh_autojump.lua");
 
+AddCSLuaFile("NotificationSystem/cl_NotificationSystemAlert.lua");
+AddCSLuaFile("NotificationSystem/cl_NotificationSystemMenu.lua");
+
+AddCSLuaFile("DisplayElements/cl_betapopup.lua");
+
+include("Util/sv_fastDownload.lua")
 include("Util/sh_Colours.lua")
 include("Util/sh_LerpColour.lua");
 include("Util/sh_SendMessage.lua");
@@ -82,6 +88,8 @@ include("EndOfRound/sv_endRound.lua");
 
 include("Autojump/sv_autojump.lua");
 include("Autojump/sh_autojump.lua");
+
+include("NotificationSystem/sv_notify.lua");
 
 util.AddNetworkString("DeathrunChatMessage")
 util.AddNetworkString("DeathrunSyncMutelist")

@@ -17,7 +17,7 @@ end);
 
 function AutoJumpClient.StartAlert()
 	AutoJumpClient.Notifiy = true;
-	timer.Create("MizmoServerAutoJumpTempDisabledClient", 20, 1, function() AutoJumpClient.CountdownExpired() end);
+	timer.Create("MizmoServerAutoJumpTempDisabledClient", 59, 1, function() AutoJumpClient.CountdownExpired() end);
 end
 
 function AutoJumpClient.CountdownExpired()

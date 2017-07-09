@@ -4,17 +4,20 @@ function AutoHop( ply, data )
 	end
 
 	if lp and ply ~= lp() then return end
-	if tonumber(ply:GetNWString(PlayerSettings.Enums.AUTO_JUMP.Name)) == 0 then return end
+	if (tonumber(ply:GetNWString(PlayerSettings.Enums.AUTO_JUMP.Name)) == 0 && tonumber(ply:GetNWString(PlayerSettings.Enums.ENHANCED_AUTOJUMP.Name)) == 0) then return end
 
-	if CLIENT then
-		if (AutoJumpClient.Enabled == false) then
-			return;
+
+	if (tonumber(ply:GetNWString(PlayerSettings.Enums.ENHANCED_AUTOJUMP.Name)) == 0) then
+		if CLIENT then
+			if (AutoJumpClient.Enabled == false) then
+				return;
+			end
 		end
-	end
 
-	if SERVER then
-		if (AutoJumpServer.Enabled == false) then
-			return;
+		if SERVER then
+			if (AutoJumpServer.Enabled == false) then
+				return;
+			end
 		end
 	end
 	

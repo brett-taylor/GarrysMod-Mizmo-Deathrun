@@ -36,6 +36,13 @@ PlayerSettings.Enums.PLAY_TIME = {
 	IsNetworked = true;
 };
 
+PlayerSettings.Enums.ENHANCED_AUTOJUMP = {
+	Name = "ENHANCED_AUTOJUMP";
+	ID = 6;
+	Default = 0;
+	IsNetworked = true;
+};
+
 for k, v in pairs(PlayerSettings.Enums) do
 	PlayerSettings.Enums[v.ID] = v;
 	PlayerSettings.Enums[k] = v;
