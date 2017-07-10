@@ -15,6 +15,8 @@ resource.AddFile("resource/fonts/Roboto-ThinItalic.ttf");
 -- Materials
 resource.AddFile("materials/Mizmo-Gaming-Downloads/End-Of-Round-Banners/mizmodeathvfour.png");
 resource.AddFile("materials/Mizmo-Gaming-Downloads/End-Of-Round-Banners/mizmorunnervfour.png");
+resource.AddFile("materials/Mizmo-Gaming-Downloads/icons/mute16.png");
+resource.AddFile("materials/Mizmo-Gaming-Downloads/icons/shield16.png");
 
 -- Pointshop trails
 resource.AddWorkshop("161466256"); -- http://steamcommunity.com/sharedfiles/filedetails/?id=161466256
