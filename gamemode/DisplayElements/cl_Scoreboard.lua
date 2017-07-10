@@ -106,14 +106,14 @@ function Scoreboard.AddRows(ply)
             end
             draw.RoundedBox(1, 0, 38, w, 2, row.LineColour)
             draw.SimpleTextOutlined(ply:GetName(), "NameFont", (w/16), h/2, Color(255, 255, 255), TEXT_ALIGN_LEFT, TEXT_ALIGN_CENTER, 1, Color(0, 0, 0, 255))
-            if ply:IsUserGroup("admin") then
-            	draw.SimpleTextOutlined("Admin", "NameFont", (w/16) * 7, h/2, Colours.Gold, TEXT_ALIGN_CENTER, TEXT_ALIGN_CENTER, 1, Color(0, 0, 0, 255))
-            elseif ply:IsUserGroup("superadmin") then
-               	draw.SimpleTextOutlined("Owner", "NameFont", (w/16) * 7, h/2, Color(255, 0, 0), TEXT_ALIGN_CENTER, TEXT_ALIGN_CENTER, 1, Color(0, 0, 0, 255))
+
+            if (Util.PlayerHasTag(ply) == true) then
+                draw.SimpleTextOutlined(ply:GetNWString(PlayerSettings.Enums.TAG_NAME.Name), "NameFont", (w/16) * 7, h/2, Util.GetTagColour(ply), TEXT_ALIGN_CENTER, TEXT_ALIGN_CENTER, 1, Color(0, 0, 0, 255))
             else
-            	draw.SimpleTextOutlined("User", "NameFont", (w/16) * 7, h/2, Color(255, 255, 255), TEXT_ALIGN_CENTER, TEXT_ALIGN_CENTER, 1, Color(0, 0, 0, 255))
+                draw.SimpleTextOutlined(Util.GetUserGroupInfo(ply:GetUserGroup()).Name, "NameFont", (w/16) * 7, h/2, Util.GetUserGroupInfo(ply:GetUserGroup()).Colour, TEXT_ALIGN_CENTER, TEXT_ALIGN_CENTER, 1, Color(0, 0, 0, 255))
             end
-            draw.SimpleTextOutlined("20", "NameFont", (w/16) * 9, h/2, Color(255, 255, 255), TEXT_ALIGN_CENTER, TEXT_ALIGN_CENTER, 1, Color(0, 0, 0, 255))
+
+            draw.SimpleTextOutlined("X", "NameFont", (w/16) * 9, h/2, Color(255, 255, 255), TEXT_ALIGN_CENTER, TEXT_ALIGN_CENTER, 1, Color(0, 0, 0, 255))
             draw.SimpleTextOutlined(ply:PS_GetPoints(), "NameFont",  (w/16) * 11, h/2, Color(255, 255, 255), TEXT_ALIGN_CENTER, TEXT_ALIGN_CENTER, 1, Color(0, 0, 0, 255))
             draw.SimpleTextOutlined(ply:GetPlaytimeHours(), "NameFont", (w/16) * 13, h/2, Color(255, 255, 255), TEXT_ALIGN_CENTER, TEXT_ALIGN_CENTER, 1, Color(0, 0, 0, 255))
             draw.SimpleTextOutlined(ply:Ping(), "NameFont", (w/16) * 15, h/2, Color(255, 255, 255), TEXT_ALIGN_CENTER, TEXT_ALIGN_CENTER, 1, Color(0, 0, 0, 255))

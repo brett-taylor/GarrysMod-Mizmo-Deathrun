@@ -12,8 +12,6 @@ function PlayerSettings.Data.CheckColumnsExist()
 	for i = 1, #PlayerSettings.Enums do
 		sql.Query("Alter Table Mizmo_Settings Add "..PlayerSettings.Enums[i].Name.." varchar(255);");
 	end
-
-	sql.Query(sqlString);
 end
 PlayerSettings.Data.CheckColumnsExist();
 

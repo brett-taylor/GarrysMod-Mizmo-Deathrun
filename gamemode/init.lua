@@ -2,20 +2,21 @@ if not file.Exists("deathrun", "DATA") then -- creates a folder in data for the 
 	file.CreateDir("deathrun")
 end
 
-AddCSLuaFile("Util/sh_Colours.lua")
-AddCSLuaFile("Util/sh_LerpColour.lua");
-AddCSLuaFile("Util/sh_SendMessage.lua");
+AddCSLuaFile("Util/sh_colours.lua")
+AddCSLuaFile("Util/sh_lerpColour.lua");
+AddCSLuaFile("Util/sh_sendMessage.lua");
+AddCSLuaFile("Util/sh_playerTags.lua");
+AddCSLuaFile("Util/sh_groups.lua");
 
-AddCSLuaFile("PlayerSettings/sh_PlayerSettingsEnums.lua")
+AddCSLuaFile("PlayerSettings/sh_playerSettingsEnums.lua")
 
-AddCSLuaFile("DisplayElements/cl_Fonts.lua")
-AddCSLuaFile("DisplayElements/cl_HUD.lua")
-AddCSLuaFile("DisplayElements/cl_voiceHUD.lua")
-AddCSLuaFile("DisplayElements/cl_Scoreboard.lua")
+AddCSLuaFile("DisplayElements/cl_fonts.lua")
+AddCSLuaFile("DisplayElements/cl_hud.lua")
+AddCSLuaFile("DisplayElements/cl_voicehud.lua")
+AddCSLuaFile("DisplayElements/cl_scoreboard.lua")
 
-AddCSLuaFile("ButtonClaiming/cl_ShowButtonClaimed.lua");
+AddCSLuaFile("ButtonClaiming/cl_showButtonClaimed.lua");
 
-AddCSLuaFile("hexcolor.lua")
 AddCSLuaFile("cl_init.lua")
 AddCSLuaFile("shared.lua")
 AddCSLuaFile("config.lua")
@@ -27,11 +28,11 @@ AddCSLuaFile("zones/cl_zone.lua")
 AddCSLuaFile("mapvote/sh_mapvote.lua")
 AddCSLuaFile("mapvote/cl_mapvote.lua")
 
-AddCSLuaFile("CameraController/cl_CameraController.lua");
-AddCSLuaFile("CameraController/cl_CutsceneSystem.lua");
-AddCSLuaFile("CameraController/cl_CutsceneIntroductionOverlay.lua");
+AddCSLuaFile("CameraController/cl_cameraController.lua");
+AddCSLuaFile("CameraController/cl_cutsceneSystem.lua");
+AddCSLuaFile("CameraController/cl_cutsceneIntroductionOverlay.lua");
 
-AddCSLuaFile("ThirdPersonSystem/cl_ThirdPersonSystem.lua");
+AddCSLuaFile("ThirdPersonSystem/cl_thirdPersonSystem.lua");
 
 AddCSLuaFile("Playtime/cl_playtime.lua");
 
@@ -42,24 +43,27 @@ AddCSLuaFile("EndOfRound/cl_endRound.lua");
 AddCSLuaFile("Autojump/cl_autojump.lua");
 AddCSLuaFile("Autojump/sh_autojump.lua");
 
-AddCSLuaFile("NotificationSystem/cl_NotificationSystemAlert.lua");
-AddCSLuaFile("NotificationSystem/cl_NotificationSystemMenu.lua");
+AddCSLuaFile("NotificationSystem/cl_notificationSystemAlert.lua");
+AddCSLuaFile("NotificationSystem/cl_notificationSystemMenu.lua");
 
 AddCSLuaFile("DisplayElements/cl_betapopup.lua");
 
 AddCSLuaFile("Knives/add_tfa_skins.lua");
 AddCSLuaFile("Knives/csgo_knife_snd_init.lua");
 
-AddCSLuaFile("UniqueRounds/cl_UniqueRounds.lua");
+AddCSLuaFile("UniqueRounds/cl_uniqueRounds.lua");
+
+AddCSLuaFile("ChatSystem/cl_chat.lua");
 
 include("Util/sv_fastDownload.lua")
-include("Util/sh_Colours.lua")
-include("Util/sh_LerpColour.lua");
-include("Util/sh_SendMessage.lua");
+include("Util/sh_colours.lua")
+include("Util/sh_lerpColour.lua");
+include("Util/sh_sendMessage.lua");
+include("Util/sh_playerTags.lua");
+include("Util/sh_groups.lua");
 
-include("ButtonClaiming/sv_ButtonClaiming.lua");
+include("ButtonClaiming/sv_buttonClaiming.lua");
 
-include("hexcolor.lua")
 include("config.lua")
 include("shared.lua")
 include("sv_commands.lua")
@@ -72,22 +76,22 @@ include("mapvote/sh_mapvote.lua")
 include("mapvote/sv_mapvote.lua")
 include("sv_player.lua")
 
-include("PlayerSettings/sh_PlayerSettingsEnums.lua")
-include("PlayerSettings/sv_PlayerSettingsData.lua")
-include("PlayerSettings/sv_PlayerSettings.lua")
+include("PlayerSettings/sh_playerSettingsEnums.lua")
+include("PlayerSettings/sv_playerSettingsData.lua")
+include("PlayerSettings/sv_playerSettings.lua")
 
-include("CameraController/sv_CutsceneSystem.lua")
-include("CameraController/sv_CutsceneData.lua")
-include("CameraController/sv_CutscenePlayerMethods.lua")
-include("CameraController/sv_CutsceneULXCommands.lua")
+include("CameraController/sv_cutsceneSystem.lua")
+include("CameraController/sv_cutsceneData.lua")
+include("CameraController/sv_cutscenePlayerMethods.lua")
+include("CameraController/sv_cutsceneULXCommands.lua")
 
-include("ThirdPersonSystem/sv_ThirdPersonSystem.lua");
+include("ThirdPersonSystem/sv_thirdPersonSystem.lua");
 
 include("Playtime/sv_playtime.lua");
 
 include("Pointshop/sv_init.lua");
 
-include("ULXCommands/sv_AutoJumpCommand.lua");
+include("ULXCommands/sv_autoJumpCommand.lua");
 
 include("EndOfRound/sv_endRound.lua");
 
@@ -99,7 +103,7 @@ include("NotificationSystem/sv_notify.lua");
 include("Knives/add_tfa_skins.lua");
 include("Knives/csgo_knife_snd_init.lua");
 
-include("UniqueRounds/sv_UniqueRounds.lua");
+include("UniqueRounds/sv_uniqueRounds.lua");
 
 util.AddNetworkString("DeathrunChatMessage")
 util.AddNetworkString("DeathrunSyncMutelist")

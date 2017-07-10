@@ -170,10 +170,6 @@ function SWEP:Think()
     self.Weapon:SendWeaponAnim( ACT_VM_IDLE )
     self:SetIdleTime( CurTime() + self.Owner:GetViewModel():SequenceDuration() )
   end
-
-  if (self:GetOwner() ~= nil) then
-    self.OriginalOwner = self:GetOwner();
-  end
 end
 
 
@@ -402,34 +398,10 @@ function SWEP:Holster( wep )
 end
 
 function SWEP:OnRemove()
-  if (self.OriginalOwner == nil) then
-    return;
-  end
-
-  ReplaceCsgoKnifeWithItself(self.OriginalOwner, self:GetClass());
 end
 
 function SWEP:OwnerChanged()
 end
 
 function SWEP:OnDrop()
-  self:Remove();
-end
-
-function ReplaceCsgoKnifeWithItself(owner, weapon)
-  if SERVER then
-    timer.Simple(2.5, function()
-        if (owner == nil) then
-          return;
-        end
-        
-        if (weapon == nil) then
-          return;
-        end
-
-        if (owner:PS_HasItemEquipped(weapon) == true) then
-          owner:Give(weapon);
-        end
-    end)
-  end
 end

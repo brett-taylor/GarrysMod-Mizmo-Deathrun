@@ -43,6 +43,20 @@ PlayerSettings.Enums.ENHANCED_AUTOJUMP = {
 	IsNetworked = true;
 };
 
+PlayerSettings.Enums.TAG_NAME = {
+	Name = "TAG_NAME";
+	ID = 7;
+	Default = "NIL";
+	IsNetworked = true;
+};
+
+PlayerSettings.Enums.TAG_COLOUR = {
+	Name = "TAG_COLOUR";
+	ID = 8;
+	Default = "255-255-255";
+	IsNetworked = true;
+};
+
 for k, v in pairs(PlayerSettings.Enums) do
 	PlayerSettings.Enums[v.ID] = v;
 	PlayerSettings.Enums[k] = v;

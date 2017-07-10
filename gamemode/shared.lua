@@ -18,9 +18,9 @@ TEAM_RUNNER = 3
 TEAM_DEATH = 2
 
 function GM:CreateTeams()
-	team.SetUp(TEAM_GHOST, "Ghosts", DR.Colors.GhostTeam, false)
-	team.SetUp(TEAM_RUNNER, "Runners", DR.Colors.RunnerTeam, false)
-	team.SetUp(TEAM_DEATH, "Deaths", DR.Colors.DeathTeam, false)
+	team.SetUp(TEAM_GHOST, "Ghosts", Colours.Team.Ghost, false)
+	team.SetUp(TEAM_RUNNER, "Runners", Colours.Team.Runner, false)
+	team.SetUp(TEAM_DEATH, "Deaths", Colours.Team.Death, false)
 
 	team.SetSpawnPoint( TEAM_GHOST, "info_player_counterterrorist" )
 	team.SetSpawnPoint( TEAM_DEATH, "info_player_terrorist" )

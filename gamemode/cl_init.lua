@@ -1,17 +1,18 @@
-include("Util/sh_Colours.lua")
-include("Util/sh_LerpColour.lua");
-include("Util/sh_SendMessage.lua");
+include("Util/sh_colours.lua")
+include("Util/sh_lerpColour.lua");
+include("Util/sh_sendMessage.lua");
+include("Util/sh_playerTags.lua");
+include("Util/sh_groups.lua");
 
-include("PlayerSettings/sh_PlayerSettingsEnums.lua")
+include("PlayerSettings/sh_playerSettingsEnums.lua")
 
-include("DisplayElements/cl_Fonts.lua")
-include("DisplayElements/cl_HUD.lua")
-include("DisplayElements/cl_voiceHUD.lua")
-include("DisplayElements/cl_Scoreboard.lua")
+include("DisplayElements/cl_fonts.lua")
+include("DisplayElements/cl_hud.lua")
+include("DisplayElements/cl_voicehud.lua")
+include("DisplayElements/cl_scoreboard.lua")
 
-include("ButtonClaiming/cl_ShowButtonClaimed.lua");
+include("ButtonClaiming/cl_showButtonClaimed.lua");
 
-include("hexcolor.lua")
 include("config.lua")
 include("shared.lua")
 include("mapvote/sh_mapvote.lua")
@@ -22,11 +23,11 @@ include("sh_definerounds.lua")
 include("zones/sh_zone.lua")
 include("zones/cl_zone.lua")
 
-include("CameraController/cl_CameraController.lua")
-include("CameraController/cl_CutsceneSystem.lua");
-include("CameraController/cl_CutsceneIntroductionOverlay.lua");
+include("CameraController/cl_cameraController.lua")
+include("CameraController/cl_cutsceneSystem.lua");
+include("CameraController/cl_cutsceneIntroductionOverlay.lua");
 
-include("ThirdPersonSystem/cl_ThirdPersonSystem.lua");
+include("ThirdPersonSystem/cl_thirdPersonSystem.lua");
 
 include("Playtime/cl_playtime.lua");
 
@@ -37,15 +38,17 @@ include("EndOfRound/cl_endRound.lua");
 include("Autojump/cl_autojump.lua");
 include("Autojump/sh_autojump.lua");
 
-include("NotificationSystem/cl_NotificationSystemAlert.lua");
-include("NotificationSystem/cl_NotificationSystemMenu.lua");
+include("NotificationSystem/cl_notificationSystemAlert.lua");
+include("NotificationSystem/cl_notificationSystemMenu.lua");
 
 include("DisplayElements/cl_betapopup.lua");
 
 include("Knives/add_tfa_skins.lua");
 include("Knives/csgo_knife_snd_init.lua");
 
-include("UniqueRounds/cl_UniqueRounds.lua");
+include("UniqueRounds/cl_uniqueRounds.lua");
+
+include("ChatSystem/cl_chat.lua");
 
 PS:Initialize();
 
