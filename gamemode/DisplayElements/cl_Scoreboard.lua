@@ -132,11 +132,11 @@ function Scoreboard.AddRows(ply)
                 Scoreboard.ply:SetMuted(true)
             end
         end)
-        btnMute:SetIcon("icon16/mute16.png")
+        btnMute:SetIcon("Mizmo-Gaming-Downloads/icons/mute16.png")
         if LocalPlayer():IsUserGroup("admin") or LocalPlayer():IsUserGroup("superadmin") then
             Scoreboard.DMenu:AddSpacer()
             local adminOption = Scoreboard.DMenu:AddOption("Admin")
-            adminOption:SetIcon("icon16/shield16.png")
+            adminOption:SetIcon("Mizmo-Gaming-Downloads/icons/shield16.png")
             local adminMenu = adminOption:AddSubMenu("AdminUtils")
             local kick = adminMenu:AddOption("kick", function()
                 Derma_StringRequest(
