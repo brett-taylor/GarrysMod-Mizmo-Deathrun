@@ -124,10 +124,10 @@ function HUD.DrawHUDText()
     draw.SimpleTextOutlined("Level", "HUDLabelfont", (HUD.Anchor.X + 26) + (((HUD.Size.W - (HUD.Anchor.X + 16)) + 18)/8) * 3, HUD.Size.H/2 + 4 + HUD.Anchor.Y, Color( 223, 163, 0, 255 ), TEXT_ALIGN_CENTER, TEXT_ALIGN_TOP, 1, Color(0, 0, 0, 255));
     draw.SimpleTextOutlined("Current XP", "HUDLabelfont", (HUD.Anchor.X + 26) + (((HUD.Size.W - (HUD.Anchor.X + 16)) + 18)/8) * 5, HUD.Size.H/2 + 4 + HUD.Anchor.Y, Color( 223, 163, 0, 255 ), TEXT_ALIGN_CENTER, TEXT_ALIGN_TOP, 1, Color(0, 0, 0, 255));
     draw.SimpleTextOutlined("XP Req", "HUDLabelfont", (HUD.Anchor.X + 26) + (((HUD.Size.W - (HUD.Anchor.X + 16)) + 18)/8) * 7, HUD.Size.H/2 + 4 + HUD.Anchor.Y, Color( 223, 163, 0, 255 ), TEXT_ALIGN_CENTER, TEXT_ALIGN_TOP, 1, Color(0, 0, 0, 255));
-    draw.SimpleTextOutlined("100", "HUDLabelfont", (HUD.Anchor.X + 26) + ((HUD.Size.W - (HUD.Anchor.X + 16)) + 18)/8, (HUD.Size.H / 2) + 3 + (HUD.Size.H/2 - 15)/2 + 3 + HUD.Anchor.Y, Color( 223, 163, 0, 255 ), TEXT_ALIGN_CENTER, TEXT_ALIGN_TOP, 1, Color(0, 0, 0, 255));
-    draw.SimpleTextOutlined("100", "HUDLabelfont", (HUD.Anchor.X + 26) + (((HUD.Size.W - (HUD.Anchor.X + 16)) + 18)/8) * 3, (HUD.Size.H / 2) + 3 + (HUD.Size.H/2 - 15)/2 + 3 + HUD.Anchor.Y, Color( 223, 163, 0, 255 ), TEXT_ALIGN_CENTER, TEXT_ALIGN_TOP, 1, Color(0, 0, 0, 255));
-    draw.SimpleTextOutlined("100", "HUDLabelfont", (HUD.Anchor.X + 26) + (((HUD.Size.W - (HUD.Anchor.X + 16)) + 18)/8) * 5, (HUD.Size.H / 2) + 3 + (HUD.Size.H/2 - 15)/2 + 3 + HUD.Anchor.Y, Color( 223, 163, 0, 255 ), TEXT_ALIGN_CENTER, TEXT_ALIGN_TOP, 1, Color(0, 0, 0, 255));
-    draw.SimpleTextOutlined("100", "HUDLabelfont", (HUD.Anchor.X + 26) + (((HUD.Size.W - (HUD.Anchor.X + 16)) + 18)/8) * 7, (HUD.Size.H / 2) + 3 + (HUD.Size.H/2 - 15)/2 + 3 + HUD.Anchor.Y, Color( 223, 163, 0, 255 ), TEXT_ALIGN_CENTER, TEXT_ALIGN_TOP, 1, Color(0, 0, 0, 255));
+    draw.SimpleTextOutlined(HUD.PlayerData:PS_GetPoints(), "HUDLabelfont", (HUD.Anchor.X + 26) + ((HUD.Size.W - (HUD.Anchor.X + 16)) + 18)/8, (HUD.Size.H / 2) + 3 + (HUD.Size.H/2 - 15)/2 + 3 + HUD.Anchor.Y, Color( 223, 163, 0, 255 ), TEXT_ALIGN_CENTER, TEXT_ALIGN_TOP, 1, Color(0, 0, 0, 255));
+    draw.SimpleTextOutlined("X", "HUDLabelfont", (HUD.Anchor.X + 26) + (((HUD.Size.W - (HUD.Anchor.X + 16)) + 18)/8) * 3, (HUD.Size.H / 2) + 3 + (HUD.Size.H/2 - 15)/2 + 3 + HUD.Anchor.Y, Color( 223, 163, 0, 255 ), TEXT_ALIGN_CENTER, TEXT_ALIGN_TOP, 1, Color(0, 0, 0, 255));
+    draw.SimpleTextOutlined("X", "HUDLabelfont", (HUD.Anchor.X + 26) + (((HUD.Size.W - (HUD.Anchor.X + 16)) + 18)/8) * 5, (HUD.Size.H / 2) + 3 + (HUD.Size.H/2 - 15)/2 + 3 + HUD.Anchor.Y, Color( 223, 163, 0, 255 ), TEXT_ALIGN_CENTER, TEXT_ALIGN_TOP, 1, Color(0, 0, 0, 255));
+    draw.SimpleTextOutlined("X", "HUDLabelfont", (HUD.Anchor.X + 26) + (((HUD.Size.W - (HUD.Anchor.X + 16)) + 18)/8) * 7, (HUD.Size.H / 2) + 3 + (HUD.Size.H/2 - 15)/2 + 3 + HUD.Anchor.Y, Color( 223, 163, 0, 255 ), TEXT_ALIGN_CENTER, TEXT_ALIGN_TOP, 1, Color(0, 0, 0, 255));
     draw.SimpleTextOutlined(HUD.PlayerData:GetName(), "NameFont", HUD.Anchor.X + 40, HUD.Anchor.Y, Color( 223, 163, 0, 255 ), TEXT_ALIGN_LEFT, TEXT_ALIGN_TOP, 1, Color(0, 0, 0, 255));
 end
 
@@ -137,7 +137,9 @@ function HUD.DrawHUD()
     HUD.DrawElements();
 
     -- TEMP
-    HUD.TempDrawRoundstatus()
+    if (LocalPlayer():GetNWString(PlayerSettings.Enums.IS_DEBUGGING.Name) == "1") then
+        HUD.TempDrawRoundstatus();
+    end
 end
 
 function HUD.TakeDamageAnim()
@@ -187,6 +189,8 @@ end
 function HUD.TempDrawRoundstatus()
     draw.SimpleTextOutlined("Round State: "..ROUND:GetCurrent(), "MizmoGaming-Intro-Subhead", ScrW() / 2, 10, Colours.Gold, TEXT_ALIGN_CENTER, TEXT_ALIGN_TOP, 1, Colours.Grey)
     draw.SimpleTextOutlined("Time Left: "..string.ToMinutesSeconds(math.Clamp(ROUND:GetTimer(), 0, 99999)), "MizmoGaming-Intro-Subhead", ScrW() / 2, 40, Colours.Gold, TEXT_ALIGN_CENTER, TEXT_ALIGN_TOP, 1, Colours.Grey)
+    draw.SimpleTextOutlined("Miniutes Played: "..LocalPlayer():GetPlaytime(), "MizmoGaming-Intro-Subhead", ScrW() / 2 - 2, 70, Colours.Gold, TEXT_ALIGN_RIGHT, TEXT_ALIGN_TOP, 1, Colours.Grey)
+    draw.SimpleTextOutlined("Hours Played: "..LocalPlayer():GetPlaytimeHours(), "MizmoGaming-Intro-Subhead", ScrW() / 2 + 2, 70, Colours.Gold, TEXT_ALIGN_LEFT, TEXT_ALIGN_TOP, 1, Colours.Grey)
 end
 
 hook.Add("HUDPaint", "MizmoDrawHUD", HUD.DrawHUD); //Draws the HUD every frame

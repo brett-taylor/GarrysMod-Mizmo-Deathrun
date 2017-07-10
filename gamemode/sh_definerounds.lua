@@ -402,7 +402,6 @@ if SERVER then
 
 	function ROUND:FinishRound( winteam )
 		ROUND:RoundSwitch( ROUND_OVER )
-		DR:ChatBroadcast("Round over! "..( winteam == WIN_RUNNER and team.GetName( TEAM_RUNNER ).." win!" or winteam == WIN_DEATH and team.GetName( TEAM_DEATH ).." win!" or "Stalemate! Unbelievable!" ) )
 		--calculate MVPs
 		net.Start("DeathrunSendMVPs")
 

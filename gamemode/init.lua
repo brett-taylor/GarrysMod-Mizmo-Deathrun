@@ -4,10 +4,14 @@ end
 
 AddCSLuaFile("Util/sh_Colours.lua")
 AddCSLuaFile("Util/sh_LerpColour.lua");
+AddCSLuaFile("Util/sh_SendMessage.lua");
+
+AddCSLuaFile("PlayerSettings/sh_PlayerSettingsEnums.lua")
 
 AddCSLuaFile("DisplayElements/cl_Fonts.lua")
 AddCSLuaFile("DisplayElements/cl_HUD.lua")
 AddCSLuaFile("DisplayElements/cl_voiceHUD.lua")
+AddCSLuaFile("DisplayElements/cl_Scoreboard.lua")
 
 AddCSLuaFile("ButtonClaiming/cl_ShowButtonClaimed.lua");
 
@@ -22,15 +26,36 @@ AddCSLuaFile("zones/sh_zone.lua")
 AddCSLuaFile("zones/cl_zone.lua")
 AddCSLuaFile("mapvote/sh_mapvote.lua")
 AddCSLuaFile("mapvote/cl_mapvote.lua")
-AddCSLuaFile("sh_pointshopsupport.lua")
-AddCSLuaFile("sh_statistics.lua")
 
 AddCSLuaFile("CameraController/cl_CameraController.lua");
 AddCSLuaFile("CameraController/cl_CutsceneSystem.lua");
 AddCSLuaFile("CameraController/cl_CutsceneIntroductionOverlay.lua");
 
+AddCSLuaFile("ThirdPersonSystem/cl_ThirdPersonSystem.lua");
+
+AddCSLuaFile("Playtime/cl_playtime.lua");
+
+AddCSLuaFile("Pointshop/cl_init.lua");
+
+AddCSLuaFile("EndOfRound/cl_endRound.lua");
+
+AddCSLuaFile("Autojump/cl_autojump.lua");
+AddCSLuaFile("Autojump/sh_autojump.lua");
+
+AddCSLuaFile("NotificationSystem/cl_NotificationSystemAlert.lua");
+AddCSLuaFile("NotificationSystem/cl_NotificationSystemMenu.lua");
+
+AddCSLuaFile("DisplayElements/cl_betapopup.lua");
+
+AddCSLuaFile("Knives/add_tfa_skins.lua");
+AddCSLuaFile("Knives/csgo_knife_snd_init.lua");
+
+AddCSLuaFile("UniqueRounds/cl_UniqueRounds.lua");
+
+include("Util/sv_fastDownload.lua")
 include("Util/sh_Colours.lua")
 include("Util/sh_LerpColour.lua");
+include("Util/sh_SendMessage.lua");
 
 include("ButtonClaiming/sv_ButtonClaiming.lua");
 
@@ -46,12 +71,35 @@ include("zones/sv_zone.lua")
 include("mapvote/sh_mapvote.lua")
 include("mapvote/sv_mapvote.lua")
 include("sv_player.lua")
-include("sh_pointshopsupport.lua")
+
+include("PlayerSettings/sh_PlayerSettingsEnums.lua")
+include("PlayerSettings/sv_PlayerSettingsData.lua")
+include("PlayerSettings/sv_PlayerSettings.lua")
 
 include("CameraController/sv_CutsceneSystem.lua")
 include("CameraController/sv_CutsceneData.lua")
 include("CameraController/sv_CutscenePlayerMethods.lua")
 include("CameraController/sv_CutsceneULXCommands.lua")
+
+include("ThirdPersonSystem/sv_ThirdPersonSystem.lua");
+
+include("Playtime/sv_playtime.lua");
+
+include("Pointshop/sv_init.lua");
+
+include("ULXCommands/sv_AutoJumpCommand.lua");
+
+include("EndOfRound/sv_endRound.lua");
+
+include("Autojump/sv_autojump.lua");
+include("Autojump/sh_autojump.lua");
+
+include("NotificationSystem/sv_notify.lua");
+
+include("Knives/add_tfa_skins.lua");
+include("Knives/csgo_knife_snd_init.lua");
+
+include("UniqueRounds/sv_UniqueRounds.lua");
 
 util.AddNetworkString("DeathrunChatMessage")
 util.AddNetworkString("DeathrunSyncMutelist")
@@ -65,6 +113,8 @@ RunConsoleCommand("sv_friction", 8)
 RunConsoleCommand("sv_sticktoground", 0)
 RunConsoleCommand("sv_airaccelerate", 0)
 RunConsoleCommand("sv_gravity", 800)
+
+PS:Initialize();
 
 local playermodels = {
 	"models/player/group01/male_01.mdl",

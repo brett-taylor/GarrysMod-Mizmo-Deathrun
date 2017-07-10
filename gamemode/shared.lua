@@ -79,7 +79,7 @@ function InverseLerp( pos, p1, p2 )
 
 end
 
-local function intToBool( i )
+function intToBool( i )
 	if tonumber(i) == 0 then
 		return false
 	else
@@ -176,8 +176,6 @@ end)
 local lp, ft, ct, cap = LocalPlayer, FrameTime, CurTime
 local mc, mr, bn, ba, bo, gf = math.Clamp, math.Round, bit.bnot, bit.band, bit.bor, {}
 function GM:Move( ply, data )
-
-	-- fixes jump and duck stop
 	local og = ply:IsFlagSet( FL_ONGROUND )
 	if og and not gf[ ply ] then
 		gf[ ply ] = 0
@@ -238,12 +236,7 @@ function GM:Move( ply, data )
 	local vel = data:GetVelocity()
 	vel = vel + (wishdir * accelspeed)
 
-	if ply.AutoJumpEnabled == true and GetConVar("deathrun_allow_autojump"):GetBool() == true and GetConVar("deathrun_autojump_velocity_cap"):GetFloat() ~= 0 then
-		ply.SpeedCap = GetConVar("deathrun_autojump_velocity_cap"):GetFloat()
-	else
-		ply.SpeedCap = 99999
-	end
-
+	ply.SpeedCap = 99999
 	
 	if ply.SpeedCap and vel:Length2D() > ply.SpeedCap and SERVER then
 		local diff = vel:Length2D() - ply.SpeedCap
@@ -253,26 +246,6 @@ function GM:Move( ply, data )
 	data:SetVelocity( vel )
 	return false
 end
-
-
-local function AutoHop( ply, data )
-	
-	if CLIENT then
-		LocalPlayer().AutoJumpEnabled = intToBool( GetConVar("deathrun_autojump"):GetInt() )
-	end
-
-	if lp and ply ~= lp() then return end
-	if ply.AutoJumpEnabled == false or GetConVar("deathrun_allow_autojump"):GetBool() == false then return end
-	--print(ply.AutoJumpEnabled)
-	
-	local ButtonData = data:GetButtons()
-	if ba( ButtonData, IN_JUMP ) > 0 then
-		if ply:WaterLevel() < 2 and ply:GetMoveType() ~= MOVETYPE_LADDER and not ply:IsOnGround() then
-			data:SetButtons( ba( ButtonData, bn( IN_JUMP ) ) )
-		end
-	end
-end
-hook.Add( "SetupMove", "AutoHop", AutoHop )
 
 -- get rid of some default hooks
 hook.Remove("PlayerTick", "TickWidgets")

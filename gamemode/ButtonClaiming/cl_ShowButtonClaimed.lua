@@ -7,7 +7,7 @@ net.Receive("MizmoUpdateClaimedButtonsTable", function()
 end)
 
 function ButtonClaimingClient.DrawClaimedButtons()
-	if LocalPlayer():Team() == TEAM_RUNNER then 
+	if (LocalPlayer():Team() == TEAM_RUNNER) && (LocalPlayer():GetNWString(PlayerSettings.Enums.IS_DEBUGGING.Name) == "0") then 
 		return;
  	end
 
@@ -28,7 +28,7 @@ function ButtonClaimingClient.DrawClaimedButtons()
 					claimtext = "Claimed by "..ply:Nick();
 				end
 			end
-			draw.SimpleText(claimtext , "deathrun_derma_Tiny", x, y, Color(v.Claimed and 255 or 100, (not v.Claimed) and 255 or 100,100, textAlpha), TEXT_ALIGN_CENTER);
+			draw.SimpleText(claimtext , "MizmoGaming-Button-Claimed", x, y, Color(v.Claimed and 255 or 100, (not v.Claimed) and 255 or 100,100, textAlpha), TEXT_ALIGN_CENTER);
 		end
 	end
 end

@@ -1,9 +1,13 @@
 include("Util/sh_Colours.lua")
 include("Util/sh_LerpColour.lua");
+include("Util/sh_SendMessage.lua");
+
+include("PlayerSettings/sh_PlayerSettingsEnums.lua")
 
 include("DisplayElements/cl_Fonts.lua")
 include("DisplayElements/cl_HUD.lua")
 include("DisplayElements/cl_voiceHUD.lua")
+include("DisplayElements/cl_Scoreboard.lua")
 
 include("ButtonClaiming/cl_ShowButtonClaimed.lua");
 
@@ -17,10 +21,33 @@ include("roundsystem/cl_round.lua")
 include("sh_definerounds.lua")
 include("zones/sh_zone.lua")
 include("zones/cl_zone.lua")
-include("sh_pointshopsupport.lua")
+
 include("CameraController/cl_CameraController.lua")
 include("CameraController/cl_CutsceneSystem.lua");
 include("CameraController/cl_CutsceneIntroductionOverlay.lua");
+
+include("ThirdPersonSystem/cl_ThirdPersonSystem.lua");
+
+include("Playtime/cl_playtime.lua");
+
+include("Pointshop/cl_init.lua");
+
+include("EndOfRound/cl_endRound.lua");
+
+include("Autojump/cl_autojump.lua");
+include("Autojump/sh_autojump.lua");
+
+include("NotificationSystem/cl_NotificationSystemAlert.lua");
+include("NotificationSystem/cl_NotificationSystemMenu.lua");
+
+include("DisplayElements/cl_betapopup.lua");
+
+include("Knives/add_tfa_skins.lua");
+include("Knives/csgo_knife_snd_init.lua");
+
+include("UniqueRounds/cl_UniqueRounds.lua");
+
+PS:Initialize();
 
 concommand.Add("dr_test_menu", function()
 	local frame = vgui.Create("arizard_window")
@@ -46,35 +73,6 @@ end)
 
 CreateClientConVar("deathrun_teammate_fade_distance", 75, true, false)
 CreateClientConVar("deathrun_thirdperson_opacity", 255, true, false)
-
-hook.Add("PrePlayerDraw", "TransparencyPlayers", function( ply )
-
-	if ply:GetRenderMode() ~= RENDERMODE_TRANSALPHA then
-		ply:SetRenderMode( RENDERMODE_TRANSALPHA )
-	end
-
-	local fadedistance = GetConVarNumber("deathrun_teammate_fade_distance") or 75
-
-	local eyedist = LocalPlayer():EyePos():Distance( ply:EyePos() )
-	local col = ply:GetColor()
-
-	if eyedist < fadedistance and LocalPlayer() ~= ply then
-		local frac = InverseLerp( eyedist, 5, fadedistance )
-		
-		col.a = Lerp( frac, 20, 255 )
-
-		if ply:Team() ~= LocalPlayer():Team() then col.a = 255 end
-
-		ply:SetColor( col )
-	elseif LocalPlayer() == ply then
-		col.a = GetConVarNumber("deathrun_thirdperson_opacity") or 255
-		ply:SetColor( col )
-	else
-		col.a = 255
-		ply:SetColor( col )
-	end
-
-end)
 
 function GM:PreDrawViewModel( vm, ply, wep )
 	local ply = LocalPlayer()
