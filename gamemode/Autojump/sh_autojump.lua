@@ -9,13 +9,21 @@ function AutoHop( ply, data )
 
 	if (tonumber(ply:GetNWString(PlayerSettings.Enums.ENHANCED_AUTOJUMP.Name)) == 0) then
 		if CLIENT then
-			if (AutoJumpClient.Enabled == false) then
+			if (AutoJumpClient.Enabled == false && AutoJumpClient.UniqueRoundNoJump == false && ply:Team() == TEAM_RUNNER) then
+				return;
+			end
+
+			if (AutoJumpClient.UniqueRoundNoJump == true && ply:Team() == TEAM_RUNNER) then
 				return;
 			end
 		end
 
 		if SERVER then
-			if (AutoJumpServer.Enabled == false) then
+			if (AutoJumpServer.Enabled == false && AutoJumpServer.UniqueRoundNoJump == false && ply:Team() == TEAM_RUNNER) then
+				return;
+			end
+
+			if (AutoJumpServer.UniqueRoundNoJump == true && ply:Team() == TEAM_RUNNER) then
 				return;
 			end
 		end

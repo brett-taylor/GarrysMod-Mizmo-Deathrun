@@ -1,6 +1,7 @@
 util.AddNetworkString("UpdateAutoJumpStatus");
 AutoJumpServer = {};
 AutoJumpServer.Enabled = true;
+AutoJumpServer.UniqueRoundNoJump = false;
 
 function AutoJumpServer.RoundStarted()
 	AutoJumpServer.ChangeAutoJump(false, true);

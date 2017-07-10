@@ -67,24 +67,19 @@ function PlayerSettings.PlayerMetaTable:GetSetting(setting)
 	return PlayerSettings.GetSetting(self, setting);
 end
 
-function ulx.ChangePlayerSetting(callingPlayer, targetPlayer, setting, value)
+function ulx.PlayerSetting(callingPlayer, targetPlayer, setting, value)
+	if (value == "") then
+		ulx.fancyLogAdmin(callingPlayer, "#T's setting #s is #s (Called by #A)", targetPlayer, setting, targetPlayer:GetSetting(setting));		
+		return;
+	end
+
 	ulx.fancyLogAdmin(callingPlayer, "#A changed #T's setting #s to #s.", targetPlayer, setting, value);
 	targetPlayer:SetSetting(setting, value);
 end
 
-local changePlayerSetting = ulx.command("User Management", "ulx changeplayersetting", ulx.ChangePlayerSetting, "!playersettingchange");
-changePlayerSetting:defaultAccess(ULib.ACCESS_ADMIN);
-changePlayerSetting:addParam{ type=ULib.cmds.PlayerArg };
-changePlayerSetting:addParam{ type=ULib.cmds.StringArg };
-changePlayerSetting:addParam{ type=ULib.cmds.StringArg };
-changePlayerSetting:help("Changes a player setting");
-
-function ulx.GetPlayerSetting(callingPlayer, targetPlayer, setting)
-	ulx.fancyLogAdmin(callingPlayer, "#T's setting #s is #s (Called by #A)", targetPlayer, setting, targetPlayer:GetSetting(setting));
-end
-
-local getPlayerSetting = ulx.command("User Management", "ulx getplayersetting", ulx.GetPlayerSetting, "!playersetting");
-getPlayerSetting:defaultAccess(ULib.ACCESS_ADMIN);
-getPlayerSetting:addParam{ type=ULib.cmds.PlayerArg };
-getPlayerSetting:addParam{ type=ULib.cmds.StringArg };
-getPlayerSetting:help("Gets a player setting");
+local playerSetting = ulx.command("User Management", "ulx playersetting", ulx.PlayerSetting, "!playersetting");
+playerSetting:defaultAccess(ULib.ACCESS_ADMIN);
+playerSetting:addParam{ type=ULib.cmds.PlayerArg };
+playerSetting:addParam{ type=ULib.cmds.StringArg };
+playerSetting:addParam{ type=ULib.cmds.StringArg, ULib.cmds.optional};
+playerSetting:help("");

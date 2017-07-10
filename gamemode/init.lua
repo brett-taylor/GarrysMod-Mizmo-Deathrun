@@ -47,6 +47,11 @@ AddCSLuaFile("NotificationSystem/cl_NotificationSystemMenu.lua");
 
 AddCSLuaFile("DisplayElements/cl_betapopup.lua");
 
+AddCSLuaFile("Knives/add_tfa_skins.lua");
+AddCSLuaFile("Knives/csgo_knife_snd_init.lua");
+
+AddCSLuaFile("UniqueRounds/cl_UniqueRounds.lua");
+
 include("Util/sv_fastDownload.lua")
 include("Util/sh_Colours.lua")
 include("Util/sh_LerpColour.lua");
@@ -90,6 +95,11 @@ include("Autojump/sv_autojump.lua");
 include("Autojump/sh_autojump.lua");
 
 include("NotificationSystem/sv_notify.lua");
+
+include("Knives/add_tfa_skins.lua");
+include("Knives/csgo_knife_snd_init.lua");
+
+include("UniqueRounds/sv_UniqueRounds.lua");
 
 util.AddNetworkString("DeathrunChatMessage")
 util.AddNetworkString("DeathrunSyncMutelist")

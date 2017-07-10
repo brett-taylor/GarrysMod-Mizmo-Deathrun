@@ -102,3 +102,9 @@ surface.CreateFont("MizmoGaming-Notification-Title", {
 	size = 13,
 	weight = 30;
 });
+
+surface.CreateFont("MizmoGaming-Traffic-Light-Text", {
+	font = "Roboto Bold",
+	size = 50,
+	weight = 70;
+});

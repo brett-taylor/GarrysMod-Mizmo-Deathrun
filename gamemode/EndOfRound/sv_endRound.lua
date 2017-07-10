@@ -1,4 +1,5 @@
 util.AddNetworkString("MizmoEndOfRoundBannerTrigger");
+util.AddNetworkString("MizmoEndOfRoundBannerTriggerSpectator");
 EndOfRound = {};
 
 function EndOfRound.RoundEnded(winner)
@@ -26,6 +27,10 @@ function EndOfRound.RoundEnded(winner)
 						-- Give Mizmos
 					end
 				end
+			else
+				net.Start("MizmoEndOfRoundBannerTriggerSpectator");
+					net.WriteString(winner);
+				net.Send(v);
 			end
 		end
 	end

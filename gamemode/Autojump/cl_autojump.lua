@@ -1,6 +1,7 @@
 AutoJumpClient = {};
 AutoJumpClient.Enabled = true;
 AutoJumpClient.Notifiy = false;
+AutoJumpClient.UniqueRoundNoJump = false;
 
 function AutoJumpClient.RecievedUpdate(bool, alert)
 	AutoJumpClient.Enabled = bool;
@@ -27,6 +28,10 @@ end
 
 function AutoJumpClient.HUDPaint()
 	if (AutoJumpClient.Notifiy == false) then
+		return;
+	end
+
+	if (AutoJumpClient.UniqueRoundNoJump == true) then
 		return;
 	end
 

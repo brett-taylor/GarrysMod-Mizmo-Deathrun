@@ -7,7 +7,7 @@ net.Receive("MizmoUpdateClaimedButtonsTable", function()
 end)
 
 function ButtonClaimingClient.DrawClaimedButtons()
-	if LocalPlayer():Team() == TEAM_RUNNER then 
+	if (LocalPlayer():Team() == TEAM_RUNNER) && (LocalPlayer():GetNWString(PlayerSettings.Enums.IS_DEBUGGING.Name) == "0") then 
 		return;
  	end
 

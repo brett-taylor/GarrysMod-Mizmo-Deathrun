@@ -42,6 +42,11 @@ include("NotificationSystem/cl_NotificationSystemMenu.lua");
 
 include("DisplayElements/cl_betapopup.lua");
 
+include("Knives/add_tfa_skins.lua");
+include("Knives/csgo_knife_snd_init.lua");
+
+include("UniqueRounds/cl_UniqueRounds.lua");
+
 PS:Initialize();
 
 concommand.Add("dr_test_menu", function()

@@ -43,6 +43,10 @@ net.Receive("MizmoEndOfRoundBannerTrigger", function()
 	end)
 end)
 
-concommand.Add("test", function()
-	EndOfRound.CreatePanel(2);
+net.Receive("MizmoEndOfRoundBannerTriggerSpectator", function()
+	local winnerTeam = net.ReadString();
+	timer.Simple(1, function() 
+		EndOfRound.CreatePanel(winnerTeam);
+		NotificationSystemMenu.Notify("You were spectating so recieved nothing.", 7);
+	end)
 end)

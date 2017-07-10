@@ -54,3 +54,4 @@ function CameraController.OnPrepBegin()
 	CameraController.EndCutsceneForAll()
 end
 hook.Add("DeathrunBeginPrep", "MizmoCutsceneCancelPrepBegan", CameraController.OnPrepBegin);
+hook.Add("DeathrunBeginActive", "MizmoCutsceneCancelPrepBegan", CameraController.OnPrepBegin);
