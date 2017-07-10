@@ -193,7 +193,7 @@ function Scoreboard.CreateBase()
             local widthOfHeading, heightOfHeading = surface.GetTextSize("Mizmo-Gaming");
             draw.SimpleTextOutlined("www.", "MizmoGaming-Intro-Small", w/2 - widthOfHeading/2, ScrW()/32 + heightOfHeading/(26/10), Colours.Gold, TEXT_ALIGN_RIGHT, TEXT_ALIGN_BOTTOM, 1, Color(0, 0, 0, 255))
             draw.SimpleTextOutlined(".co.uk", "MizmoGaming-Intro-Small", w/2 + widthOfHeading/2, ScrW()/32 + heightOfHeading/(26/10), Colours.Gold, TEXT_ALIGN_LEFT, TEXT_ALIGN_BOTTOM, 1, Color(0, 0, 0, 255))
-            draw.SimpleTextOutlined("Round: " .. ROUND_CURRENT .. "/" .. Scoreboard.MaxRounds, "HUDLabelfont", 5, ScrW()/16 + 5, Color(255, 255, 255), TEXT_ALIGN_LEFT, TEXT_ALIGN_TOP, 0, Color(0, 0, 0, 255))   
+            draw.SimpleTextOutlined("Round: " .. ROUND:GetRoundsPlayed() .. "/" .. Scoreboard.MaxRounds, "HUDLabelfont", 5, ScrW()/16 + 5, Color(255, 255, 255), TEXT_ALIGN_LEFT, TEXT_ALIGN_TOP, 0, Color(0, 0, 0, 255))   
             draw.SimpleTextOutlined("Players: " .. #player.GetAll() .. "/32", "HUDLabelfont", w-5, ScrW()/16 + 5, Color(255, 255, 255), TEXT_ALIGN_RIGHT, TEXT_ALIGN_TOP, 0, Color(0, 0, 0, 255))   
             draw.SimpleTextOutlined("Map: " .. game.GetMap(), "HUDLabelfont", w-5, h - 10, Color(255, 255, 255), TEXT_ALIGN_RIGHT, TEXT_ALIGN_CENTER, 0, Color(0, 0, 0, 255))
             draw.RoundedBox(0, ((ScrW()/2)/12)/2, (ScrH()/6 + 20) - ScrW()/40, ScrW()/2 - ((ScrW()/2)/12), ScrW()/40, Colours.Gold)

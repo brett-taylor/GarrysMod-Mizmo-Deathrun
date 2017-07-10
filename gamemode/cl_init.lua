@@ -15,8 +15,6 @@ include("ButtonClaiming/cl_showButtonClaimed.lua");
 
 include("config.lua")
 include("shared.lua")
-include("mapvote/sh_mapvote.lua")
-include("mapvote/cl_mapvote.lua")
 include("roundsystem/sh_round.lua")
 include("roundsystem/cl_round.lua")
 include("sh_definerounds.lua")
@@ -49,6 +47,11 @@ include("Knives/csgo_knife_snd_init.lua");
 include("UniqueRounds/cl_uniqueRounds.lua");
 
 include("ChatSystem/cl_chat.lua");
+
+include("DropWeapon/cl_dropweapon.lua");
+
+include("Mapvote/mapvote.lua");
+include("Mapvote/cl_mapvote.lua");
 
 PS:Initialize();
 
@@ -94,7 +97,3 @@ function GM:PlayerFootstep( ply, pos, foot, sound, volume, filter)
 		return true
 	end
 end
-
-concommand.Add("+menu", function()
-	RunConsoleCommand("deathrun_dropweapon")
-end)

@@ -1,6 +1,7 @@
 UniqueRounds = {};
 UniqueRounds.Specials = {};
 UniqueRounds.CurrentSpecial = nil;
+UniqueRounds.Count = 0;
 
 UniqueRounds.Special = {};
 UniqueRounds.Special.Name = nil;
@@ -24,6 +25,15 @@ end
 
 function UniqueRounds.DecideType()
 	if (table.Count(UniqueRounds.Specials) == 0) then
+		return;
+	end
+
+	local random = math.random(0, 100);
+	if (random > 20) then
+		return;
+	end
+	UniqueRounds.Count = UniqueRounds.Count + 1;
+	if (UniqueRounds.Count >= 3) then
 		return;
 	end
 

@@ -28,7 +28,7 @@ function EndOfRound.HidePanel()
 end
 
 function EndOfRound.GetMaterials()
-	EndOfRound.RunnersPicture = Material("Mizmo-Gaming-Downloads/End-Of-Round-Banners/mizmorunnervfour.png");
+	EndOfRound.RunnersPicture = Material("Mizmo-Gaming-Downloads/End-Of-Round-Banners/mizmorunnervsix.png");
 	EndOfRound.DeathsPicture = Material("Mizmo-Gaming-Downloads/End-Of-Round-Banners/mizmodeathvfour.png");
 end
 EndOfRound.GetMaterials();

@@ -23,15 +23,25 @@ function TrafficLightsClient.HUDDraw()
 		text = "GO!";
 	end
 
-    draw.SimpleTextOutlined(text, "MizmoGaming-Traffic-Light-Text", ScrW() / 2, ScrH() - 47, colour, TEXT_ALIGN_LEFT, TEXT_ALIGN_CENTER, 1 , Color(0, 0, 0));
+    draw.SimpleTextOutlined(text, "MizmoGaming-Traffic-Light-Text", ScrW() / 2, 247, colour, TEXT_ALIGN_LEFT, TEXT_ALIGN_CENTER, 1 , Color(0, 0, 0));
 
     surface.SetDrawColor(colour);
-    TrafficLightsClient.DrawCircle(ScrW() / 2 - 40, ScrH() - 50, 30, 50);
+    TrafficLightsClient.DrawCircle(ScrW() / 2 - 40, 250, 30, 50);
 end
 hook.Add("HUDPaint", "MizmoTrafficLightDrawHudClient", TrafficLightsClient.HUDDraw);
 
 net.Receive("MizmoUnqiueRoundTrafficLight", function()
 	TrafficLightsClient.Status = net.ReadFloat();
+
+	if (TrafficLightsClient.Status == 2) then
+		surface.PlaySound("hl1/fvox/blip.wav");
+		timer.Simple(1, function() surface.PlaySound("hl1/fvox/blip.wav"); end);
+		timer.Simple(1.6, function() surface.PlaySound("hl1/fvox/blip.wav"); end);
+		timer.Simple(2, function() surface.PlaySound("hl1/fvox/blip.wav"); end);
+		timer.Simple(2.3, function() surface.PlaySound("hl1/fvox/blip.wav"); end);
+		timer.Simple(2.6, function() surface.PlaySound("hl1/fvox/blip.wav"); end);
+		timer.Simple(3, function() surface.PlaySound("hl1/fvox/blip.wav"); end);
+	end
 end)
 
 function TrafficLightsClient.DrawCircle(x, y, radius, seg)

@@ -1,299 +1,301 @@
-include("sh_mapvote.lua")
+surface.CreateFont("RAM_VoteFont", {
+    font = "Trebuchet MS",
+    size = 19,
+    weight = 700,
+    antialias = true,
+    shadow = true
+})
 
-MV.Nominations = {}
-net.Receive("MapvoteSyncNominations", function()
-	MV.Nominations = table.Copy( net.ReadTable() )
-	MV:RepopulateMapList()
+surface.CreateFont("RAM_VoteFontCountdown", {
+    font = "Tahoma",
+    size = 32,
+    weight = 700,
+    antialias = true,
+    shadow = true
+})
+
+surface.CreateFont("RAM_VoteSysButton", 
+{    font = "Marlett",
+    size = 13,
+    weight = 0,
+    symbol = true,
+})
+
+MapVote.EndTime = 0
+MapVote.Panel = false
+
+net.Receive("RAM_MapVoteStart", function()
+    MapVote.CurrentMaps = {}
+    MapVote.Allow = true
+    MapVote.Votes = {}
+    
+    local amt = net.ReadUInt(32)
+    
+    for i = 1, amt do
+        local map = net.ReadString()
+        
+        MapVote.CurrentMaps[#MapVote.CurrentMaps + 1] = map
+    end
+    
+    MapVote.EndTime = CurTime() + net.ReadUInt(32)
+    
+    if(IsValid(MapVote.Panel)) then
+        MapVote.Panel:Remove()
+    end
+    
+    MapVote.Panel = vgui.Create("RAM_VoteScreen")
+    MapVote.Panel:SetMaps(MapVote.CurrentMaps)
 end)
 
-function MV:IsMapNominated( mapname )
-	if table.HasValue(MV.Nominations, mapname) then
-		return true
-	else
-		return false
-	end
-end
-
-function MV:NewDermaRow( tbl_cols, w, h, customColor, customColor2, doclick )
-
-	if doclick == nil then
-		doclick = function() end
-	end
-
-	local panel = vgui.Create("DPanel")
-	panel:SetSize(w,h)
-	panel.tbl_cols = tbl_cols
-	panel.customColor = customColor
-
-	function panel:Paint(w,h)
-
-		surface.SetDrawColor( customColor or DR.Colors.Turq )
-		surface.DrawRect(0,0,w,h)
-
-		--surface.SetDrawColor( customColor ~= nil and HexColor("#303030",80) or Color(0,0,0,0) )
-		surface.DrawRect(0,0,w,h)
-
-	end
-
-	local columns = tbl_cols
-
-	for i = 1, #columns do
-		local k = i-1
-		local align = 0.5
-
-		if i <= 1 then align = 0 end
-		if i >= #columns then align = 1 end
-
-		local label = vgui.Create("DLabel", panel)
-		label:SetText( columns[i] )
-		label:SetTextColor( customColor2 or DR.Colors.Clouds )
-		label:SetFont("deathrun_derma_Tiny")
-		label:SizeToContents()
-		label:SetPos( #columns > 1 and 4+(k * ((panel:GetWide()-8)/(#columns-1)) - label:GetWide()*align) or (panel:GetWide()-8)/2 - label:GetWide()/2, panel:GetTall()/2 - label:GetTall()/2 - 1 )
-
-		--draw.SimpleText( , "deathrun_derma_Small", k * (w/(#columns-1)),h/2, , align , TEXT_ALIGN_CENTER )
-	end
-
-	-- clickable
-	local btn = vgui.Create("DButton", panel)
-	btn:SetSize( panel:GetSize() )
-	btn:SetPos(0,0)
-	btn:SetText("")
-	function btn:Paint() end
-	btn.DoClick = doclick or function( self )
-		self:GetParent():DoClick()
-	end
-
-	return panel
-end
-
-function MV:OpenFullMapList( maps )
-	local frame = vgui.Create("deathrun_window")
-	frame:SetSize(480, math.min(ScrH()-64, (480*1.618 - 44) ) ) -- GOLDEN RATIO FIBONACCI SPIRAL OMG
-	frame:Center()
-	frame:MakePopup()
-	frame:SetTitle("Map List")
-
-	local panel = vgui.Create("DPanel", frame)
-	panel:SetPos(4,32)
-	panel:SetSize( frame:GetWide() - 4, frame:GetTall() - 44 )
-
-	function panel:Paint(w,h)
-		
-	end
-
-	local scr = vgui.Create("DScrollPanel", panel)
-	scr:SetSize(panel:GetWide()-8, panel:GetTall())
-	scr:SetPos(4,0)
-
-	local vbar = scr:GetVBar()
-	vbar:SetWide(4)
-
-	function vbar:Paint(w,h)
-		surface.SetDrawColor(0,0,0,100) 
-		surface.DrawRect(0,0,w,h)
-	end
-	function vbar.btnUp:Paint() end
-	function vbar.btnDown:Paint() end
-	function vbar.btnGrip:Paint(w, h)
-		surface.SetDrawColor(0,0,0,200)
-		surface.DrawRect(0,0,w,h)
-	end
-
-	local dlist = vgui.Create("DIconLayout", scr)
-	dlist:SetSize(panel:GetWide(), 1500)
-	dlist:SetPos(0,0)
-
-	dlist:SetSpaceX(0)
-	dlist:SetSpaceY(4)
-
-	dlist.maps = maps
-
-	MV.AllMapsListList = dlist
-
-	MV:RepopulateMapList()
-end
-
-function MV:RepopulateMapList()
-	if IsValid(MV.AllMapsListList) then
-		local dlist = MV.AllMapsListList
-		local maps = dlist.maps
-		dlist:Clear()
-
-		local lb = dlist:Add( "DLabel" )
-		lb:SetFont( "deathrun_derma_Medium" )
-		lb:SetText("Maps")
-		lb:SetColor( DR.Colors.Turq )
-		lb:SizeToContents()
-		lb:SetWide( dlist:GetWide() )
-
-		local lb = dlist:Add( "DLabel" )
-		lb:SetFont( "deathrun_derma_Tiny" )
-		lb:SetText("Click on a map to see its options!")
-		lb:SetColor( DR.Colors.Turq )
-		lb:SizeToContents()
-		lb:SetWide( dlist:GetWide() )
-
-		local pn = dlist:Add("DPanel")
-		pn:SetWide( dlist:GetWide() )
-		pn:SetTall( 8 )
-		pn.Paint = function() end
-
-
-		--dlist:Add( MV:NewDermaRow({"Click on a map to see options!"}, dlist:GetParent():GetParent():GetWide()-4, 24 ) )
-		for i = 1,#maps do
-			if maps[i] ~= game.GetMap() then
-				local mapderma = MV:NewDermaRow({maps[i] or "Error.", MV:IsMapNominated( maps[i] ) and "[NOMINATED]" or "" }, dlist:GetParent():GetParent():GetWide()-8, 24, DR.Colors.Clouds, MV:IsMapNominated( maps[i] ) and DR.Colors.Turq or HexColor("#303030"),
-					function( self )
-						local map = self:GetParent().mapname
-
-						local menu = vgui.Create("DMenu")
-						local nominate = menu:AddOption("Nominate Map")
-						nominate:SetIcon("icon16/lightbulb.png")
-						nominate.mapname = map
-						function nominate:DoClick()
-							RunConsoleCommand("mapvote_nominate_map",self.mapname)
-						end
-
-						menu:Open()
-					end
-				)
-				mapderma.mapname = maps[i]
-				dlist:Add( mapderma )
-			end
-		end
-	end
-end
-
-MV.AllMaps = {}
-
-net.Receive("MapvoteSendAllMaps", function(len, ply)
-	local data = net.ReadTable()
-	MV:OpenFullMapList( data.maps )
+net.Receive("RAM_MapVoteUpdate", function()
+    local update_type = net.ReadUInt(3)
+    
+    if(update_type == MapVote.UPDATE_VOTE) then
+        local ply = net.ReadEntity()
+        
+        if(IsValid(ply)) then
+            local map_id = net.ReadUInt(32)
+            MapVote.Votes[ply:SteamID()] = map_id
+        
+            if(IsValid(MapVote.Panel)) then
+                MapVote.Panel:AddVoter(ply)
+            end
+        end
+    elseif(update_type == MapVote.UPDATE_WIN) then      
+        if(IsValid(MapVote.Panel)) then
+            MapVote.Panel:Flash(net.ReadUInt(32))
+        end
+    end
 end)
 
-MV.Active = false
-MV.VotingMapList = {}
+net.Receive("RAM_MapVoteCancel", function()
+    if IsValid(MapVote.Panel) then
+        MapVote.Panel:Remove()
+    end
+end)
 
--- actual voting menu place
-function MV:OpenVotingPanel()
+local PANEL = {}
 
-	local frame = vgui.Create("deathrun_window")
-	frame:SetSize(230*1.618 + 4, (MV.MaxMaps*24) + (MV.MaxMaps-1)*4 + 44) -- GOLDEN RATIO FIBONACCI SPIRAL OMG
-	frame:SetPos(4,0)
-	frame:CenterVertical()
-	--frame:MakePopup()
-	frame:SetTitle("Mapvote")
-
-	MV.VotingPanelDerma = frame
-
-	local panel = vgui.Create("DPanel", frame)
-	panel:SetPos(4,32)
-	panel:SetSize( frame:GetWide() - 8, frame:GetTall() - 44 )
-
-	function panel:Paint(w,h)
-		
-	end
-
-	local dlist = vgui.Create("DIconLayout", panel)
-	dlist:SetSize(panel:GetWide(), 1500)
-	dlist:SetPos(0,0)
-
-	dlist:SetSpaceX(0)
-	dlist:SetSpaceY(4)
-
-	MV.VotingPanelDermaList = dlist
-	MV:RefreshVotingPanel()
+function PANEL:Init()
+    self:ParentToHUD()
+    
+    self.Canvas = vgui.Create("Panel", self)
+    self.Canvas:MakePopup()
+    self.Canvas:SetKeyboardInputEnabled(false)
+    
+    self.countDown = vgui.Create("DLabel", self.Canvas)
+    self.countDown:SetTextColor(color_white)
+    self.countDown:SetFont("RAM_VoteFontCountdown")
+    self.countDown:SetText("")
+    self.countDown:SetPos(0, 14)
+    
+    self.mapList = vgui.Create("DPanelList", self.Canvas)
+    self.mapList:SetDrawBackground(false)
+    self.mapList:SetSpacing(4)
+    self.mapList:SetPadding(4)
+    self.mapList:EnableHorizontal(true)
+    self.mapList:EnableVerticalScrollbar()
+    
+    self.Voters = {}
 end
 
-MV.VotingMapsNoVotes = {}
+function PANEL:PerformLayout()
+    local cx, cy = chat.GetChatBoxPos()
+    
+    self:SetPos(0, 0)
+    self:SetSize(ScrW(), ScrH())
+    
+    local extra = math.Clamp(300, 0, ScrW() - 640)
+    self.Canvas:StretchToParent(0, 0, 0, 0)
+    self.Canvas:SetWide(640 + extra)
+    self.Canvas:SetTall(cy - 60)
+    self.Canvas:SetPos(0, 0)
+    self.Canvas:CenterHorizontal()
+    self.Canvas:SetZPos(0)
+    self.Canvas:Center();
+    
+    self.mapList:StretchToParent(0, 90, 0, 0)
 
-function MV:RefreshVotingPanel()
-	if IsValid( MV.VotingPanelDermaList ) then
-		local dlist = MV.VotingPanelDermaList
-		dlist:Clear()
-
-		-- get the winning map--
-		local win = ""
-		local winvotes = 0
-		for k,v in pairs(MV.VotingMapList) do
-			if v > winvotes then
-				winvotes = v
-				win = k
-			end
-		end
-
-		--if win == "" then win = table.Random( MV.VotingMapList )
-		MV.VotingMapsNoVotes = {}
-		local num = 0
-		for k,v in pairs(MV.VotingMapList) do
-			num = num + 1
-			table.insert(MV.VotingMapsNoVotes, k)
-			local row = MV:NewDermaRow({ tostring(num)..". ", k or 0,v or 0}, dlist:GetWide(), 24, k == win and DR.Colors.Turq or DR.Colors.Clouds, k == win and DR.Colors.Clouds or DR.Colors.Turq)
-			row.mapname = k
-			function row:DoClick()
-				RunConsoleCommand("mapvote_vote",self.mapname)
-			end
-			dlist:Add( row )
-		end
-	end
 end
 
-net.Receive("MapvoteUpdateMapList", function()
-	MV.VotingMapList = net.ReadTable()
-	MV:RefreshVotingPanel()
-end)
+local heart_mat = Material("icon16/heart.png")
+local star_mat = Material("icon16/star.png")
+local shield_mat = Material("icon16/shield.png")
 
-net.Receive("MapvoteSetActive", function()
-	MV.Active = tobool(net.ReadBit())
+function PANEL:AddVoter(voter)
+    for k, v in pairs(self.Voters) do
+        if(v.Player and v.Player == voter) then
+            return false
+        end
+    end
+    
+    
+    local icon_container = vgui.Create("Panel", self.mapList:GetCanvas())
+    local icon = vgui.Create("AvatarImage", icon_container)
+    icon:SetSize(16, 16)
+    icon:SetZPos(1000)
+    icon:SetTooltip(voter:Name())
+    icon_container.Player = voter
+    icon_container:SetTooltip(voter:Name())
+    icon:SetPlayer(voter, 16)
 
-	if MV.Active then MV:OpenVotingPanel() end
-	MV.VotingMapList = net.ReadTable()
-	MV.TimeLeft = net.ReadFloat()
-	MV:RefreshVotingPanel()
-end)
+    if MapVote.HasExtraVotePower(voter) then
+        icon_container:SetSize(40, 20)
+        icon:SetPos(21, 2)
+        icon_container.img = star_mat
+    else
+        icon_container:SetSize(20, 20)
+        icon:SetPos(2, 2)
+    end
+    
+    icon_container.Paint = function(s, w, h)
+        draw.RoundedBox(4, 0, 0, w, h, Color(255, 0, 0, 80))
+        
+        if(icon_container.img) then
+            surface.SetMaterial(icon_container.img)
+            surface.SetDrawColor(Color(255, 255, 255))
+            surface.DrawTexturedRect(2, 2, 16, 16)
+        end
+    end
+    
+    table.insert(self.Voters, icon_container)
+end
 
+function PANEL:Think()
+    for k, v in pairs(self.mapList:GetItems()) do
+        v.NumVotes = 0
+    end
+    
+    for k, v in pairs(self.Voters) do
+        if(not IsValid(v.Player)) then
+            v:Remove()
+        else
+            if(not MapVote.Votes[v.Player:SteamID()]) then
+                v:Remove()
+            else
+                local bar = self:GetMapButton(MapVote.Votes[v.Player:SteamID()])
+                
+                if(MapVote.HasExtraVotePower(v.Player)) then
+                    bar.NumVotes = bar.NumVotes + 2
+                else
+                    bar.NumVotes = bar.NumVotes + 1
+                end
+                
+                if(IsValid(bar)) then
+                    local CurrentPos = Vector(v.x, v.y, 0)
+                    local NewPos = Vector((bar.x + bar:GetWide()) - 21 * bar.NumVotes - 2, bar.y + (bar:GetTall() * 0.5 - 10), 0)
+                    
+                    if(not v.CurPos or v.CurPos ~= NewPos) then
+                        v:MoveTo(NewPos.x, NewPos.y, 0.3)
+                        v.CurPos = NewPos
+                    end
+                end
+            end
+        end
+        
+    end
+    
+    local timeLeft = math.Round(math.Clamp(MapVote.EndTime - CurTime(), 0, math.huge))
+    
+    self.countDown:SetText(tostring(timeLeft or 0).." seconds")
+    self.countDown:SizeToContents()
+    self.countDown:CenterHorizontal()
+end
 
-timer.Create("MapvoteCountdownTimer", 0.2, 0, function()
-	if MV.Active == true then
-		MV.TimeLeft = MV.TimeLeft - 0.2
-		if IsValid(MV.VotingPanelDerma) then
-			
-			MV.VotingPanelDerma:SetTitle( "Mapvote - "..string.ToMinutesSeconds(MV.TimeLeft > 0 and MV.TimeLeft or 0) )
+function PANEL:SetMaps(maps)
+    self.mapList:Clear()
+    
+    for k, v in RandomPairs(maps) do
+        local button = vgui.Create("DButton", self.mapList)
+        button.ID = k
+        button:SetText(v)
+        
+        button.DoClick = function()
+            net.Start("RAM_MapVoteUpdate")
+                net.WriteUInt(MapVote.UPDATE_VOTE, 3)
+                net.WriteUInt(button.ID, 32)
+            net.SendToServer()
+        end
+        
+        do
+            local Paint = button.Paint
+            button.Paint = function(s, w, h)
+                local col = Colours.Grey;
+                
+                if(button.bgColor) then
+                    col = button.bgColor
+                end
+                
+                draw.RoundedBox(4, 0, 0, w, h, Colours.Gold)
+                draw.RoundedBox(4, 2, 2, w - 4, h - 4, col);
+                Paint(s, w, h)
+            end
+        end
+        
+        button:SetTextColor(color_white)
+        button:SetContentAlignment(4)
+        button:SetTextInset(8, 0)
+        button:SetFont("RAM_VoteFont")
+        
+        local extra = math.Clamp(300, 0, ScrW() - 640)
+        
+        button:SetDrawBackground(false)
+        button:SetTall(24)
+        button:SetWide(285 + (extra / 2))
+        button.NumVotes = 0
+        
+        self.mapList:AddItem(button)
+    end
+end
 
-			if MV.TimeLeft <= 0 then
-				timer.Simple(4, function()
-					if IsValid(MV.VotingPanelDerma) then
-						MV.VotingPanelDerma:Close()
-					end
-				end)
-			end
-		end
-		if MV.TimeLeft < 0 then
-			MV.TimeLeft = 0
-		end
-	end
-end)
+function PANEL:GetMapButton(id)
+    for k, v in pairs(self.mapList:GetItems()) do
+        if(v.ID == id) then return v end
+    end
+    
+    return false
+end
 
-local keynums = {
-	KEY_1,
-	KEY_2,
-	KEY_3,
-	KEY_4,
-	KEY_5,
-	KEY_6,
-	KEY_7,
-	KEY_8,
-	KEY_9,
-}
+function PANEL:Paint()
+    --Derma_DrawBackgroundBlur(self)
+    
+    local CenterY = ScrH() / 2
+    local CenterX = ScrW() / 2
+    
+    surface.SetDrawColor(0, 0, 0, 200)
+    surface.DrawRect(0, 0, ScrW(), ScrH())
+end
 
-hook.Add("SetupMove","MapvoteReceiveKeys", function( )
-	if (not vgui.CursorVisible()) and MV.Active then
-		for i = 1, #keynums do
-			local mapname = MV.VotingMapsNoVotes[i]
-			if input.WasKeyPressed( keynums[i] ) then
-				RunConsoleCommand("mapvote_vote",mapname)
-			end
-		end
-	end
-end)
+function PANEL:Flash(id)
+    self:SetVisible(true)
+
+    local bar = self:GetMapButton(id)
+    
+    if(IsValid(bar)) then
+        timer.Simple( 0.0, function() 
+            bar.bgColor = Colours.Gold 
+        end )
+
+        timer.Simple( 0.2, function() 
+            bar.bgColor = nil 
+        end )
+
+        timer.Simple( 0.4, function() 
+            bar.bgColor = Colours.Gold 
+        end )
+
+        timer.Simple( 0.6, function() 
+            bar.bgColor = nil 
+        end )
+
+        timer.Simple( 0.8, function() 
+            bar.bgColor = Colours.Gold 
+        end )
+
+        timer.Simple( 1.0, function() 
+            bar.bgColor = Colours.Gold 
+        end )
+    end
+end
+
+derma.DefineControl("RAM_VoteScreen", "", PANEL, "DPanel")

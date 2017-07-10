@@ -367,9 +367,9 @@ ROUND:AddState( ROUND_OVER,
 				end)
 			else
 				--DR:ChatBroadcast("Round limit reached. Initiating RTV...")
-				timer.Simple(3, function()
+				timer.Simple(8, function()
 					if not hook.Call("DeathrunStartMapvote", nil, rounds_played) then
-						MV:BeginMapVote()
+						MapVote.Start(15, false, 12, { "deathrun", "dr" });
 					end
 				end)
 			end

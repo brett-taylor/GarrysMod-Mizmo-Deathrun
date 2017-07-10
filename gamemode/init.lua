@@ -25,8 +25,6 @@ AddCSLuaFile("sh_definerounds.lua")
 AddCSLuaFile("roundsystem/cl_round.lua")
 AddCSLuaFile("zones/sh_zone.lua")
 AddCSLuaFile("zones/cl_zone.lua")
-AddCSLuaFile("mapvote/sh_mapvote.lua")
-AddCSLuaFile("mapvote/cl_mapvote.lua")
 
 AddCSLuaFile("CameraController/cl_cameraController.lua");
 AddCSLuaFile("CameraController/cl_cutsceneSystem.lua");
@@ -55,6 +53,11 @@ AddCSLuaFile("UniqueRounds/cl_uniqueRounds.lua");
 
 AddCSLuaFile("ChatSystem/cl_chat.lua");
 
+AddCSLuaFile("DropWeapon/cl_dropweapon.lua");
+
+AddCSLuaFile("Mapvote/mapvote.lua");
+AddCSLuaFile("Mapvote/cl_mapvote.lua");
+
 include("Util/sv_fastDownload.lua")
 include("Util/sh_colours.lua")
 include("Util/sh_lerpColour.lua");
@@ -72,8 +75,6 @@ include("roundsystem/sv_round.lua")
 include("sh_definerounds.lua")
 include("zones/sh_zone.lua")
 include("zones/sv_zone.lua")
-include("mapvote/sh_mapvote.lua")
-include("mapvote/sv_mapvote.lua")
 include("sv_player.lua")
 
 include("PlayerSettings/sh_playerSettingsEnums.lua")
@@ -104,6 +105,11 @@ include("Knives/add_tfa_skins.lua");
 include("Knives/csgo_knife_snd_init.lua");
 
 include("UniqueRounds/sv_uniqueRounds.lua");
+
+include("DropWeapon/sv_dropweapon.lua");
+
+include("Mapvote/mapvote.lua");
+include("Mapvote/sv_mapvote.lua");
 
 util.AddNetworkString("DeathrunChatMessage")
 util.AddNetworkString("DeathrunSyncMutelist")
@@ -645,14 +651,6 @@ local stop_the_drop = {
 function DR:CanPlayerDropWeapon( ply, class )
 	return ( not table.HasValue( stop_the_drop, class) )
 end
-
-concommand.Add("deathrun_dropweapon", function( ply, cmd, args)
-	if ply:Alive() and ply:GetActiveWeapon() ~= nil and IsValid( ply:GetActiveWeapon() ) then
-		if DR:CanPlayerDropWeapon( ply, ply:GetActiveWeapon():GetClass() ) then
-			ply:DropWeapon( ply:GetActiveWeapon() )
-		end
-	end
-end)
 
 -- stop people whoring the weapons
 hook.Add("PlayerCanPickupWeapon", "StopWeaponAbuseAustraliaSaysNo", function( ply, wep )

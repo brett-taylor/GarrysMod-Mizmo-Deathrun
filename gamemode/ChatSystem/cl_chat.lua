@@ -31,7 +31,7 @@ function ChatSystem.DoChat(ply, strText, isTeam, isDead)
 	table.insert(chatTable, "] ");
 
 	if (ply:Alive() == true && ply:Team() == TEAM_DEATH) then
-		table.insert(chatTable, Colours.Team.Deaths);
+		table.insert(chatTable, Colours.Team.Death);
 	elseif (ply:Alive() == true && ply:Team() == TEAM_RUNNER) then
 		table.insert(chatTable, Colours.Team.Runner);
 	else

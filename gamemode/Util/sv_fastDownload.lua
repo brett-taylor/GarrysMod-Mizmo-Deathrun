@@ -14,7 +14,7 @@ resource.AddFile("resource/fonts/Roboto-ThinItalic.ttf");
 
 -- Materials
 resource.AddFile("materials/Mizmo-Gaming-Downloads/End-Of-Round-Banners/mizmodeathvfour.png");
-resource.AddFile("materials/Mizmo-Gaming-Downloads/End-Of-Round-Banners/mizmorunnervfour.png");
+resource.AddFile("materials/Mizmo-Gaming-Downloads/End-Of-Round-Banners/mizmorunnervsix.png");
 resource.AddFile("materials/Mizmo-Gaming-Downloads/icons/mute16.png");
 resource.AddFile("materials/Mizmo-Gaming-Downloads/icons/shield16.png");
 
