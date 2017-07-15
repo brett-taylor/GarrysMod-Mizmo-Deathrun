@@ -3,6 +3,7 @@ ITEM.Price = 20000
 ITEM.Model = 'models/weapons/w_csgo_m9.mdl'
 ITEM.Skin = 9
 ITEM.WeaponClass = 'csgo_m9_tiger'
+ITEM.Grade = 'Exceedingly Rare'
 
 function ITEM:OnEquip(ply)
 	ply:Give(self.WeaponClass)

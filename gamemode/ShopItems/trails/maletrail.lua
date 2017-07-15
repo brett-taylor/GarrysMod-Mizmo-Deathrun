@@ -1,6 +1,8 @@
 ITEM.Name = 'Male Trail'
-ITEM.Price = 150
+ITEM.Price = 1500
 ITEM.Material = 'trails/maletrail.vmt'
+ITEM.Desc = 'Maleeeee Traiiil.'
+ITEM.Grade = 'Restricted'
 
 function ITEM:OnEquip(ply, modifications)
 	ply.AF = util.SpriteTrail(ply, 0, modifications.color, false, 15, 1, 4, 0.125, self.Material)

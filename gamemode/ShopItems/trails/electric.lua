@@ -1,6 +1,7 @@
 ITEM.Name = 'Electric Trail'
 ITEM.Price = 150
 ITEM.Material = 'trails/electric.vmt'
+ITEM.Grade = 'Consumer'
 
 function ITEM:OnEquip(ply, modifications)
 	ply.ElectricTrail = util.SpriteTrail(ply, 0, modifications.color, false, 15, 1, 4, 0.125, self.Material)

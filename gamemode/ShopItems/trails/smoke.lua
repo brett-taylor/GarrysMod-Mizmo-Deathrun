@@ -1,6 +1,7 @@
 ITEM.Name = 'Smoke Trail'
 ITEM.Price = 150
 ITEM.Material = 'trails/smoke.vmt'
+ITEM.Grade = 'Consumer'
 
 function ITEM:OnEquip(ply, modifications)
 	ply.SmokeTrail = util.SpriteTrail(ply, 0, modifications.color, false, 15, 1, 4, 0.125, self.Material)

@@ -3,6 +3,7 @@ ITEM.Price = 20000
 ITEM.Model = 'models/weapons/w_csgo_falchion.mdl'
 ITEM.Skin = 13
 ITEM.WeaponClass = 'csgo_falchion_marblefade'
+ITEM.Grade = 'Exceedingly Rare'
 
 function ITEM:OnEquip(ply)
 	ply:Give(self.WeaponClass)

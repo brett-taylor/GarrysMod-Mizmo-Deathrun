@@ -7,9 +7,19 @@ include("Util/sh_groups.lua");
 include("PlayerSettings/sh_playerSettingsEnums.lua")
 
 include("DisplayElements/cl_fonts.lua")
+include("DisplayElements/vgui/DMizmoFrame.lua")
+include("DisplayElements/vgui/DMizmoButton.lua")
+include("DisplayElements/vgui/DMizmoMainMenu.lua")
+
+include("DisplayElements/vgui/Shop/DMizmoShopFrame.lua")
+include("DisplayElements/vgui/Shop/DMizmoShopTab.lua")
+include("DisplayElements/vgui/Shop/DMizmoShopInventory.lua")
+
 include("DisplayElements/cl_hud.lua")
 include("DisplayElements/cl_voicehud.lua")
 include("DisplayElements/cl_scoreboard.lua")
+include("DisplayElements/cl_betapopup.lua");
+include("DisplayElements/cl_escMenu.lua");
 
 include("ButtonClaiming/cl_showButtonClaimed.lua");
 
@@ -39,8 +49,6 @@ include("Autojump/sh_autojump.lua");
 include("NotificationSystem/cl_notificationSystemAlert.lua");
 include("NotificationSystem/cl_notificationSystemMenu.lua");
 
-include("DisplayElements/cl_betapopup.lua");
-
 include("Knives/add_tfa_skins.lua");
 include("Knives/csgo_knife_snd_init.lua");
 
@@ -52,6 +60,20 @@ include("DropWeapon/cl_dropweapon.lua");
 
 include("Mapvote/mapvote.lua");
 include("Mapvote/cl_mapvote.lua");
+
+include( "Jukebox/lua/shared_settings.lua" )
+include( "Jukebox/lua/client_base.lua" )
+include( "Jukebox/lua/client_player.lua" )
+include( "Jukebox/lua/client_hud.lua" )
+include( "Jukebox/lua/vgui_base.lua" )
+include( "Jukebox/lua/vgui_allsongs.lua" )
+include( "Jukebox/lua/vgui_queue.lua" )
+include( "Jukebox/lua/vgui_options.lua" )
+include( "Jukebox/lua/vgui_request.lua" )
+include( "Jukebox/lua/vgui_request_quick.lua" )
+include( "Jukebox/lua/vgui_admin_requests.lua" )
+
+include( "LevelSystem/cl_levelsystem.lua" )
 
 PS:Initialize();
 

@@ -3,6 +3,7 @@ ITEM.Price = 20000
 ITEM.Model = 'models/weapons/w_csgo_push.mdl'
 ITEM.Skin = 11
 ITEM.WeaponClass = 'csgo_daggers_webs'
+ITEM.Grade = 'Exceedingly Rare'
 
 function ITEM:OnEquip(ply)
 	ply:Give(self.WeaponClass)

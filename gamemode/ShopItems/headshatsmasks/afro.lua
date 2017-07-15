@@ -1,7 +1,9 @@
 ITEM.Name = 'Afro'
-ITEM.Price = 200
+ITEM.Price = 1500
 ITEM.Model = 'models/dav0r/hoverball.mdl'
 ITEM.Attachment = 'eyes'
+ITEM.Desc = 'iBuyPowers favourite style.'
+ITEM.Grade = 'Restricted'
 
 function ITEM:OnEquip(ply, modifications)
 	ply:PS_AddClientsideModel(self.ID)

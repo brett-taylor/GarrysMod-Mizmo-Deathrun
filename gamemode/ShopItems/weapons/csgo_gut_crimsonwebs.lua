@@ -3,6 +3,7 @@ ITEM.Price = 20000
 ITEM.Model = 'models/weapons/w_csgo_gut.mdl'
 ITEM.Skin = 3
 ITEM.WeaponClass = 'csgo_gut_crimsonwebs'
+ITEM.Grade = 'Exceedingly Rare'
 
 function ITEM:OnEquip(ply)
 	ply:Give(self.WeaponClass)

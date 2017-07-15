@@ -1,6 +1,7 @@
 ITEM.Name = 'Snowflakes'
 ITEM.Price = 500
 ITEM.Material = 'trails/snowflake.vmt'
+ITEM.Grade = 'Consumer'
 
 function ITEM:OnEquip(ply, modifications)
 	ply.SnowTrail = util.SpriteTrail(ply, 0, modifications.color, false, 15, 1, 4, 0.125, self.Material)

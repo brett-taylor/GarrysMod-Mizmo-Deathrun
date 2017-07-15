@@ -1,6 +1,8 @@
 ITEM.Name = 'Gentleman shoes'
-ITEM.Price = 500
+ITEM.Price = 300
 ITEM.Material = 'trails/shoes.vmt'
+ITEM.Desc = 'A trail of Shoe prints.'
+ITEM.Grade = 'Consumer'
 
 function ITEM:OnEquip(ply, modifications)
 	ply.ShoesTrail = util.SpriteTrail(ply, 0, modifications.color, false, 15, 1, 4, 0.125, self.Material)

@@ -21,4 +21,4 @@ end
 BlindMovement.Think = function()
 end
 
-UniqueRounds.AddType(BlindMovement.Name, BlindMovement.Help, BlindMovement.OnRoundPrep, BlindMovement.OnRoundStart, BlindMovement.OnRoundEnd, BlindMovement.Think);
+//UniqueRounds.AddType(BlindMovement.Name, BlindMovement.Help, BlindMovement.OnRoundPrep, BlindMovement.OnRoundStart, BlindMovement.OnRoundEnd, BlindMovement.Think);

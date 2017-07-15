@@ -33,7 +33,7 @@ function UniqueRounds.DecideType()
 		return;
 	end
 	UniqueRounds.Count = UniqueRounds.Count + 1;
-	if (UniqueRounds.Count >= 3) then
+	if (UniqueRounds.Count >= 2) then
 		return;
 	end
 

@@ -1,7 +1,9 @@
 ITEM.Name = 'Skull Head'
-ITEM.Price = 150
+ITEM.Price = 600
 ITEM.Model = 'models/Gibs/HGIBS.mdl'
 ITEM.Attachment = 'eyes'
+ITEM.Desc = 'Not quite Skull Candy headphones..'
+ITEM.Grade = 'Mil-Spec'
 
 function ITEM:OnEquip(ply, modifications)
 	ply:PS_AddClientsideModel(self.ID)

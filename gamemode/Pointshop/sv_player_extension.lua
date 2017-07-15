@@ -160,6 +160,10 @@ function Player:PS_HasPoints(points)
 	return self.PS_Points >= points
 end
 
+function Player:PS_HasLevel(level)
+	return Experience.GetCurrentLevel(self) >= level
+end
+
 -- give/take items
 
 function Player:PS_GiveItem(item_id)
@@ -194,8 +198,10 @@ function Player:PS_BuyItem(item_id)
 	if not ITEM then return false end
 
 	local points = PS.Config.CalculateBuyPrice(self, ITEM)
+	local level = PS.Config.GetItemLevel(self, ITEM)
 
 	if not self:PS_HasPoints(points) then return false end
+	if not self:PS_HasLevel(level) then return false end
 	if not self:PS_CanPerformAction(item_id) then return end
 
 	if ITEM.AdminOnly and not self:IsAdmin() then

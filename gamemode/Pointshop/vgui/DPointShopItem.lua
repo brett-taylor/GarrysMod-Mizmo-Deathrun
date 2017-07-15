@@ -15,10 +15,15 @@ end
 
 function PANEL:DoClick()
 	local points = PS.Config.CalculateBuyPrice(LocalPlayer(), self.Data)
+	//local level = PS.Config.GetItemLevel(LocalPlayer(), self.Data)
 	
 	if not LocalPlayer():PS_HasItem(self.Data.ID) and not LocalPlayer():PS_HasPoints(points) then
 		notification.AddLegacy("You don't have enough "..PS.Config.PointsName.." for this!", NOTIFY_GENERIC, 5)
 	end
+
+	//if not LocalPlayer():PS_HasItem(self.Data.ID) and not LocalPlayer():PS_HasLevel(level) then
+	//	notification.AddLegacy("You are not high enough level to purchase this item!", NOTIFY_GENERIC, 5)
+	//end
 
 	local menu = DermaMenu(self)
 	
@@ -137,6 +142,14 @@ function PANEL:SetData(data)
 	end
 end
 
+function PANEL:Paint(w, h)
+	surface.SetDrawColor(Colours.Gold);
+	surface.DrawRect(0, 0, w, h);
+
+	surface.SetDrawColor(Colours.Grey);
+	surface.DrawRect(2, 2, w - 4, h - 4);
+end
+
 function PANEL:PaintOver()
 	if self.Data.AdminOnly then
 		surface.SetMaterial(adminicon)
@@ -168,7 +181,7 @@ function PANEL:PaintOver()
 		self.BarColor = ownedcolor
 	end
 	
-	surface.SetDrawColor(self.BarColor)
+	surface.SetDrawColor(Colours.Gold)
 	surface.DrawRect(0, self:GetTall() - self.InfoHeight, self:GetWide(), self.InfoHeight)
 	
 	draw.SimpleText(self.Info, "DefaultSmall", self:GetWide() / 2, self:GetTall() - (self.InfoHeight / 2), Color(255, 255, 255, 255), TEXT_ALIGN_CENTER, TEXT_ALIGN_CENTER)
@@ -176,6 +189,17 @@ function PANEL:PaintOver()
 	if LocalPlayer().PS_Items and LocalPlayer().PS_Items[self.Data.ID] and LocalPlayer().PS_Items[self.Data.ID].Modifiers and LocalPlayer().PS_Items[self.Data.ID].Modifiers.color then
 		surface.SetDrawColor(LocalPlayer().PS_Items[self.Data.ID].Modifiers.color)
 		surface.DrawRect(self:GetWide() - 5 - 16, 26, 16, 16)
+	end
+
+	local levelNeeded = self.Data.Level;
+	if (levelNeeded == 0) then
+		levelNeeded = 1;
+	end
+
+	if (LocalPlayer():GetCurrentLevel() >= levelNeeded) then
+		draw.SimpleText("Level "..levelNeeded, "DefaultSmall", 2, 2, Color(0, 255, 0), TEXT_ALIGN_LEFT, TEXT_ALIGN_TOP)
+	else
+		draw.SimpleText("Level "..levelNeeded, "DefaultSmall", 2, 2, Color(255, 0, 0), TEXT_ALIGN_LEFT, TEXT_ALIGN_TOP)
 	end
 end
 

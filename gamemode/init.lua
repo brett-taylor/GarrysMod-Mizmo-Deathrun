@@ -11,9 +11,19 @@ AddCSLuaFile("Util/sh_groups.lua");
 AddCSLuaFile("PlayerSettings/sh_playerSettingsEnums.lua")
 
 AddCSLuaFile("DisplayElements/cl_fonts.lua")
+AddCSLuaFile("DisplayElements/vgui/DMizmoFrame.lua")
+AddCSLuaFile("DisplayElements/vgui/DMizmoMainMenu.lua")
+AddCSLuaFile("DisplayElements/vgui/DMizmoButton.lua")
+
+AddCSLuaFile("DisplayElements/vgui/Shop/DMizmoShopFrame.lua")
+AddCSLuaFile("DisplayElements/vgui/Shop/DMizmoShopTab.lua")
+AddCSLuaFile("DisplayElements/vgui/Shop/DMizmoShopInventory.lua")
+
 AddCSLuaFile("DisplayElements/cl_hud.lua")
 AddCSLuaFile("DisplayElements/cl_voicehud.lua")
 AddCSLuaFile("DisplayElements/cl_scoreboard.lua")
+AddCSLuaFile("DisplayElements/cl_betapopup.lua");
+AddCSLuaFile("DisplayElements/cl_escMenu.lua");
 
 AddCSLuaFile("ButtonClaiming/cl_showButtonClaimed.lua");
 
@@ -44,8 +54,6 @@ AddCSLuaFile("Autojump/sh_autojump.lua");
 AddCSLuaFile("NotificationSystem/cl_notificationSystemAlert.lua");
 AddCSLuaFile("NotificationSystem/cl_notificationSystemMenu.lua");
 
-AddCSLuaFile("DisplayElements/cl_betapopup.lua");
-
 AddCSLuaFile("Knives/add_tfa_skins.lua");
 AddCSLuaFile("Knives/csgo_knife_snd_init.lua");
 
@@ -57,6 +65,21 @@ AddCSLuaFile("DropWeapon/cl_dropweapon.lua");
 
 AddCSLuaFile("Mapvote/mapvote.lua");
 AddCSLuaFile("Mapvote/cl_mapvote.lua");
+
+AddCSLuaFile( "Jukebox/lua/client_base.lua" )
+AddCSLuaFile( "Jukebox/lua/client_player.lua" )
+AddCSLuaFile( "Jukebox/lua/client_hud.lua" )
+AddCSLuaFile( "Jukebox/lua/vgui_base.lua" )
+AddCSLuaFile( "Jukebox/lua/vgui_allsongs.lua" )
+AddCSLuaFile( "Jukebox/lua/vgui_queue.lua" )
+AddCSLuaFile( "Jukebox/lua/vgui_options.lua" )
+AddCSLuaFile( "Jukebox/lua/vgui_request.lua" )
+AddCSLuaFile( "Jukebox/lua/vgui_request_quick.lua" )
+AddCSLuaFile( "Jukebox/lua/vgui_admin_requests.lua" )
+AddCSLuaFile( "Jukebox/lua/shared_settings.lua" )
+
+AddCSLuaFile( "LevelSystem/sh_levelsystem.lua" )
+AddCSLuaFile( "LevelSystem/cl_levelsystem.lua" )
 
 include("Util/sv_fastDownload.lua")
 include("Util/sh_colours.lua")
@@ -110,6 +133,15 @@ include("DropWeapon/sv_dropweapon.lua");
 
 include("Mapvote/mapvote.lua");
 include("Mapvote/sv_mapvote.lua");
+include("Mapvote/sv_mapvote_rtv.lua");
+
+include("DeathSystem/sv_deathSystem.lua");
+
+include( "Jukebox/lua/shared_settings.lua" )
+include( "Jukebox/lua/server_base.lua" )
+include( "Jukebox/lua/server_saving.lua" )
+
+include( "LevelSystem/sv_levelsystem.lua" )
 
 util.AddNetworkString("DeathrunChatMessage")
 util.AddNetworkString("DeathrunSyncMutelist")

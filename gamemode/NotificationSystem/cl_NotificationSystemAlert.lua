@@ -36,5 +36,6 @@ function MizmoAlert.GenerateNotification(listitem, string, seconds)
 		end
 	end
 
+	surface.PlaySound("UI/buttonclick.wav");
 	return parent;
 end

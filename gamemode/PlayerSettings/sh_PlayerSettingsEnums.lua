@@ -57,6 +57,13 @@ PlayerSettings.Enums.TAG_COLOUR = {
 	IsNetworked = true;
 };
 
+PlayerSettings.Enums.NEVER_DEATH = {
+	Name = "NEVER_DEATH";
+	ID = 9;
+	Default = 0;
+	IsNetworked = false;
+};
+
 for k, v in pairs(PlayerSettings.Enums) do
 	PlayerSettings.Enums[v.ID] = v;
 	PlayerSettings.Enums[k] = v;

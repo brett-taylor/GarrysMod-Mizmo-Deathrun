@@ -10,6 +10,6 @@ function ulx.ToggleThirdPerson(callingPlayer)
 	end
 end
 
-local toggleTP = ulx.command("togglethirdperson", "ulx togglethirdperson", ulx.ToggleThirdPerson, {"!thirdperson", "!tp", "!thirdp",  "!thirdpersonview", "!third", "!firstperson", "!fp", "!firstp",  "!firstpersonview", "!first"});
+local toggleTP = ulx.command("togglethirdperson", "ulx togglethirdperson", ulx.ToggleThirdPerson, {"!thirdperson", "!tp", "!thirdp",  "!thirdpersonview", "!third", "!firstperson", "!fp", "!firstp",  "!firstpersonview", "!first", "!1p", "!3p"});
 toggleTP:defaultAccess(ULib.ACCESS_ALL);
 toggleTP:help("Toggles your view point between third person and first person.");

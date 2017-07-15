@@ -509,6 +509,8 @@ if CLIENT then
 		return self.ScopedFOV
 	end
 
+	IsScoped = 0;
+
 	function SWEP:DrawHUD()
 		local dt = RealTime() - self.LastCalcView
 		--print(dt, engine.TickInterval())
@@ -518,6 +520,7 @@ if CLIENT then
 		end
 
 		if self:GetIronsights() and self.Scope then
+			IsScoped = 1;
 			local x,y = 0,0
 			if tonumber(LocalPlayer():GetNWString(PlayerSettings.Enums.THIRD_PERSON.Name)) == 1 then
 				local tr = LocalPlayer():GetEyeTrace()
@@ -536,6 +539,8 @@ if CLIENT then
 			surface.DrawTexturedRectUV(x+(ScrW()/2), y+(ScrH()/2) - scoperadius, scoperadius, scoperadius, 0,1,1,0)
 			surface.DrawTexturedRectUV(x+(ScrW()/2) - scoperadius, y+(ScrH()/2) , scoperadius, scoperadius, 1,0,0,1)
 			surface.DrawTexturedRectUV(x+(ScrW()/2) , y+(ScrH()/2) , scoperadius, scoperadius, 0,0,1,1)
+		else
+			IsScoped = 0;
 		end
 	end
 

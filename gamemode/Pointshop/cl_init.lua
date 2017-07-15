@@ -11,6 +11,7 @@ include "vgui/DPointShopItem.lua"
 include "vgui/DPointShopPreview.lua"
 include "vgui/DPointShopColorChooser.lua"
 include "vgui/DPointShopGivePoints.lua"
+include "vgui/DPointShopTab.lua"
 
 PS.ShopMenu = nil
 PS.ClientsideModels = {}
@@ -24,16 +25,13 @@ local invalidplayeritems = {}
 
 function PS:ToggleMenu()
 	if not PS.ShopMenu then
-		PS.ShopMenu = vgui.Create('DPointShopMenu')
-		PS.ShopMenu:SetVisible(false)
+		PS.ShopMenu = vgui.Create('DMizmoShopFrame')
+		return;
 	end
 	
 	if PS.ShopMenu:IsVisible() then
-		PS.ShopMenu:Hide()
-		gui.EnableScreenClicker(false)
-	else
-		PS.ShopMenu:Show()
-		gui.EnableScreenClicker(true)
+		PS.ShopMenu:Remove();
+		PS.ShopMenu = nil;
 	end
 end
 

@@ -1,7 +1,9 @@
 ITEM.Name = 'Snowman Head'
-ITEM.Price = 200
+ITEM.Price = 1500
 ITEM.Model = 'models/props/cs_office/Snowman_face.mdl'
 ITEM.Attachment = 'eyes'
+ITEM.Desc = 'Do you wanna build a ... me?'
+ITEM.Grade = 'Restricted'
 
 function ITEM:OnEquip(ply, modifications)
 	ply:PS_AddClientsideModel(self.ID)

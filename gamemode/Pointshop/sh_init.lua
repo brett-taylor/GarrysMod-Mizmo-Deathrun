@@ -93,6 +93,7 @@ function PS:LoadItems()
 					ITEM.ID = string.gsub(string.lower(name), '.lua', '')
 					ITEM.Category = CATEGORY.Name
 					ITEM.Price = 0
+					ITEM.Level = 0
 					
 					-- model and material are missing but there's no way around it, there's a check below anyway
 					
@@ -123,6 +124,9 @@ function PS:LoadItems()
 						continue
 					elseif not ITEM.Price then
 						ErrorNoHalt("[POINTSHOP] Item missing price: " .. category .. '/' .. name .. "\n")
+						continue
+					elseif not ITEM.Level then
+						ErrorNoHalt("[POINTSHOP] Item missing level: " .. category .. '/' .. name .. "\n")
 						continue
 					elseif not ITEM.Model and not ITEM.Material then
 						ErrorNoHalt("[POINTSHOP] Item missing model or material: " .. category .. '/' .. name .. "\n")

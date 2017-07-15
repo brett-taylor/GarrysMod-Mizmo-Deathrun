@@ -1,2 +1,3 @@
-CATEGORY.Name = 'Player Models'
+CATEGORY.Name = 'Models'
 CATEGORY.Icon = 'user'
+CATEGORY.AllowedEquipped = 1;

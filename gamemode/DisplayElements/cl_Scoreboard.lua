@@ -1,6 +1,5 @@
 Scoreboard = {};
 Scoreboard.Parent = nil;
-Scoreboard.CurRound = nil;
 Scoreboard.MaxRounds = nil;
 Scoreboard.LineColour = Color(150, 150, 150);
 Scoreboard.ply = nil;
@@ -106,14 +105,12 @@ function Scoreboard.AddRows(ply)
             end
             draw.RoundedBox(1, 0, 38, w, 2, row.LineColour)
             draw.SimpleTextOutlined(ply:GetName(), "NameFont", (w/16), h/2, Color(255, 255, 255), TEXT_ALIGN_LEFT, TEXT_ALIGN_CENTER, 1, Color(0, 0, 0, 255))
-
             if (Util.PlayerHasTag(ply) == true) then
                 draw.SimpleTextOutlined(ply:GetNWString(PlayerSettings.Enums.TAG_NAME.Name), "NameFont", (w/16) * 7, h/2, Util.GetTagColour(ply), TEXT_ALIGN_CENTER, TEXT_ALIGN_CENTER, 1, Color(0, 0, 0, 255))
             else
                 draw.SimpleTextOutlined(Util.GetUserGroupInfo(ply:GetUserGroup()).Name, "NameFont", (w/16) * 7, h/2, Util.GetUserGroupInfo(ply:GetUserGroup()).Colour, TEXT_ALIGN_CENTER, TEXT_ALIGN_CENTER, 1, Color(0, 0, 0, 255))
             end
-
-            draw.SimpleTextOutlined("X", "NameFont", (w/16) * 9, h/2, Color(255, 255, 255), TEXT_ALIGN_CENTER, TEXT_ALIGN_CENTER, 1, Color(0, 0, 0, 255))
+            draw.SimpleTextOutlined(tostring(ply:GetCurrentLevel()), "NameFont", (w/16) * 9, h/2, Color(255, 255, 255), TEXT_ALIGN_CENTER, TEXT_ALIGN_CENTER, 1, Color(0, 0, 0, 255))
             draw.SimpleTextOutlined(ply:PS_GetPoints(), "NameFont",  (w/16) * 11, h/2, Color(255, 255, 255), TEXT_ALIGN_CENTER, TEXT_ALIGN_CENTER, 1, Color(0, 0, 0, 255))
             draw.SimpleTextOutlined(ply:GetPlaytimeHours(), "NameFont", (w/16) * 13, h/2, Color(255, 255, 255), TEXT_ALIGN_CENTER, TEXT_ALIGN_CENTER, 1, Color(0, 0, 0, 255))
             draw.SimpleTextOutlined(ply:Ping(), "NameFont", (w/16) * 15, h/2, Color(255, 255, 255), TEXT_ALIGN_CENTER, TEXT_ALIGN_CENTER, 1, Color(0, 0, 0, 255))
@@ -125,6 +122,9 @@ function Scoreboard.AddRows(ply)
         Scoreboard.DMenu = vgui.Create("DMenu")   
         local x, y = input.GetCursorPos()
         Scoreboard.DMenu:SetPos(x, y)
+        local btnSteam = Scoreboard.DMenu:AddOption("View Steam Profile", function()
+            ply:ShowProfile()
+        end)
         local btnMute = Scoreboard.DMenu:AddOption("Mute/Unmute", function()
             if Scoreboard.ply:IsMuted() then
                 Scoreboard.ply:SetMuted(false)
@@ -202,7 +202,13 @@ function Scoreboard.CreateBase()
             draw.SimpleTextOutlined("Rank", "NameFont", ((((ScrW()/2)/12)/2) + 2) + (((ScrW()/2 - ((ScrW()/2)/12)) - 4)/16)*7, (((ScrH()/6 + 20) - ScrW()/40) + 2) + ((ScrW()/40) - 4)/2, Colours.Gold, TEXT_ALIGN_CENTER, TEXT_ALIGN_CENTER, 1, Color(0, 0, 0, 255))
             draw.SimpleTextOutlined("Level", "NameFont", ((((ScrW()/2)/12)/2) + 2) + (((ScrW()/2 - ((ScrW()/2)/12)) - 4)/16)*9, (((ScrH()/6 + 20) - ScrW()/40) + 2) + ((ScrW()/40) - 4)/2, Colours.Gold, TEXT_ALIGN_CENTER, TEXT_ALIGN_CENTER, 1, Color(0, 0, 0, 255))
             draw.SimpleTextOutlined("Mizmos", "NameFont", ((((ScrW()/2)/12)/2) + 2) + (((ScrW()/2 - ((ScrW()/2)/12)) - 4)/16)*11, (((ScrH()/6 + 20) - ScrW()/40) + 2) + ((ScrW()/40) - 4)/2, Colours.Gold, TEXT_ALIGN_CENTER, TEXT_ALIGN_CENTER, 1, Color(0, 0, 0, 255))
-            draw.SimpleTextOutlined("Playtime (hours)", "NameFont", ((((ScrW()/2)/12)/2) + 2) + (((ScrW()/2 - ((ScrW()/2)/12)) - 4)/16)*13, (((ScrH()/6 + 20) - ScrW()/40) + 2) + ((ScrW()/40) - 4)/2, Colours.Gold, TEXT_ALIGN_CENTER, TEXT_ALIGN_CENTER, 1, Color(0, 0, 0, 255))
+            local playtimestr = "Playtime (hours)"
+            if ScrH() > 1000 then
+            	playtimestr = "Playtime (hours)";
+            else
+            	playtimestr = "Time";
+            end
+            draw.SimpleTextOutlined(playtimestr, "NameFont", ((((ScrW()/2)/12)/2) + 2) + (((ScrW()/2 - ((ScrW()/2)/12)) - 4)/16)*13, (((ScrH()/6 + 20) - ScrW()/40) + 2) + ((ScrW()/40) - 4)/2, Colours.Gold, TEXT_ALIGN_CENTER, TEXT_ALIGN_CENTER, 1, Color(0, 0, 0, 255))
             draw.SimpleTextOutlined("Ping", "NameFont", ((((ScrW()/2)/12)/2) + 2) + (((ScrW()/2 - ((ScrW()/2)/12)) - 4)/16)*15, (((ScrH()/6 + 20) - ScrW()/40) + 2) + ((ScrW()/40) - 4)/2, Colours.Gold, TEXT_ALIGN_CENTER, TEXT_ALIGN_CENTER, 1, Color(0, 0, 0, 255))
         end
 
@@ -213,6 +219,18 @@ function Scoreboard.CreateBase()
     Scoreboard.ScrollFrame.Paint = function(s, w, h)
             draw.RoundedBox(0, 0, 0, w, h, Color(0, 0, 0, 0))
         end
+    Scoreboard.ScrollFrame:GetVBar().Paint = function(s, w, h)
+    	draw.RoundedBox(0, 0, 0, w, h, Colours.Grey)
+    end
+    Scoreboard.ScrollFrame:GetVBar().btnUp.Paint = function(s, w, h)
+    	draw.RoundedBox(0, 0, 0, w, h, Colours.Gold)
+    end
+    Scoreboard.ScrollFrame:GetVBar().btnDown.Paint = function(s, w, h)
+    	draw.RoundedBox(0, 0, 0, w, h, Colours.Gold)
+    end
+    Scoreboard.ScrollFrame:GetVBar().btnGrip.Paint = function(s, w, h)
+    	draw.RoundedBox(0, 0, 0, w, h, Colours.Gold)
+    end
 
     Scoreboard.Grid = vgui.Create("DIconLayout", Scoreboard.ScrollFrame)
     Scoreboard.Grid:SetWide(ScrW()/2 - ((ScrW()/2)/12))

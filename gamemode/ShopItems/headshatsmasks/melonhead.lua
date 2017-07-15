@@ -1,7 +1,9 @@
 ITEM.Name = 'Melon Head'
-ITEM.Price = 100
+ITEM.Price = 600
 ITEM.Model = 'models/props_junk/watermelon01.mdl'
 ITEM.Attachment = 'eyes'
+ITEM.Desc = 'Watermeloooon'
+ITEM.Grade = 'Mil-Spec'
 
 function ITEM:OnEquip(ply, modifications)
 	ply:PS_AddClientsideModel(self.ID)

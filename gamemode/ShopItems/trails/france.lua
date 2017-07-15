@@ -1,6 +1,7 @@
 ITEM.Name = 'French Flag'
 ITEM.Price = 150
 ITEM.Material = 'trails/france.vmt'
+ITEM.Grade = 'Consumer'
 
 function ITEM:OnEquip(ply, modifications)
 	ply.FF = util.SpriteTrail(ply, 0, modifications.color, false, 15, 1, 4, 0.125, self.Material)

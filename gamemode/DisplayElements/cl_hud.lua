@@ -4,6 +4,8 @@ HUD.HideElements["CHudBattery"] = true;
 HUD.HideElements["CHudHealth"] = true;
 HUD.HideElements["CHudAmmo"] = true;
 HUD.HideElements["CHudDamageIndicator"] = true;
+HUD.HideElements["CHudCrosshair"] = true;
+
 
 HUD.Size = {};
 HUD.Size.W = 332;
@@ -125,9 +127,9 @@ function HUD.DrawHUDText()
     draw.SimpleTextOutlined("Current XP", "HUDLabelfont", (HUD.Anchor.X + 26) + (((HUD.Size.W - (HUD.Anchor.X + 16)) + 18)/8) * 5, HUD.Size.H/2 + 4 + HUD.Anchor.Y, Color( 223, 163, 0, 255 ), TEXT_ALIGN_CENTER, TEXT_ALIGN_TOP, 1, Color(0, 0, 0, 255));
     draw.SimpleTextOutlined("XP Req", "HUDLabelfont", (HUD.Anchor.X + 26) + (((HUD.Size.W - (HUD.Anchor.X + 16)) + 18)/8) * 7, HUD.Size.H/2 + 4 + HUD.Anchor.Y, Color( 223, 163, 0, 255 ), TEXT_ALIGN_CENTER, TEXT_ALIGN_TOP, 1, Color(0, 0, 0, 255));
     draw.SimpleTextOutlined(HUD.PlayerData:PS_GetPoints(), "HUDLabelfont", (HUD.Anchor.X + 26) + ((HUD.Size.W - (HUD.Anchor.X + 16)) + 18)/8, (HUD.Size.H / 2) + 3 + (HUD.Size.H/2 - 15)/2 + 3 + HUD.Anchor.Y, Color( 223, 163, 0, 255 ), TEXT_ALIGN_CENTER, TEXT_ALIGN_TOP, 1, Color(0, 0, 0, 255));
-    draw.SimpleTextOutlined("X", "HUDLabelfont", (HUD.Anchor.X + 26) + (((HUD.Size.W - (HUD.Anchor.X + 16)) + 18)/8) * 3, (HUD.Size.H / 2) + 3 + (HUD.Size.H/2 - 15)/2 + 3 + HUD.Anchor.Y, Color( 223, 163, 0, 255 ), TEXT_ALIGN_CENTER, TEXT_ALIGN_TOP, 1, Color(0, 0, 0, 255));
-    draw.SimpleTextOutlined("X", "HUDLabelfont", (HUD.Anchor.X + 26) + (((HUD.Size.W - (HUD.Anchor.X + 16)) + 18)/8) * 5, (HUD.Size.H / 2) + 3 + (HUD.Size.H/2 - 15)/2 + 3 + HUD.Anchor.Y, Color( 223, 163, 0, 255 ), TEXT_ALIGN_CENTER, TEXT_ALIGN_TOP, 1, Color(0, 0, 0, 255));
-    draw.SimpleTextOutlined("X", "HUDLabelfont", (HUD.Anchor.X + 26) + (((HUD.Size.W - (HUD.Anchor.X + 16)) + 18)/8) * 7, (HUD.Size.H / 2) + 3 + (HUD.Size.H/2 - 15)/2 + 3 + HUD.Anchor.Y, Color( 223, 163, 0, 255 ), TEXT_ALIGN_CENTER, TEXT_ALIGN_TOP, 1, Color(0, 0, 0, 255));
+    draw.SimpleTextOutlined(tostring(HUD.PlayerData:GetCurrentLevel()), "HUDLabelfont", (HUD.Anchor.X + 26) + (((HUD.Size.W - (HUD.Anchor.X + 16)) + 18)/8) * 3, (HUD.Size.H / 2) + 3 + (HUD.Size.H/2 - 15)/2 + 3 + HUD.Anchor.Y, Color( 223, 163, 0, 255 ), TEXT_ALIGN_CENTER, TEXT_ALIGN_TOP, 1, Color(0, 0, 0, 255));
+    draw.SimpleTextOutlined(tostring(HUD.PlayerData:GetCurrentExp()), "HUDLabelfont", (HUD.Anchor.X + 26) + (((HUD.Size.W - (HUD.Anchor.X + 16)) + 18)/8) * 5, (HUD.Size.H / 2) + 3 + (HUD.Size.H/2 - 15)/2 + 3 + HUD.Anchor.Y, Color( 223, 163, 0, 255 ), TEXT_ALIGN_CENTER, TEXT_ALIGN_TOP, 1, Color(0, 0, 0, 255));
+    draw.SimpleTextOutlined(tostring(HUD.PlayerData:GetExpRequired()), "HUDLabelfont", (HUD.Anchor.X + 26) + (((HUD.Size.W - (HUD.Anchor.X + 16)) + 18)/8) * 7, (HUD.Size.H / 2) + 3 + (HUD.Size.H/2 - 15)/2 + 3 + HUD.Anchor.Y, Color( 223, 163, 0, 255 ), TEXT_ALIGN_CENTER, TEXT_ALIGN_TOP, 1, Color(0, 0, 0, 255));
     draw.SimpleTextOutlined(HUD.PlayerData:GetName(), "NameFont", HUD.Anchor.X + 40, HUD.Anchor.Y, Color( 223, 163, 0, 255 ), TEXT_ALIGN_LEFT, TEXT_ALIGN_TOP, 1, Color(0, 0, 0, 255));
 end
 
@@ -135,11 +137,13 @@ function HUD.DrawHUD()
     HUD.DrawBasicElements();
     HUD.DrawHUDText();
     HUD.DrawElements();
-
-    -- TEMP
-    if (LocalPlayer():GetNWString(PlayerSettings.Enums.IS_DEBUGGING.Name) == "1") then
-        HUD.TempDrawRoundstatus();
+    HUD.CreateTimer();
+    if (HUD.RoundState == 1 or HUD.RoundState == 2) then
+    	HUD.LerpTimer()
     end
+
+    HUD.DrawDeathFeed();
+    HUD.DrawCrosshair();
 end
 
 function HUD.TakeDamageAnim()
@@ -185,14 +189,114 @@ function HUD.RemoveGarrysmodDefaultHud(name)
     end
 end
 
--- TEMP FUNCTION
-function HUD.TempDrawRoundstatus()
-    draw.SimpleTextOutlined("Round State: "..ROUND:GetCurrent(), "MizmoGaming-Intro-Subhead", ScrW() / 2, 10, Colours.Gold, TEXT_ALIGN_CENTER, TEXT_ALIGN_TOP, 1, Colours.Grey)
-    draw.SimpleTextOutlined("Time Left: "..string.ToMinutesSeconds(math.Clamp(ROUND:GetTimer(), 0, 99999)), "MizmoGaming-Intro-Subhead", ScrW() / 2, 40, Colours.Gold, TEXT_ALIGN_CENTER, TEXT_ALIGN_TOP, 1, Colours.Grey)
-    draw.SimpleTextOutlined("Miniutes Played: "..LocalPlayer():GetPlaytime(), "MizmoGaming-Intro-Subhead", ScrW() / 2 - 2, 70, Colours.Gold, TEXT_ALIGN_RIGHT, TEXT_ALIGN_TOP, 1, Colours.Grey)
-    draw.SimpleTextOutlined("Hours Played: "..LocalPlayer():GetPlaytimeHours(), "MizmoGaming-Intro-Subhead", ScrW() / 2 + 2, 70, Colours.Gold, TEXT_ALIGN_LEFT, TEXT_ALIGN_TOP, 1, Colours.Grey)
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////RoundTimer////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+HUD.RoundState = 0;
+HUD.TimerY = -36;
+
+function HUD.LerpTimer()
+	if HUD.RoundState == 1 then
+		HUD.TimerY = Lerp(FrameTime() * 5, HUD.TimerY, 0)
+	else
+		HUD.TimerY = Lerp(FrameTime() * 5, HUD.TimerY, -36)
+	end
 end
 
+function HUD.CreateTimer()
+	draw.RoundedBox(8, ScrW()/2 - 120/2, HUD.TimerY - 20, 120, 56, Color(Colours.Grey.r, Colours.Grey.g, Colours.Grey.b, 200))
+	draw.SimpleTextOutlined(string.ToMinutesSeconds(math.Clamp(ROUND:GetTimer(), 0, 99999)), "TimerFont", ScrW()/2 + 18, 36/2 + HUD.TimerY, Colours.Gold, TEXT_ALIGN_CENTER, TEXT_ALIGN_CENTER, 1, Color(0, 0, 0))
+
+	local clock = Material("mizmo-gaming-downloads/icons/clock32.png")
+
+	surface.SetMaterial(clock)
+	surface.SetDrawColor(Colours.Gold)
+	surface.DrawTexturedRect((ScrW()/2 - 120/2) + 5, 2 + HUD.TimerY, 32, 32)
+end
+
+function HUD.TimerIn()
+	HUD.TimerY = -36
+	HUD.RoundState = 1;
+    HUD.VictimNo = 0;
+    HUD.VictimI = 1;
+    HUD.VictimTable = {}
+    HUD.VictimName = nil;
+    IsScoped = 0;
+end
+
+function HUD.TimerOut()
+    HUD.TimerY = 0
+    HUD.RoundState = 2;
+end
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////DeathFeed////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+HUD.VictimTable = {}
+HUD.VictimName = nil;
+isdead = 0;
+HUD.DeathAlpha = 0;
+HUD.DeathY = 0;
+HUD.VictimNo = 0;
+HUD.VictimI = 1;
+HUD.NewKill = true;
+
+function HUD.DrawDeathFeed()
+    if HUD.VictimTable[HUD.VictimI] ~= nil then
+        if HUD.NewKill == true then
+            HUD.DeathAlpha = 255;
+            HUD.DeathY = 0;
+        end
+        HUD.NewKill = false;
+        draw.SimpleTextOutlined(HUD.VictimTable[HUD.VictimI], "TimerFont", ScrW()/2, (ScrH()/14) * 13 - HUD.DeathY, Color(200, 0, 0, HUD.DeathAlpha), TEXT_ALIGN_CENTER, TEXT_ALIGN_CENTER, 1, Color(0, 0, 0, HUD.DeathAlpha))
+        local skull = Material("mizmo-gaming-downloads/icons/skull32.png")
+        surface.SetMaterial(skull)
+        surface.SetDrawColor(Color(200, 0, 0, HUD.DeathAlpha))
+        local w, h = surface.GetTextSize(HUD.VictimTable[HUD.VictimI])
+        surface.DrawTexturedRect((ScrW()/2 - w/2) - 40, ((ScrH()/14) * 13 - h/2) - HUD.DeathY, 32, 32)
+
+        HUD.DeathY = HUD.DeathY + (((3/4)*FrameTime()) * 100)
+        if HUD.DeathY >= 10 then
+            HUD.DeathAlpha = math.Clamp(HUD.DeathAlpha - (((3/4)*FrameTime()) * 255), 0, 255)
+        end
+        if HUD.DeathAlpha <= 0 then
+            HUD.DeathAlpha = 0;
+            HUD.DeathY = 0;
+            HUD.VictimI = HUD.VictimI + 1;
+            HUD.NewKill = true;
+        end
+    end
+end
+
+net.Receive("PlayerDied", function()
+    local ply = net.ReadEntity()
+    HUD.VictimName = ply:GetName()
+    HUD.VictimNo = HUD.VictimNo + 1;
+    HUD.VictimTable[HUD.VictimNo] = HUD.VictimName;
+end)
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////Crosshair////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+function HUD.DrawCrosshair()
+    if (IsScoped == 1) then
+        draw.RoundedBox(0, 0, ScrH()/2 - 1, ScrW(), 2, Color(0, 0, 0))
+        draw.RoundedBox(0, ScrW()/2 - 1, 0, 2, ScrH(), Color(0, 0, 0))
+    else
+        draw.RoundedBox(0, ScrW()/2 + 4, ScrH()/2 - 1, 4, 2, Color(255, 255, 255))
+        draw.RoundedBox(0, ScrW()/2 - 8, ScrH()/2, 4, 2, Color(255, 255, 255))
+        draw.RoundedBox(0, ScrW()/2 - 1, ScrH()/2 + 4, 2, 4, Color(255, 255, 255))
+        draw.RoundedBox(0, ScrW()/2 - 1, ScrH()/2 - 8, 2, 4, Color(255, 255, 255))
+    end
+end
+
+
+
+hook.Add("DeathrunBeginPrep", "TimerIn", HUD.TimerIn)
+hook.Add("DeathrunBeginOver", "TimerOut", HUD.TimerOut)
 hook.Add("HUDPaint", "MizmoDrawHUD", HUD.DrawHUD); //Draws the HUD every frame
 hook.Add("Think", "TakeDamage", HUD.TakeDamageAnim); //Lerps the health colour if player takes damage
 hook.Add("HUDShouldDraw", "RemoveGarrysmodDefaultHud", HUD.RemoveGarrysmodDefaultHud);

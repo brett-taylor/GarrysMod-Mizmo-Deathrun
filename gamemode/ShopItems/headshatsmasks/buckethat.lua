@@ -1,7 +1,9 @@
 ITEM.Name = 'Bucket Hat'
-ITEM.Price = 100
+ITEM.Price = 600
 ITEM.Model = 'models/props_junk/MetalBucket01a.mdl'
 ITEM.Attachment = 'eyes'
+ITEM.Desc = 'Nigga got bucket on his head.'
+ITEM.Grade = 'Mil-Spec'
 
 function ITEM:OnEquip(ply)
 	ply:PS_AddClientsideModel(self.ID)

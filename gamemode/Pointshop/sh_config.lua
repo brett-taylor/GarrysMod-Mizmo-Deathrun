@@ -43,6 +43,10 @@ PS.Config.CalculateBuyPrice = function(ply, item)
 	return item.Price
 end
 
+function PS.Config.GetItemLevel(ply, item)
+	return item.Level
+end
+
 PS.Config.CalculateSellPrice = function(ply, item)
 	return math.Round(item.Price * 0.75) -- 75% or 3/4 (rounded) of the original item price
 end

@@ -1,6 +1,8 @@
 ITEM.Name = 'Playing With Portals'
-ITEM.Price = 500
+ITEM.Price = 1500
 ITEM.Material = 'trails/portal.vmt'
+ITEM.Desc = 'The cake is a lie.'
+ITEM.Grade = 'Restricted'
 
 function ITEM:OnEquip(ply, modifications)
 	ply.PortalTrail = util.SpriteTrail(ply, 0, modifications.color, false, 15, 1, 4, 0.125, self.Material)
