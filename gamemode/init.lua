@@ -78,7 +78,6 @@ AddCSLuaFile( "Jukebox/lua/vgui_request_quick.lua" )
 AddCSLuaFile( "Jukebox/lua/vgui_admin_requests.lua" )
 AddCSLuaFile( "Jukebox/lua/shared_settings.lua" )
 
-AddCSLuaFile( "LevelSystem/sh_levelsystem.lua" )
 AddCSLuaFile( "LevelSystem/cl_levelsystem.lua" )
 
 include("Util/sv_fastDownload.lua")
@@ -115,7 +114,7 @@ include("Playtime/sv_playtime.lua");
 
 include("Pointshop/sv_init.lua");
 
-include("ULXCommands/sv_autoJumpCommand.lua");
+include("ULXCommands/sv_mizmoCommands.lua");
 
 include("EndOfRound/sv_endRound.lua");
 
