@@ -1,3 +1,3 @@
 CATEGORY.Name = 'Trails'
 CATEGORY.Icon = 'rainbow'
-CATEGORY.AllowedEquipped = 1;
+CATEGORY.AllowedEquipped = 2;

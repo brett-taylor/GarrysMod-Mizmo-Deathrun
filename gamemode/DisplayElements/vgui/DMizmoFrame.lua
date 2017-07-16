@@ -39,8 +39,6 @@ function PANEL:Init()
 	self.Title:SetColor(Colours.Grey);
 
 	self.ShowTheCloseButton = false;
-
-	self:MakePopup();
 end
 
 function PANEL:InvalidateLayout()

@@ -51,7 +51,7 @@ JukeBox.Settings.UsePointshop2 = false
 
 -- How much it costs to queue a song
 -- This only works if Pointshop 1 or 2 are set to true
-JukeBox.Settings.PointsCost = 250
+JukeBox.Settings.PointsCost = 10
 
 -- Whether to use DarkRP cash to queue songs
 -- Make sure if set to stue that UsePoaintshop is set to false
@@ -114,7 +114,6 @@ JukeBox.Settings.ULXRanksList = {
 
 -- SteamIDs that have access to the manager parts of the JukeBox
 JukeBox.Settings.SteamIDList = {
-	"STEAM_0:X:XXXXXX",
 }
 
 -- Commands to open the JukeBox VGUI

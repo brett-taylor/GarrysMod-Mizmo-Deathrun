@@ -1,103 +1,124 @@
 local PANEL = {};
 
 function PANEL:Init()
-	self.Background = vgui.Create("DMizmoFrame");
-	self.Background:SetText("The Mizmo-Gaming Shop");
-	self.Background:ShouldShowCloseButton(true);
-	self.Background:SetOnClose(function()
-		PS:ToggleMenu();
-	end);
+	self.Background = vgui.Create("DPanel");
+	self.Background.Paint = function(self, w, h)
+		surface.SetDrawColor(0, 0, 0, 150);
+		surface.DrawRect(0, 0, w, h);
 
-	self.buttonContainer = vgui.Create("DPanel", self.Background.Container);
-	self.buttonContainer.Paint = function(self, w, h)
+		surface.SetDrawColor(ColorAlpha(Colours.Grey, 255));
+		surface.DrawRect(0, 0, w, 100);
 	end
 
-	self.shopButton = vgui.Create("DMizmoButton", self.buttonContainer);
-	self.shopButton:SetText("Shop");
-	self.shopButton:SetColour(Colours.Gold);
-	self.shopButton.OnClicked = function()
-		self.mainContentShop:Show();
-		self.mainContentInventory:Hide();
-		self.mainContentCrates:Hide();
+	self.Header = vgui.Create("DIconLayout", self.Background);
+	self.Header.Paint = function(self, w, h)
 	end
 
-	/*self.crateButton = vgui.Create("DMizmoButton", self.buttonContainer);
-	self.crateButton:SetText("Crates");
-	self.crateButton:SetColour(Colours.Gold);
-	self.crateButton.OnClicked = function()
-		self.mainContentShop:Hide();
-		self.mainContentInventory:Hide();
-		self.mainContentCrates:Show();
-	end*/
-
-	self.inventorybutton = vgui.Create("DMizmoButton", self.buttonContainer);
-	self.inventorybutton:SetText("Inventory");
-	self.inventorybutton:SetColour(Colours.Gold);
-	self.inventorybutton.OnClicked = function()
-		self.mainContentShop:Hide();
-		self.mainContentInventory:Show();
-		self.mainContentCrates:Hide();
+	self.InfoHeader = vgui.Create("DMizmoShopHeaderInfo", self.Header);
+	self.InfoHeader.Paint = function(self, w, h)
 	end
 
-	self.mainContent = vgui.Create("DPanel", self.Background.Container);
-	self.mainContent.Paint = function(self, w, h)
+	self.Shop = vgui.Create("DMizmoShopCatButton", self.Header);
+	self.Shop:SetText("Shop");
+	
+	self.Inventory = vgui.Create("DMizmoShopCatButton", self.Header);
+	self.Inventory:SetText("Inventory");
+	
+	self.Crates = vgui.Create("DMizmoShopCatButton", self.Header);
+	self.Crates:SetText("Crates");
+
+	self.ModelBackground = vgui.Create("DPanel", self.Background);
+	self.ModelBackground.Paint = function(self, w, h)
+		surface.SetDrawColor(Colours.Grey);
+		surface.DrawRect(0, 0, w, h);
 	end
 
-	self.mainContentShop = vgui.Create("DMizmoShopTab", self.mainContent);
-	self.mainContentInventory = vgui.Create("DMizmoShopInventory", self.mainContent);
-	self.mainContentCrates = vgui.Create("DMizmoShopTab", self.mainContent);
-	self.mainContentShop:Show();
-	self.mainContentInventory:Hide();
-	self.mainContentCrates:Hide();
+	self.AdminButton = vgui.Create("DMizmoButton", self.ModelBackground);
+	self.AdminButton:SetText("Administration");
+	self.AdminButton:SetTextSmall()
+	self.AdminButton:DisableTextOutline()
+	self.AdminButton:SetOutlineColour(Colours.GreyDark);
+	self.AdminButton:SetOutlineColouredHovered(Colours.Gold);
+	self.AdminButton:SetColour(Colours.GreyDark);
+	self.AdminButton:SetColourHovered(Colours.GreyDark);
 
-	self.Background:MakePopup();
+	self.ModelViewer = vgui.Create("DMizmoShopModelViewer", self.ModelBackground);
+	self.ModelViewer.Angles = Angle( 0, 0, 0 )
+	function self.ModelViewer:DragMousePress()
+		self.PressX, self.PressY = gui.MousePos()
+		self.Pressed = true
+	end
+
+	function self.ModelViewer:DragMouseRelease()
+		self.Pressed = false
+		self.lastPressed = RealTime()
+	end
+	
+	function self.ModelViewer:LayoutEntity( thisEntity )
+		if ( self.bAnimated ) then self:RunAnimation() end
+		
+		if ( self.Pressed ) then
+			local mx, my = gui.MousePos()
+			self.Angles = self.Angles - Angle( 0, ( self.PressX or mx ) - mx, 0 )
+			self.PressX, self.PressY = gui.MousePos()
+		end
+		
+		if ( RealTime() - ( self.lastPressed or 0 ) ) < 4 or self.Pressed then
+			thisEntity:SetAngles( self.Angles )
+		else	
+			self.Angles.y = math.NormalizeAngle(self.Angles.y + (RealFrameTime() * 21))
+			thisEntity:SetAngles( Angle( 0, self.Angles.y ,  0) )
+		end
+	end
+
+	self.MainTab = vgui.Create("DPanel", self.Background);
+	self.MainTab.Paint = function(self, w, h)
+		surface.SetDrawColor(Colours.Grey);
+		surface.DrawRect(0, 0, w, h);
+	end
+
+	self.ShopTab = vgui.Create("DMizmoShopTab", self.MainTab);
+
 	self:InvalidateLayout();
 end
 
 function PANEL:InvalidateLayout()		
 	if (self.Background ~= nil) then
-		self.Background:SetSize((ScrW() / 100) * 80, (ScrH() / 100) * 80);
-		self.Background:InvalidateLayout();
+		self.Background:SetSize(ScrW(), ScrH());
+		self.Background:Center();
 	end
 
-	if (self.buttonContainer ~= nil) then
-		self.buttonContainer:SetSize(self.buttonContainer:GetParent():GetWide() - 10, 50);
-		self.buttonContainer:SetPos(5, 0);
+	if (self.Header ~= nil) then
+		self.Header:SetSize(900, 100);
+		self.Header:CenterHorizontal();
 	end
 
-	if (self.shopButton ~= nil) then
-		self.shopButton:SetSize(self.shopButton:GetParent():GetWide() / 3, 0);
-		self.shopButton:Dock(LEFT);
-		self.shopButton:DockMargin(0, 0, 2, 0);
+	if (self.InfoHeader ~= nil) then
+		self.InfoHeader:SetSize(300, 100);
 	end
 
-	/*if (self.crateButton ~= nil) then
-		self.crateButton:SetSize(self.crateButton:GetParent():GetWide() / 3, 0);
-		self.crateButton:Dock(RIGHT);
-		self.crateButton:DockMargin(2, 0, 2, 0);
-	end*/
-
-	if (self.inventorybutton ~= nil) then
-		self.inventorybutton:SetSize(self.inventorybutton:GetParent():GetWide() / 3 , 0);
-		self.inventorybutton:Dock(FILL);
-		self.inventorybutton:DockMargin(2, 0, 2, 0);
+	if (self.ModelBackground ~= nil) then
+		self.ModelBackground:SetSize(400, ScrH() - 150);
+		self.ModelBackground:SetPos(ScrW() - 400, 150);
 	end
 
-	if (self.mainContent ~= nil) then
-		self.mainContent:SetPos(5, 55);
-		self.mainContent:SetSize(self.mainContent:GetParent():GetWide() - 10, self.mainContent:GetParent():GetTall() - 65);
+	if (self.AdminButton ~= nil) then
+		self.AdminButton:SetSize(20, 30);
+		self.AdminButton:Dock(BOTTOM);
+		self.AdminButton:DockMargin(5, 5, 5, 5);
 	end
 
-	if (self.mainContentShop ~= nil) then
-		self.mainContentShop:Dock(FILL);
+	if (self.ModelViewer ~= nil) then
+		self.ModelViewer:Dock(FILL);
 	end
 
-	if (self.mainContentInventory ~= nil) then
-		self.mainContentInventory:Dock(FILL);
+	if (self.MainTab ~= nil) then
+		self.MainTab:SetSize(math.floor((ScrW() - 500) / 160) * 160 + 20, ScrH() - 150);		
+		self.MainTab:SetPos(0, 150);	
 	end
 
-	if (self.mainContentCrates ~= nil) then
-		self.mainContentCrates:Dock(FILL);
+	if (self.ShopTab ~= nil) then
+		self.ShopTab:Dock(FILL);
 	end
 end
 

@@ -26,12 +26,14 @@ local invalidplayeritems = {}
 function PS:ToggleMenu()
 	if not PS.ShopMenu then
 		PS.ShopMenu = vgui.Create('DMizmoShopFrame')
+		gui.EnableScreenClicker(true);
 		return;
 	end
 	
 	if PS.ShopMenu:IsVisible() then
 		PS.ShopMenu:Remove();
 		PS.ShopMenu = nil;
+		gui.EnableScreenClicker(false);
 	end
 end
 
