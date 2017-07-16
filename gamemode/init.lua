@@ -26,6 +26,7 @@ AddCSLuaFile("DisplayElements/vgui/Shop/DMizmoShopHeaderInfo.lua")
 AddCSLuaFile("DisplayElements/vgui/Shop/DMizmoShopModelViewer.lua")
 AddCSLuaFile("DisplayElements/vgui/Shop/DMizmoShopItem.lua")
 AddCSLuaFile("DisplayElements/vgui/Shop/DMizmoItemModelVariant.lua")
+AddCSLuaFile("DisplayElements/vgui/Shop/DMizmoItemMaterialVariant.lua")
 
 AddCSLuaFile("DisplayElements/cl_hud.lua")
 AddCSLuaFile("DisplayElements/cl_voicehud.lua")

@@ -60,15 +60,33 @@ function PANEL:Paint(w, h)
 	render.SetStencilCompareFunction( STENCILCOMPARISONFUNCTION_NEVER )
 	render.SetStencilReferenceValue( 1 )
 	draw.NoTexture()
-	surface.SetDrawColor( Color( 0, 0, 0, 255 ) )
-		DrawCircle(w / 2, h / 2, h / 2, math.max(w, h) / 2);
+		surface.SetDrawColor( Color( 0, 0, 0, 255 ) )
+		DrawCircle(w / 2, h / 2, 75, math.max(w, h) / 2);
 	render.SetStencilFailOperation( STENCILOPERATION_ZERO )
 	render.SetStencilPassOperation( STENCILOPERATION_REPLACE )
 	render.SetStencilZFailOperation( STENCILOPERATION_ZERO )
 	render.SetStencilCompareFunction( STENCILCOMPARISONFUNCTION_EQUAL )
 	render.SetStencilReferenceValue( 1 )
 		surface.SetDrawColor(self.CurrentBGColour);
-		DrawCircle(10, 10, 300, math.max(w, h) / 2);
+		draw.NoTexture()
+		DrawCircle(w / 2, h / 2, 75, math.max(w, h) / 2);
+
+		surface.SetDrawColor(Colours.GreyDark);
+		draw.NoTexture()
+		DrawCircle(w / 2, h / 2, 73, math.max(w, h) / 2);
+
+		local stripe = {
+			{ x = 0, y = h - 30 },
+			{ x = w - 30, y = 0 },
+			{ x = w, y = 0 },
+			{ x = w, y = 20 },
+			{ x = 20, y = h },
+			{ x = 0, y = h }
+		}
+
+		surface.SetDrawColor(self.CurrentBGColour);
+		draw.NoTexture()
+		surface.DrawPoly(stripe);
 
 		draw.SimpleText(self.Data.Name or "", "MizmoGaming-Shop-ItemIcon-Name", w / 2, 40, self.TextColour, TEXT_ALIGN_CENTER, TEXT_ALIGN_BOTTOM);
 		draw.SimpleText("Mizmos: ", "MizmoGaming-Shop-ItemIcon-Name", w / 2, 55, self.TextColour, TEXT_ALIGN_RIGHT, TEXT_ALIGN_CENTER);
@@ -85,9 +103,17 @@ function PANEL:SetData(data)
 	self.Data = data;
 	self.BackgroundColour = Util.GetItemColour(self.Data.Grade or "Consumer");
 
-	if (self.Data.Model) then
-		local modelVariant = vgui.Create('DMizmoItemModelVariant', self);
-		modelVariant:SetData(data);
+	if (string.StartWith(data.ID, "csgo_")) then
+		local materialVariant = vgui.Create("DMizmoItemMaterialVariant", self);
+		materialVariant:SetDataMaterial(data, weapons.Get(data.WeaponClass).Icon);
+	else
+		if (self.Data.Model) then
+			local modelVariant = vgui.Create("DMizmoItemModelVariant", self);
+			modelVariant:SetData(data);
+		else
+			local materialVariant = vgui.Create("DMizmoItemMaterialVariant", self);
+			materialVariant:SetData(data);
+		end
 	end
 
 	if (self.Data.Level == 0) then

@@ -22,6 +22,7 @@ include("DisplayElements/vgui/Shop/DMizmoShopHeaderInfo.lua")
 include("DisplayElements/vgui/Shop/DMizmoShopModelViewer.lua")
 include("DisplayElements/vgui/Shop/DMizmoShopItem.lua")
 include("DisplayElements/vgui/Shop/DMizmoItemModelVariant.lua")
+include("DisplayElements/vgui/Shop/DMizmoItemMaterialVariant.lua")
 
 include("DisplayElements/cl_hud.lua")
 include("DisplayElements/cl_voicehud.lua")

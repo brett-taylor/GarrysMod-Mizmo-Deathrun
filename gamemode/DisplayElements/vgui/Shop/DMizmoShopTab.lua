@@ -7,8 +7,10 @@ function PANEL:Init()
 	self.CategoryGrid:SetSpaceY(10);
 
 	for _, ITEM in pairs(PS.Items) do
-		self.Item = self.CategoryGrid:Add("DMizmoShopItem");
-		self.Item:SetData(ITEM);
+		--if (string.StartWith(_, "csgo_")) then
+			self.Item = self.CategoryGrid:Add("DMizmoShopItem");
+			self.Item:SetData(ITEM);
+		--end
 	end
 
 	self:InvalidateLayout();
