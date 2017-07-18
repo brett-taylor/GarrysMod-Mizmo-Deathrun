@@ -73,8 +73,8 @@ function Scoreboard.Update()
         end
     end
     
-    Scoreboard.Parent:SetTall(ScrH()/6 + 45 + 45 * math.Clamp(#player.GetAll(), 1, 16))
-    Scoreboard.ScrollFrame:SetTall(45 * math.Clamp(#player.GetAll(), 1, 16))
+    Scoreboard.Parent:SetTall(ScrH()/6 + 45 + 45 * math.Clamp(#player.GetAll(), 1, ScrH()/67.5))
+    Scoreboard.ScrollFrame:SetTall(45 * math.Clamp(#player.GetAll(), 1, ScrH()/67.5))
     
 end
 

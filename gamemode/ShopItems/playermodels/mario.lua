@@ -3,7 +3,7 @@ ITEM.Price = 15000
 ITEM.Model = 'models/sinful/mariob.mdl'
 ITEM.Desc = "It's a mee."
 ITEM.Grade = 'Classified'
-ITEM.Level = 25
+ITEM.Level = 55
 
 function ITEM:OnEquip(ply, modifications)
 	if not ply._OldModel then

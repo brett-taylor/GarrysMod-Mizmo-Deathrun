@@ -1,7 +1,7 @@
 ITEM.Name = 'Kleiner'
 ITEM.Price = 250
 ITEM.Model = 'models/player/kleiner.mdl'
-ITEM.Level = 3
+ITEM.Level = 7
 
 function ITEM:OnEquip(ply, modifications)
 	if not ply._OldModel then

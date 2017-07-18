@@ -3,7 +3,7 @@ ITEM.Price = 7000
 ITEM.Model = 'models/kriegsyntax/sw_752/dooku_est.mdl'
 ITEM.Desc = "Dies."
 ITEM.Grade = 'Classified'
-ITEM.Level = 12
+ITEM.Level = 38
 
 function ITEM:OnEquip(ply, modifications)
 	if not ply._OldModel then

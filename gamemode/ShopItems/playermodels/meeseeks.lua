@@ -3,7 +3,7 @@ ITEM.Price = 12000
 ITEM.Model = 'models/player/meeseeks/meeseeks.mdl'
 ITEM.Desc = "HEYY I'M MR. MEESEEKS LOOK AT ME"
 ITEM.Grade = 'Classified'
-ITEM.Level = 20
+ITEM.Level = 45
 
 function ITEM:OnEquip(ply, modifications)
 	if not ply._OldModel then

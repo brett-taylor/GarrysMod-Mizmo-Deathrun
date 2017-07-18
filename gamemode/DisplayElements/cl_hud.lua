@@ -121,6 +121,9 @@ end
 
 function HUD.DrawHUDText()
     HUD.GetPlayer();
+    if not HUD.PlayerData:IsValid() then
+    	return
+    end
     draw.SimpleTextOutlined(HUD.PlayerData:Health(), "HealthFont", ((16 + ((HUD.Size.W-16)/4)*3) - 5) + (HUD.Size.W - ((16 + ((HUD.Size.W-16)/4)*3) - 5))/2 + HUD.Anchor.X, (HUD.Size.H / 2) + 6 + HUD.Anchor.Y, HUD.FilledHealthBarColour, TEXT_ALIGN_CENTER, TEXT_ALIGN_BOTTOM, 1, Color(0, 0, 0, 255));
     draw.SimpleTextOutlined("Mizmos", "HUDLabelfont", (HUD.Anchor.X + 26) + ((HUD.Size.W - (HUD.Anchor.X + 16)) + 18)/8, HUD.Size.H/2 + 4 + HUD.Anchor.Y, Color( 223, 163, 0, 255 ), TEXT_ALIGN_CENTER, TEXT_ALIGN_TOP, 1, Color(0, 0, 0, 255));
     draw.SimpleTextOutlined("Level", "HUDLabelfont", (HUD.Anchor.X + 26) + (((HUD.Size.W - (HUD.Anchor.X + 16)) + 18)/8) * 3, HUD.Size.H/2 + 4 + HUD.Anchor.Y, Color( 223, 163, 0, 255 ), TEXT_ALIGN_CENTER, TEXT_ALIGN_TOP, 1, Color(0, 0, 0, 255));
@@ -155,6 +158,9 @@ function HUD.TakeDamageAnim()
     end
     HUD.LerpColors();
     HUD.Health.Last = HUD.Health.This;
+    if not HUD.PlayerData:Alive() then
+    	IsScoped = 0;
+    end
 end
 
 function HUD.LerpColors()
@@ -287,7 +293,7 @@ function HUD.DrawCrosshair()
         draw.RoundedBox(0, ScrW()/2 - 1, 0, 2, ScrH(), Color(0, 0, 0))
     else
         draw.RoundedBox(0, ScrW()/2 + 4, ScrH()/2 - 1, 4, 2, Color(255, 255, 255))
-        draw.RoundedBox(0, ScrW()/2 - 8, ScrH()/2, 4, 2, Color(255, 255, 255))
+        draw.RoundedBox(0, ScrW()/2 - 8, ScrH()/2 - 1, 4, 2, Color(255, 255, 255))
         draw.RoundedBox(0, ScrW()/2 - 1, ScrH()/2 + 4, 2, 4, Color(255, 255, 255))
         draw.RoundedBox(0, ScrW()/2 - 1, ScrH()/2 - 8, 2, 4, Color(255, 255, 255))
     end

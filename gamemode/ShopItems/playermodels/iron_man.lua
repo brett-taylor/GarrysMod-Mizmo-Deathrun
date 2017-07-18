@@ -3,7 +3,7 @@ ITEM.Price = 15000
 ITEM.Model = 'models/avengers/iron man/mark7_npc.mdl'
 ITEM.Desc = 'The mark 7 Iron Man suit.'
 ITEM.Grade = 'Covert'
-ITEM.Level = 25
+ITEM.Level = 55
 
 function ITEM:OnEquip(ply, modifications)
 	if not ply._OldModel then

@@ -3,7 +3,7 @@ ITEM.Price = 12000
 ITEM.Model = 'models/player/emperor_palpatine.mdl'
 ITEM.Desc = "Do it."
 ITEM.Grade = 'Covert'
-ITEM.Level = 20
+ITEM.Level = 45
 
 function ITEM:OnEquip(ply, modifications)
 	if not ply._OldModel then

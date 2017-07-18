@@ -3,7 +3,7 @@ ITEM.Price = 15000
 ITEM.Model = 'models/player/superheroes/greenlantern.mdl'
 ITEM.Desc = "Lol has anyone even seen this film..."
 ITEM.Grade = 'Covert'
-ITEM.Level = 25
+ITEM.Level = 55
 
 function ITEM:OnEquip(ply, modifications)
 	if not ply._OldModel then

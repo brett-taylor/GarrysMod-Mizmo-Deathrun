@@ -3,7 +3,7 @@ ITEM.Price = 20000
 ITEM.Model = 'models/aileri/fnaf1/bonnie.mdl'
 ITEM.Desc = "Bonnie from the Five Nights at Freddies franchise."
 ITEM.Grade = 'Covert'
-ITEM.Level = 30
+ITEM.Level = 60
 
 function ITEM:OnEquip(ply, modifications)
 	if not ply._OldModel then

@@ -3,7 +3,7 @@ ITEM.Price = 5000
 ITEM.Model = 'models/player/daftpunk/daft_silver.mdl'
 ITEM.Desc = "Around the world. Around the world. Around the world. Around the world. Around the world."
 ITEM.Grade = 'Classified'
-ITEM.Level = 10
+ITEM.Level = 30
 
 function ITEM:OnEquip(ply, modifications)
 	if not ply._OldModel then
