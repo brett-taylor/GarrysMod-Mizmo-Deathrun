@@ -1,7 +1,7 @@
 ITEM.Name = 'Pirates'
-ITEM.Price = 0
+ITEM.Price = 400;
 ITEM.Material = 'trails/pirateship.vmt'
-ITEM.Grade = 'Consumer'
+ITEM.Grade = 'Classified'
 ITEM.Buyable = true;
 
 function ITEM:OnEquip(ply, modifications)
