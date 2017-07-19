@@ -7,13 +7,34 @@ Util.Groups["superadmin"] = {};
 Util.Groups["superadmin"].Name = "Owner";
 Util.Groups["superadmin"].Colour = Colours.Superadmin;
 
+Util.Groups["head_admin"] = {};
+Util.Groups["head_admin"].Name = "Head-Admin";
+Util.Groups["head_admin"].Colour = Colours.HAdmin;
+
 Util.Groups["admin"] = {};
 Util.Groups["admin"].Name = "Admin";
 Util.Groups["admin"].Colour = Colours.Admin;
 
+Util.Groups["moderator"] = {};
+Util.Groups["moderator"].Name = "Mod";
+Util.Groups["moderator"].Colour = Colours.Moderator;
+
+Util.Groups["donator"] = {};
+Util.Groups["donator"].Name = "Donator";
+Util.Groups["donator"].Colour = Colours.Donator;
+
 Util.Groups["user"] = {};
 Util.Groups["user"].Name = "User";
 Util.Groups["user"].Colour = Colours.User;
+
+local meta = FindMetaTable("Player");
+function Util.IsModerator(ply)
+    return ply:IsAdmin() || ply:GetUserGroup() == "moderator";
+end
+ 
+function meta:IsModerator()
+    return Util.IsModerator(self);
+end
 
 function Util.GetUserGroupInfo(group)
 	local result = Util.Groups[group];

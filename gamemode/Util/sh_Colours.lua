@@ -6,8 +6,11 @@ Colours.HealthRed = Color(255, 0, 0);
 Colours.TextWhite = Color(230, 230, 230);
 Colours.GoldDark = Color(170, 125, 0);
 
-Colours.Superadmin = Color(255, 0, 0);
+Colours.Superadmin = Color(255, 102, 102);
+Colours.HAdmin = Color(213, 206, 0);
 Colours.Admin = Colours.Gold;
+Colours.Moderator = Color(255,182,193);
+Colours.Donator = Color(50,205,50);
 Colours.User = Color(255, 255, 255);
 
 Colours.TrafficLightRed = Color(204, 68, 44);

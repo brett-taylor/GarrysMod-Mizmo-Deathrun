@@ -133,7 +133,7 @@ function Scoreboard.AddRows(ply)
             end
         end)
         btnMute:SetIcon("Mizmo-Gaming-Downloads/icons/mute16.png")
-        if LocalPlayer():IsUserGroup("admin") or LocalPlayer():IsUserGroup("superadmin") then
+        if LocalPlayer():IsUserGroup("moderator") then
             Scoreboard.DMenu:AddSpacer()
             local adminOption = Scoreboard.DMenu:AddOption("Admin")
             adminOption:SetIcon("Mizmo-Gaming-Downloads/icons/shield16.png")
