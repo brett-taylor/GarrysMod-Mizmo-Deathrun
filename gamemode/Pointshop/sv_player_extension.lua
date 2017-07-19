@@ -161,11 +161,7 @@ function Player:PS_HasPoints(points)
 end
 
 function Player:PS_HasLevel(level)
-	if (self:IsAdmin() or self:IsSuperAdmin()) then
-		return true;
-	end
-
-	if (self:GetSetting(PlayerSettings.Enums.TAG_NAME.Name) == "Donator") then
+	if (self:IsDonator()) then
 		return true;
 	end
 

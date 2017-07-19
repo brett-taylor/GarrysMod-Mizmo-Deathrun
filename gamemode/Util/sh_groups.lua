@@ -1,3 +1,4 @@
+local meta = FindMetaTable("Player");
 if (Util == nil) then
 	Util = {};
 end
@@ -27,15 +28,6 @@ Util.Groups["user"] = {};
 Util.Groups["user"].Name = "User";
 Util.Groups["user"].Colour = Colours.User;
 
-local meta = FindMetaTable("Player");
-function Util.IsModerator(ply)
-    return ply:IsAdmin() || ply:GetUserGroup() == "moderator";
-end
- 
-function meta:IsModerator()
-    return Util.IsModerator(self);
-end
-
 function Util.GetUserGroupInfo(group)
 	local result = Util.Groups[group];
 	
@@ -44,4 +36,32 @@ function Util.GetUserGroupInfo(group)
 	end
 
 	return result;
+end
+
+function Util.IsModerator(ply)
+    return (ply:IsAdmin() || ply:GetUserGroup() == "moderator");
+end
+ 
+function meta:IsModerator()
+    return Util.IsModerator(self);
+end
+
+function Util.IsDonator(ply)
+    return (ply:GetUserGroup() == "donator" || ply:IsAdmin());
+end
+ 
+function meta:IsDonator()
+    return Util.IsDonator(self);
+end
+
+function Util.IsVeteran(ply)
+	if SERVER then
+	    return (string.lower(ply:GetSetting(PlayerSettings.Enums.TAG_NAME)) == "donator" || ply:IsDonator());
+	else
+	    return (string.lower(ply:GetNWString(PlayerSettings.Enums.TAG_NAME)) == "donator" || ply:IsDonator());
+	end
+end
+ 
+function meta:IsVeteran()
+    return Util.IsVeteran(self);
 end
