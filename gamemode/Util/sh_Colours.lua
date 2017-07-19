@@ -9,8 +9,11 @@ Colours.GreyDark = Color(30, 30, 30);
 Colours.Green = Color(57, 229, 126);
 Colours.GreenDark = Color(39, 165, 90);
 
-Colours.Superadmin = Color(255, 0, 0);
+Colours.Superadmin = Color(255, 102, 102);
+Colours.HAdmin = Color(213, 206, 0);
 Colours.Admin = Colours.Gold;
+Colours.Moderator = Color(255,182,193);
+Colours.Donator = Color(50,205,50);
 Colours.User = Color(255, 255, 255);
 
 Colours.TrafficLightRed = Color(204, 68, 44);
