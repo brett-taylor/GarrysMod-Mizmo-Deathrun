@@ -8,6 +8,7 @@ AddCSLuaFile("Util/sh_sendMessage.lua");
 AddCSLuaFile("Util/sh_playerTags.lua");
 AddCSLuaFile("Util/sh_groups.lua");
 AddCSLuaFile("Util/sh_itemRarity.lua");
+AddCSLuaFile("Util/cl_DisplayStuff.lua");
 
 AddCSLuaFile("PlayerSettings/sh_playerSettingsEnums.lua")
 
@@ -17,16 +18,23 @@ AddCSLuaFile("DisplayElements/vgui/DMizmoMainMenu.lua")
 AddCSLuaFile("DisplayElements/vgui/DMizmoButton.lua")
 AddCSLuaFile("DisplayElements/vgui/DMizmoScroll.lua")
 AddCSLuaFile("DisplayElements/vgui/DMizmoAvatar.lua")
+AddCSLuaFile("DisplayElements/vgui/DMizmoTextEntry.lua")
 
 AddCSLuaFile("DisplayElements/vgui/Shop/DMizmoShopFrame.lua")
-AddCSLuaFile("DisplayElements/vgui/Shop/DMizmoShopTab.lua")
 AddCSLuaFile("DisplayElements/vgui/Shop/DMizmoShopInventory.lua")
 AddCSLuaFile("DisplayElements/vgui/Shop/DMizmoShopCatButton.lua")
 AddCSLuaFile("DisplayElements/vgui/Shop/DMizmoShopHeaderInfo.lua")
 AddCSLuaFile("DisplayElements/vgui/Shop/DMizmoShopModelViewer.lua")
-AddCSLuaFile("DisplayElements/vgui/Shop/DMizmoShopItem.lua")
+AddCSLuaFile("DisplayElements/vgui/Shop/DMizmoItem.lua")
 AddCSLuaFile("DisplayElements/vgui/Shop/DMizmoItemModelVariant.lua")
 AddCSLuaFile("DisplayElements/vgui/Shop/DMizmoItemMaterialVariant.lua")
+AddCSLuaFile("DisplayElements/vgui/Shop/DMizmoShopLoading.lua")
+AddCSLuaFile("DisplayElements/vgui/Shop/DMizmoShopAlert.lua")
+AddCSLuaFile("DisplayElements/vgui/Shop/DMizmoShopTypeButton.lua")
+AddCSLuaFile("DisplayElements/vgui/Shop/DMizmoShopTypePick.lua")
+AddCSLuaFile("DisplayElements/vgui/Shop/DMizmoShopTab.lua")
+AddCSLuaFile("DisplayElements/vgui/Shop/DMizmoShopItemData.lua")
+AddCSLuaFile("DisplayElements/vgui/Shop/DMizmoShopFunctionButton.lua")
 
 AddCSLuaFile("DisplayElements/cl_hud.lua")
 AddCSLuaFile("DisplayElements/cl_voicehud.lua")

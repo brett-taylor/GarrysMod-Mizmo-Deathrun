@@ -2,6 +2,7 @@ ITEM.Name = 'Antlers'
 ITEM.Price = 200
 ITEM.Model = 'models/sam/antlers.mdl'
 ITEM.Attachment = 'eyes'
+ITEM.Buyable = true;
 
 function ITEM:OnEquip(ply, modifications)
 	ply:PS_AddClientsideModel(self.ID)

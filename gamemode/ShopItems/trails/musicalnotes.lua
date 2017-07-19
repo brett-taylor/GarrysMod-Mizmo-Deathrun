@@ -3,6 +3,7 @@ ITEM.Price = 300
 ITEM.Material = 'trails/musicalnotes.vmt'
 ITEM.Desc = 'A trail of Musical Notes.'
 ITEM.Grade = 'Consumer'
+ITEM.Buyable = true;
 
 function ITEM:OnEquip(ply, modifications)
 	ply.AF = util.SpriteTrail(ply, 0, modifications.color, false, 15, 1, 4, 0.125, self.Material)

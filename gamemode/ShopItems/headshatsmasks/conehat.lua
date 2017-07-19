@@ -4,6 +4,7 @@ ITEM.Model = 'models/props_junk/TrafficCone001a.mdl'
 ITEM.Attachment = 'eyes'
 ITEM.Desc = 'You forgot the Dunce.'
 ITEM.Grade = 'Mil-Spec'
+ITEM.Buyable = true;
 
 function ITEM:OnEquip(ply)
 	ply:PS_AddClientsideModel(self.ID)

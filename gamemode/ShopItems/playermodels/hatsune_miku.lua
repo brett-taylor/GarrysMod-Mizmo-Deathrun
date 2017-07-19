@@ -3,7 +3,8 @@ ITEM.Price = 25000
 ITEM.Model = 'models/captainbigbutt/vocaloid/miku_classic.mdl'
 ITEM.Desc = 'For weeeebs'
 ITEM.Grade = 'Exceedingly Rare'
-ITEM.Level = 40
+ITEM.Level = 70
+ITEM.Buyable = true;
 
 function ITEM:OnEquip(ply, modifications)
 	if not ply._OldModel then

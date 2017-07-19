@@ -4,6 +4,7 @@ ITEM.Model = 'models/weapons/w_csgo_falchion.mdl'
 ITEM.Skin = 3
 ITEM.WeaponClass = 'csgo_falchion_crimsonwebs'
 ITEM.Grade = 'Exceedingly Rare'
+ITEM.Buyable = false;
 
 function ITEM:OnEquip(ply)
 	ply:Give(self.WeaponClass)

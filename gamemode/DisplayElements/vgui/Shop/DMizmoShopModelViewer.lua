@@ -6,7 +6,36 @@ function PANEL:Init()
 	local PrevMins, PrevMaxs = self.Entity:GetRenderBounds()
 	self:SetCamPos(PrevMins:Distance(PrevMaxs) * Vector(0.30, 0.30, 0.25) + Vector(0, 0, 15))
 	self:SetLookAt((PrevMaxs + PrevMins) / 2)
+
+	self.Angles = Angle(0, 0, 0);
 end
+
+function PANEL:DragMousePress()
+	self.PressX, self.PressY = gui.MousePos()
+	self.Pressed = true
+end
+
+function PANEL:DragMouseRelease()
+	self.Pressed = false
+	self.lastPressed = RealTime()
+end
+
+function PANEL:LayoutEntity(thisEntity)
+		if ( self.bAnimated ) then self:RunAnimation() end
+		
+		if ( self.Pressed ) then
+			local mx, my = gui.MousePos()
+			self.Angles = self.Angles - Angle( 0, ( self.PressX or mx ) - mx, 0 )
+			self.PressX, self.PressY = gui.MousePos()
+		end
+		
+		if ( RealTime() - ( self.lastPressed or 0 ) ) < 4 or self.Pressed then
+			thisEntity:SetAngles( self.Angles )
+		else	
+			self.Angles.y = math.NormalizeAngle(self.Angles.y + (RealFrameTime() * 21))
+			thisEntity:SetAngles( Angle( 0, self.Angles.y ,  0) )
+		end
+	end
 
 function PANEL:Paint()
 	if ( !IsValid( self.Entity ) ) then return end

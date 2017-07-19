@@ -2,6 +2,7 @@ ITEM.Name = 'Pan Hat'
 ITEM.Price = 100
 ITEM.Model = 'models/props_interiors/pot02a.mdl'
 ITEM.Attachment = 'eyes'
+ITEM.Buyable = true;
 
 function ITEM:OnEquip(ply, modifications)
 	ply:PS_AddClientsideModel(self.ID)

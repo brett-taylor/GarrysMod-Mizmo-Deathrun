@@ -2,6 +2,7 @@ ITEM.Name = 'Santa Hat'
 ITEM.Price = 100
 ITEM.Model = 'models/santa/santa.mdl'
 ITEM.Attachment = 'eyes'
+ITEM.Buyable = true;
 
 function ITEM:OnEquip(ply, modifications)
 	ply:PS_AddClientsideModel(self.ID)

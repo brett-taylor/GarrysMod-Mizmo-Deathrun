@@ -1,6 +1,8 @@
 local PANEL = {}
 
 function PANEL:Init()
+	self:SetText("");
+	self:SetTextColor(Color(255, 255, 255, 0));
 	self:SetSize(200, 100);
 	self:DisableOutline();
 	self:DisableTextOutline();

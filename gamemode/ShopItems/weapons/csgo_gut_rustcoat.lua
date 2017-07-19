@@ -3,6 +3,7 @@ ITEM.Price = 20000
 ITEM.Model = 'models/weapons/w_csgo_gut.mdl'
 ITEM.Skin = 12
 ITEM.WeaponClass = 'csgo_gut_rustcoat'
+ITEM.Buyable = false;
 
 function ITEM:OnEquip(ply)
 	ply:Give(self.WeaponClass)

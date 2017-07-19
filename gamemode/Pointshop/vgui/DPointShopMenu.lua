@@ -1,6 +1,8 @@
 local PANEL = {};
 
 function PANEL:Init()
+	self.Alerts = {};
+
 	self.titlePanel = vgui.Create("DPanel", self);
 	self.titlePanel.Paint = function(self, w, h)
 		surface.SetDrawColor(Colours.Gold);

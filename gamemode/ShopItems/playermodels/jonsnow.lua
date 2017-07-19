@@ -3,7 +3,8 @@ ITEM.Price = 5000
 ITEM.Model = 'models/player/got_jonsnow.mdl'
 ITEM.Desc = 'For the watch.'
 ITEM.Grade = 'Classified'
-ITEM.Level = 10
+ITEM.Level = 30
+ITEM.Buyable = true;
 
 function ITEM:OnEquip(ply, modifications)
 	if not ply._OldModel then

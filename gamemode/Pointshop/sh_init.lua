@@ -91,9 +91,11 @@ function PS:LoadItems()
 					
 					ITEM.__index = ITEM
 					ITEM.ID = string.gsub(string.lower(name), '.lua', '')
+					ITEM.CategoryID = category;
 					ITEM.Category = CATEGORY.Name
 					ITEM.Price = 0
 					ITEM.Level = 0
+					ITEM.Buyable = true;
 					
 					-- model and material are missing but there's no way around it, there's a check below anyway
 					

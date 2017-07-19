@@ -3,6 +3,7 @@ ITEM.Price = 3000
 ITEM.Model = 'models/logan_mccloud_models/ova_props/knuckles_ova_hat.mdl'
 ITEM.Desc = 'Heh... ready for the junk pile.'
 ITEM.Grade = 'Classified'
+ITEM.Buyable = true;
 
 function ITEM:OnEquip(ply, modifications)
 	ply:PS_AddClientsideModel(self.ID)

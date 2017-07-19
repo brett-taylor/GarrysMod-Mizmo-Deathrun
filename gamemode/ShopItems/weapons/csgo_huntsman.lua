@@ -4,6 +4,7 @@ ITEM.Model = 'models/weapons/w_csgo_tactical.mdl'
 ITEM.Skin = 0
 ITEM.WeaponClass = 'csgo_huntsman'
 ITEM.Grade = 'Covert'
+ITEM.Buyable = false;
 
 function ITEM:OnEquip(ply)
 	ply:Give(self.WeaponClass)

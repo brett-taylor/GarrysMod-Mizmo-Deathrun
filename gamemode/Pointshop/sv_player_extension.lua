@@ -51,21 +51,21 @@ function Player:PS_PlayerInitialSpawn()
 		if PS.Config.ShopKey ~= '' then
 			timer.Simple(5, function() -- Give them time to load up
 				if !IsValid(self) then return end
-				self:PS_Notify('Press ' .. PS.Config.ShopKey .. ' to open PointShop!')
+				self:PS_Notify('Press ' .. PS.Config.ShopKey .. ' to open the Shop!')
 			end)
 		end
 
 		if PS.Config.ShopCommand ~= '' then
 			timer.Simple(5, function() -- Give them time to load up
 				if !IsValid(self) then return end
-				self:PS_Notify('Type ' .. PS.Config.ShopCommand .. ' in console to open PointShop!')
+				self:PS_Notify('Type ' .. PS.Config.ShopCommand .. ' in console to open the Shop!')
 			end)
 		end
 
 		if PS.Config.ShopChatCommand ~= '' then
 			timer.Simple(5, function() -- Give them time to load up
 				if !IsValid(self) then return end
-				self:PS_Notify('Type ' .. PS.Config.ShopChatCommand .. ' in chat to open PointShop!')
+				self:PS_Notify('Type ' .. PS.Config.ShopChatCommand .. ' in chat to open the Shop!')
 			end)
 		end
 

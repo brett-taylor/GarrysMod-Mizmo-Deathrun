@@ -3,7 +3,8 @@ ITEM.Price = 5000
 ITEM.Model = 'models/models/ramsay/ramsay.mdl'
 ITEM.Desc = 'THIS ISN’T HAPPENING TO YOU FOR A REASON. WELL, ONE REASON: I ENJOY IT! IF YOU THINK THIS HAS A HAPPY ENDING, YOU HAVEN’T BEEN PAYING ATTENTION.'
 ITEM.Grade = 'Classified'
-ITEM.Level = 10
+ITEM.Level = 30
+ITEM.Buyable = true;
 
 function ITEM:OnEquip(ply, modifications)
 	if not ply._OldModel then

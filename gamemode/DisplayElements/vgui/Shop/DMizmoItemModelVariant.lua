@@ -4,6 +4,7 @@ function PANEL:Init()
 	self:InvalidateLayout();
 	self.HoveredOver = false;
 	self.IsKnife = false;
+	self.IsInItemPopup = false;
 
 	self.HoveredCameraPos = Vector(1000, 1000, 1000);
 	self.UnhoveredCameraPos = Vector(1000, 1000, 1000);
@@ -27,8 +28,9 @@ function PANEL:OnCursorExited()
 	self.HoveredOver = false;
 end
 
-function PANEL:SetData(data)
+function PANEL:SetData(data, parent)
 	self.Data = data;
+	self.Parent = parent;
 	self:SetModel(self.Data.Model);
 
 	if self.Data.Skin then
@@ -44,28 +46,28 @@ function PANEL:SetData(data)
 	self.CameraPosVector = self.UnhoveredCameraPos;
 
 	if (string.StartWith(self.Data.ID, "csgo_")) then
-		self.IsKnife = true;
-		if (string.StartWith(self.Data.ID, "csgo_karambit")) then
-			--self.UnhoveredCameraPos = (self.PrevMaxs:Distance(self.PrevMins) * Vector(0.3, 0.2, 0.2));
-			self.UnhoveredCameraPos = self.PrevMaxs:Distance(self.PrevMins) * (self.Entity:GetAngles():Right() * 0.3);
-			print(self.UnhoveredCameraPos);
-		else
-			self.UnhoveredCameraPos = (self.PrevMins:Distance(self.PrevMaxs) * Vector(0.4, 0.4, 0.4));
-		end
-
-		self.LayoutEntity = function(entity)
-		end
+		self.UnhoveredCameraPos = (self.PrevMins:Distance(self.PrevMaxs) * Vector(0.4, 0.6, 0.1));
 	end
 end
 
+function PANEL:LayoutEntity(entity)
+end
+
 function PANEL:Think()
-	if (self.HoveredOver == true) then
-		self.CameraPosVector = LerpVector(FrameTime() * 5, self.CameraPosVector, self.HoveredCameraPos);
-	else
-		self.CameraPosVector = LerpVector(FrameTime() * 5, self.CameraPosVector, self.UnhoveredCameraPos);
+	if (self.IsInItemPopup == false) then
+		if (self.HoveredOver == true) then
+			self.CameraPosVector = LerpVector(FrameTime() * 5, self.CameraPosVector, self.HoveredCameraPos);
+		else
+			self.CameraPosVector = LerpVector(FrameTime() * 5, self.CameraPosVector, self.UnhoveredCameraPos);
+		end
 	end
 
 	self:SetCamPos(self.CameraPosVector or Vector(0.5, 0.5, 0.5));
 end
+
+function PANEL:DoItemPopup()
+	self.IsInItemPopup = true;
+end
+
 
 vgui.Register("DMizmoItemModelVariant", PANEL, "DModelPanel");

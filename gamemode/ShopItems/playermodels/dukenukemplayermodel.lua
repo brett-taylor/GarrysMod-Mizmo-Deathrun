@@ -3,7 +3,8 @@ ITEM.Price = 30000
 ITEM.Model = 'models/jessev92/player/misc/dukenukem.mdl'
 ITEM.Desc = 'I came here to kick ass and chew gum.'
 ITEM.Grade = 'Exceedingly Rare'
-ITEM.Level = 45
+ITEM.Level = 75
+ITEM.Buyable = true;
 
 function ITEM:OnEquip(ply, modifications)
 	if not ply._OldModel then

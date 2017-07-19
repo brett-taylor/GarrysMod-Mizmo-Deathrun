@@ -3,7 +3,8 @@ ITEM.Price = 700
 ITEM.Model = 'models/player/quentindylanp/purpleguy_dark.mdl'
 ITEM.Desc = "Purple guy from the Five Night's at Freddy's series."
 ITEM.Grade = 'Mil-spec'
-ITEM.Level = 5
+ITEM.Level = 12
+ITEM.Buyable = true;
 
 function ITEM:OnEquip(ply, modifications)
 	if not ply._OldModel then

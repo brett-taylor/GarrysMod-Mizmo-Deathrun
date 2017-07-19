@@ -1,6 +1,10 @@
 ChatSystem = {};
 
 function ChatSystem.DoChat(ply, strText, isTeam, isDead)
+	if (IsValid(ply) == false) then
+		return true;
+	end
+
 	local chatTable = {};
 	table.insert(chatTable, Colours.White);
 	table.insert(chatTable, "[");

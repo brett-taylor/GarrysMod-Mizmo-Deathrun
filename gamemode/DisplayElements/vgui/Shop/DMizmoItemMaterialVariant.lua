@@ -1,20 +1,11 @@
 local PANEL = {}
 
-local function DrawCircle( x, y, radius, seg )
-	local cir = {}
-	table.insert( cir, { x = x, y = y } )
-	for i = 0, seg do
-		local a = math.rad( ( i / seg ) * -360 )
-		table.insert( cir, { x = x + math.sin( a ) * radius, y = y + math.cos( a ) * radius } )
-	end
-	local a = math.rad( 0 )
-	table.insert( cir, { x = x + math.sin( a ) * radius, y = y + math.cos( a ) * radius } )
-	surface.DrawPoly( cir )
-end
-
 function PANEL:Init()
 	self.m_Image:SetPaintedManually(true);
 	self.HoveredOver = false;
+	self.IsInItemPopup = false;
+	self.Radius = 72;
+
 	self:InvalidateLayout();
 end
 
@@ -45,14 +36,16 @@ end
 function PANEL:SetDataMaterial(data, material)
 	self.Data = data;
 	self:SetMaterial(material);
-	self.m_Image.FrameTime = 0;
+	self.m_Image.FrameTime = 5;
 end
 
 function PANEL:Think()
-	if (self.HoveredOver == true) then
-		self:SetAlpha(Lerp(FrameTime() * 5, self:GetAlpha(), 0));
-	else
-		self:SetAlpha(Lerp(FrameTime() * 5, self:GetAlpha(), 255));
+	if (self.IsInItemPopup == false) then
+		if (self.HoveredOver == true) then
+			self:SetAlpha(Lerp(FrameTime() * 5, self:GetAlpha(), 0));
+		else
+			self:SetAlpha(Lerp(FrameTime() * 5, self:GetAlpha(), 255));
+		end
 	end
 end
 
@@ -66,9 +59,7 @@ function PANEL:PaintOver(w, h)
 	render.SetStencilZFailOperation( STENCILOPERATION_ZERO )
 	render.SetStencilCompareFunction( STENCILCOMPARISONFUNCTION_NEVER )
 	render.SetStencilReferenceValue( 1 )
-	draw.NoTexture()
-	surface.SetDrawColor( Color( 0, 0, 0, 255 ) )
-		DrawCircle(w / 2, h / 2, 73, math.max(w, h) / 2);
+		Util.DrawCircle(w / 2, h / 2, self.Radius, math.max(w, h) / 2, Color(0, 0, 0, 255))
 	render.SetStencilFailOperation( STENCILOPERATION_ZERO )
 	render.SetStencilPassOperation( STENCILOPERATION_REPLACE )
 	render.SetStencilZFailOperation( STENCILOPERATION_ZERO )
@@ -77,6 +68,14 @@ function PANEL:PaintOver(w, h)
 		self.m_Image:PaintManual();
 	render.SetStencilEnable( false )
 	render.ClearStencil()
+end
+
+function PANEL:DoItemPopup()
+	self.IsInItemPopup = true;
+end
+
+function PANEL:SetRadius(radius)
+	self.Radius = radius;
 end
 
 vgui.Register("DMizmoItemMaterialVariant", PANEL, "DImageButton");

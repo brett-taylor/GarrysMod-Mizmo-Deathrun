@@ -4,6 +4,7 @@ include("Util/sh_sendMessage.lua");
 include("Util/sh_playerTags.lua");
 include("Util/sh_groups.lua");
 include("Util/sh_itemRarity.lua");
+include("Util/cl_DisplayStuff.lua");
 
 include("PlayerSettings/sh_playerSettingsEnums.lua")
 
@@ -13,16 +14,23 @@ include("DisplayElements/vgui/DMizmoButton.lua")
 include("DisplayElements/vgui/DMizmoMainMenu.lua")
 include("DisplayElements/vgui/DMizmoScroll.lua")
 include("DisplayElements/vgui/DMizmoAvatar.lua")
+include("DisplayElements/vgui/DMizmoTextEntry.lua")
 
 include("DisplayElements/vgui/Shop/DMizmoShopFrame.lua")
-include("DisplayElements/vgui/Shop/DMizmoShopTab.lua")
 include("DisplayElements/vgui/Shop/DMizmoShopInventory.lua")
 include("DisplayElements/vgui/Shop/DMizmoShopCatButton.lua")
 include("DisplayElements/vgui/Shop/DMizmoShopHeaderInfo.lua")
 include("DisplayElements/vgui/Shop/DMizmoShopModelViewer.lua")
-include("DisplayElements/vgui/Shop/DMizmoShopItem.lua")
+include("DisplayElements/vgui/Shop/DMizmoItem.lua")
 include("DisplayElements/vgui/Shop/DMizmoItemModelVariant.lua")
 include("DisplayElements/vgui/Shop/DMizmoItemMaterialVariant.lua")
+include("DisplayElements/vgui/Shop/DMizmoShopLoading.lua")
+include("DisplayElements/vgui/Shop/DMizmoShopAlert.lua")
+include("DisplayElements/vgui/Shop/DMizmoShopTypeButton.lua")
+include("DisplayElements/vgui/Shop/DMizmoShopTypePick.lua")
+include("DisplayElements/vgui/Shop/DMizmoShopTab.lua")
+include("DisplayElements/vgui/Shop/DMizmoShopItemData.lua")
+include("DisplayElements/vgui/Shop/DMizmoShopFunctionButton.lua")
 
 include("DisplayElements/cl_hud.lua")
 include("DisplayElements/cl_voicehud.lua")

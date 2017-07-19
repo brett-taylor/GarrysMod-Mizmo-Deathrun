@@ -3,7 +3,8 @@ ITEM.Price = 7000
 ITEM.Model = 'models/tyrion/tyrion.mdl'
 ITEM.Desc = "Impin' ain't easy"
 ITEM.Grade = 'Classified'
-ITEM.Level = 12
+ITEM.Level = 38
+ITEM.Buyable = true;
 
 function ITEM:OnEquip(ply, modifications)
 	if not ply._OldModel then

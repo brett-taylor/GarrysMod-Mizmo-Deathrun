@@ -1,8 +1,10 @@
-ITEM.Name = 'Golden Freddy'
-ITEM.Price = 25000
-ITEM.Model = 'models/aileri/fnaf1/golden_freddy.mdl'
-ITEM.Desc = "Golden Freddy from the Five Nights at Freddies franchise."
-ITEM.Grade = 'Exceedingly Rare'
+ITEM.Name = 'Test Pet'
+ITEM.Price = 1800
+ITEM.Model = 'models/player/agent_47.mdl'
+ITEM.Desc = 'Agent 47 from the Hitman franchise.'
+ITEM.Grade = 'Restricted'
+ITEM.Level = 8
+ITEM.Buyable = false;
 
 function ITEM:OnEquip(ply, modifications)
 	if not ply._OldModel then

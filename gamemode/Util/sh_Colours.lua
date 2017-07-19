@@ -6,6 +6,8 @@ Colours.HealthRed = Color(255, 0, 0);
 Colours.TextWhite = Color(230, 230, 230);
 Colours.GoldDark = Color(170, 125, 0);
 Colours.GreyDark = Color(30, 30, 30);
+Colours.Green = Color(57, 229, 126);
+Colours.GreenDark = Color(39, 165, 90);
 
 Colours.Superadmin = Color(255, 0, 0);
 Colours.Admin = Colours.Gold;

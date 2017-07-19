@@ -3,7 +3,8 @@ ITEM.Price = 22000
 ITEM.Model = 'models/_tails_ models/characters/sonic heroes/rouge/rouge.mdl'
 ITEM.Desc = 'Rouge from SEGA.'
 ITEM.Grade = 'Exceedingly Rare'
-ITEM.Level = 35
+ITEM.Level = 65
+ITEM.Buyable = true;
 
 function ITEM:OnEquip(ply, modifications)
 	if not ply._OldModel then

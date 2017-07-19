@@ -3,7 +3,8 @@ ITEM.Price = 15000
 ITEM.Model = 'models/player/superheroes/batman.mdl'
 ITEM.Desc = "I'm batman"
 ITEM.Grade = 'Covert'
-ITEM.Level = 25
+ITEM.Level = 55
+ITEM.Buyable = true;
 
 function ITEM:OnEquip(ply, modifications)
 	if not ply._OldModel then
