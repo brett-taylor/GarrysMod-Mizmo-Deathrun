@@ -2,7 +2,6 @@ ITEM.Name = 'Majoras Mask'
 ITEM.Price = 200
 ITEM.Model = 'models/gmod_tower/majorasmask.mdl'
 ITEM.Attachment = 'eyes'
-ITEM.Buyable = true;
 
 function ITEM:OnEquip(ply, modifications)
 	ply:PS_AddClientsideModel(self.ID)

@@ -2,7 +2,6 @@ ITEM.Name = 'Cake Hat'
 ITEM.Price = 200
 ITEM.Model = 'models/cakehat/cakehat.mdl'
 ITEM.Attachment = 'eyes'
-ITEM.Buyable = true;
 
 function ITEM:OnEquip(ply, modifications)
 	ply:PS_AddClientsideModel(self.ID)

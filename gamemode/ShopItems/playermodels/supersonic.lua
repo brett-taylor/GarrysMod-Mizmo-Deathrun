@@ -4,7 +4,6 @@ ITEM.Model = 'models/_tails_ models/characters/sonic heroes/super_sonic/sonic.md
 ITEM.Desc = 'Super Sonic from SEGA.'
 ITEM.Grade = 'Exceedingly Rare'
 ITEM.Level = 75
-ITEM.Buyable = true;
 
 function ITEM:OnEquip(ply, modifications)
 	if not ply._OldModel then

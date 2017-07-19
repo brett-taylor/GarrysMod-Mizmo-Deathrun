@@ -4,7 +4,6 @@ ITEM.Model = 'models/player/agent_47.mdl'
 ITEM.Desc = 'Agent 47 from the Hitman franchise.'
 ITEM.Grade = 'Restricted'
 ITEM.Level = 20
-ITEM.Buyable = true;
 
 function ITEM:OnEquip(ply, modifications)
 	if not ply._OldModel then

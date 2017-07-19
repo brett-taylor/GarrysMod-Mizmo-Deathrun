@@ -2,7 +2,6 @@ ITEM.Name = 'Spooky Spiders'
 ITEM.Price = 150
 ITEM.Material = 'trails/spiders.vmt'
 ITEM.Grade = 'Consumer'
-ITEM.Buyable = true;
 
 function ITEM:OnEquip(ply, modifications)
 	ply.SpookySpidersTrail = util.SpriteTrail(ply, 0, modifications.color, false, 15, 1, 4, 0.125, self.Material)

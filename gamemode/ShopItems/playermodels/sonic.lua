@@ -4,7 +4,6 @@ ITEM.Model = 'models/_tails_ models/characters/player/sonic/sonic.mdl'
 ITEM.Desc = 'Sanic from SEGA.'
 ITEM.Grade = 'Exceedingly Rare'
 ITEM.Level = 65
-ITEM.Buyable = true;
 
 function ITEM:OnEquip(ply, modifications)
 	if not ply._OldModel then

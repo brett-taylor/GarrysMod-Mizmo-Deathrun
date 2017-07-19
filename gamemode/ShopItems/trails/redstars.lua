@@ -2,7 +2,6 @@ ITEM.Name = 'Red Stars'
 ITEM.Price = 500
 ITEM.Material = 'trails/redstars.vmt'
 ITEM.Grade = 'Consumer'
-ITEM.Buyable = true;
 
 function ITEM:OnEquip(ply, modifications)
 	ply.StarsTrail = util.SpriteTrail(ply, 0, modifications.color, false, 15, 1, 4, 0.125, self.Material)

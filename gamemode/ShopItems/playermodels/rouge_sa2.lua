@@ -4,7 +4,6 @@ ITEM.Model = 'models/_tails_ models/characters/sonic heroes/rouge_sa2/rouge_sa2.
 ITEM.Desc = 'Rouge from Sonic Adventures 2.'
 ITEM.Grade = 'Exceedingly Rare'
 ITEM.Level = 65
-ITEM.Buyable = true;
 
 function ITEM:OnEquip(ply, modifications)
 	if not ply._OldModel then

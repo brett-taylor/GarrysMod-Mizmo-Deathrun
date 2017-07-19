@@ -3,7 +3,6 @@ ITEM.Price = 20000
 ITEM.Model = 'models/weapons/w_csgo_bayonet.mdl'
 ITEM.Skin = 7
 ITEM.WeaponClass = 'csgo_bayonet_night'
-ITEM.Buyable = false;
 
 function ITEM:OnEquip(ply)
 	ply:Give(self.WeaponClass)

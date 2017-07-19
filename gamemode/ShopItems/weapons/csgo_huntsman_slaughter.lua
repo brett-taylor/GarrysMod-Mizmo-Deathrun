@@ -4,7 +4,6 @@ ITEM.Model = 'models/weapons/w_csgo_tactical.mdl'
 ITEM.Skin = 8
 ITEM.WeaponClass = 'csgo_huntsman_slaughter'
 ITEM.Grade = 'Exceedingly Rare'
-ITEM.Buyable = false;
 
 function ITEM:OnEquip(ply)
 	ply:Give(self.WeaponClass)

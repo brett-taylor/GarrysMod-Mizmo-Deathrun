@@ -4,7 +4,6 @@ ITEM.Model = 'models/props_junk/MetalBucket01a.mdl'
 ITEM.Attachment = 'eyes'
 ITEM.Desc = 'Nigga got bucket on his head.'
 ITEM.Grade = 'Mil-Spec'
-ITEM.Buyable = true;
 
 function ITEM:OnEquip(ply)
 	ply:PS_AddClientsideModel(self.ID)

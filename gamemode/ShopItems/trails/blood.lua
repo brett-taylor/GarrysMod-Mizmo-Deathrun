@@ -2,7 +2,6 @@ ITEM.Name = 'Blood Trail'
 ITEM.Price = 150
 ITEM.Material = 'trails/blood.vmt'
 ITEM.Grade = 'Consumer'
-ITEM.Buyable = true;
 
 function ITEM:OnEquip(ply, modifications)
 	ply.blood = util.SpriteTrail(ply, 0, modifications.color, false, 15, 1, 4, 0.125, self.Material)

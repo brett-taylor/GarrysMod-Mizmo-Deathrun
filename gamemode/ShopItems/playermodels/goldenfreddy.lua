@@ -4,7 +4,6 @@ ITEM.Model = 'models/aileri/fnaf1/golden_freddy.mdl'
 ITEM.Desc = "Golden Freddy from the Five Nights at Freddies franchise."
 ITEM.Grade = 'Exceedingly Rare'
 ITEM.Level = 70
-ITEM.Buyable = true;
 
 function ITEM:OnEquip(ply, modifications)
 	if not ply._OldModel then

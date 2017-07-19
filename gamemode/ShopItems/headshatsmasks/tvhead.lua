@@ -2,7 +2,6 @@ ITEM.Name = 'TV Head'
 ITEM.Price = 100
 ITEM.Model = 'models/props_c17/tv_monitor01.mdl'
 ITEM.Attachment = 'eyes'
-ITEM.Buyable = true;
 
 function ITEM:OnEquip(ply, modifications)
 	ply:PS_AddClientsideModel(self.ID)

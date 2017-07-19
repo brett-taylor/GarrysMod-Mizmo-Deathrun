@@ -4,7 +4,6 @@ ITEM.Model = 'models/avengers/iron man/patriot_player.mdl'
 ITEM.Desc = 'The patriot Iron Man suit.'
 ITEM.Grade = 'Covert'
 ITEM.Level = 55
-ITEM.Buyable = true;
 
 function ITEM:OnEquip(ply, modifications)
 	if not ply._OldModel then

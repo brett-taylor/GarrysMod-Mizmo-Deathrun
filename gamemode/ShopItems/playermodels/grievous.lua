@@ -4,7 +4,6 @@ ITEM.Model = 'models/player/grievous.mdl'
 ITEM.Desc = "Another addition to my collection."
 ITEM.Grade = 'Classified'
 ITEM.Level = 38
-ITEM.Buyable = true;
 
 function ITEM:OnEquip(ply, modifications)
 	if not ply._OldModel then

@@ -4,7 +4,6 @@ ITEM.Model = 'models/weapons/w_csgo_karambit.mdl'
 ITEM.Skin = 0
 ITEM.WeaponClass = 'csgo_karambit'
 ITEM.Grade = 'Covert'
-ITEM.Buyable = false;
 
 function ITEM:OnEquip(ply)
 	ply:Give(self.WeaponClass)

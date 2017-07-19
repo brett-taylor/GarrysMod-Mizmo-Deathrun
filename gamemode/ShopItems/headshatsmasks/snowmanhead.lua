@@ -4,7 +4,6 @@ ITEM.Model = 'models/props/cs_office/Snowman_face.mdl'
 ITEM.Attachment = 'eyes'
 ITEM.Desc = 'Do you wanna build a ... me?'
 ITEM.Grade = 'Restricted'
-ITEM.Buyable = true;
 
 function ITEM:OnEquip(ply, modifications)
 	ply:PS_AddClientsideModel(self.ID)

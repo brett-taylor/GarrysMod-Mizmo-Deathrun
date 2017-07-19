@@ -2,7 +2,6 @@ ITEM.Name = 'Kleiner Glasses'
 ITEM.Price = 200
 ITEM.Model = 'models/gmod_tower/klienerglasses.mdl'
 ITEM.Attachment = 'eyes'
-ITEM.Buyable = true;
 
 function ITEM:OnEquip(ply, modifications)
 	ply:PS_AddClientsideModel(self.ID)

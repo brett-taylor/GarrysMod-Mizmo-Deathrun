@@ -4,7 +4,6 @@ ITEM.Model = 'models/weapons/w_csgo_falchion.mdl'
 ITEM.Skin = 0
 ITEM.WeaponClass = 'csgo_falchion'
 ITEM.Grade = 'Covert'
-ITEM.Buyable = false;
 
 function ITEM:OnEquip(ply)
 	ply:Give(self.WeaponClass)

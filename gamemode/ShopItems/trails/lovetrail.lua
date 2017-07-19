@@ -3,7 +3,6 @@ ITEM.Price = 300
 ITEM.Material = 'trails/love.vmt'
 ITEM.Desc = 'A trail of Hearts.'
 ITEM.Grade = 'Consumer'
-ITEM.Buyable = true;
 
 function ITEM:OnEquip(ply, modifications)
 	ply.LoveTrail = util.SpriteTrail(ply, 0, modifications.color, false, 15, 1, 4, 0.125, self.Material)

@@ -4,7 +4,6 @@ ITEM.Model = 'models/weapons/w_csgo_flip.mdl'
 ITEM.Skin = 13
 ITEM.WeaponClass = 'csgo_flip_marblefade'
 ITEM.Grade = 'Exceedingly Rare'
-ITEM.Buyable = false;
 
 function ITEM:OnEquip(ply)
 	ply:Give(self.WeaponClass)

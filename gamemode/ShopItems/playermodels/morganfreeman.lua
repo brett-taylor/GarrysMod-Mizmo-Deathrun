@@ -4,7 +4,6 @@ ITEM.Model = 'models/rottweiler/morganfreeman.mdl'
 ITEM.Desc = 'I can smell you.'
 ITEM.Grade = 'Mil-spec'
 ITEM.Level = 12
-ITEM.Buyable = true;
 
 function ITEM:OnEquip(ply, modifications)
 	if not ply._OldModel then

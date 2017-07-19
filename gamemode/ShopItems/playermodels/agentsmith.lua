@@ -4,7 +4,6 @@ ITEM.Model = 'models/player/smith.mdl'
 ITEM.Desc = 'Agent Smith from The Matrix.'
 ITEM.Grade = 'Restricted'
 ITEM.Level = 20
-ITEM.Buyable = true;
 
 function ITEM:OnEquip(ply, modifications)
 	if not ply._OldModel then

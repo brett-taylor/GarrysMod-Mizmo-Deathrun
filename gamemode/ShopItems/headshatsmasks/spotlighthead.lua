@@ -2,7 +2,6 @@ ITEM.Name = 'Spotlight Head'
 ITEM.Price = 100
 ITEM.Model = 'models/props_wasteland/light_spotlight01_lamp.mdl'
 ITEM.Attachment = 'eyes'
-ITEM.Buyable = true;
 
 function ITEM:OnEquip(ply, modifications)
 	ply:PS_AddClientsideModel(self.ID)

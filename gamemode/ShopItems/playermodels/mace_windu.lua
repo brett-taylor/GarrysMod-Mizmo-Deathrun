@@ -4,7 +4,6 @@ ITEM.Model = 'models/ryan7259/mace_windu/mace_windu_player.mdl'
 ITEM.Desc = 'Samuel L. Jackson'
 ITEM.Grade = 'Classified'
 ITEM.Level = 38
-ITEM.Buyable = true;
 
 function ITEM:OnEquip(ply, modifications)
 	if not ply._OldModel then
