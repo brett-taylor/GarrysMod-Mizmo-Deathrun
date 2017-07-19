@@ -1,7 +1,7 @@
 local PANEL = {}
 
 function PANEL:Init()
-	self:SetTitle("PointShop Color Chooser")
+	self:SetTitle("Item Modifier")
 	self:SetSize(300, 300)
 	
 	self:SetBackgroundBlur(true)

@@ -60,6 +60,18 @@ function Player:PS_HasPoints(points)
 	return self:PS_GetPoints() >= points
 end
 
+function Player:PS_HasLevel(level)
+	if (self:IsAdmin() or self:IsSuperAdmin()) then
+		return true;
+	end
+
+	if (self:GetSetting(PlayerSettings.Enums.TAG_NAME.Name) == "Donator") then
+		return true;
+	end
+
+	return Experience.GetCurrentLevel(self) >= level
+end
+
 -- clientside models
 
 function Player:PS_AddClientsideModel(item_id)

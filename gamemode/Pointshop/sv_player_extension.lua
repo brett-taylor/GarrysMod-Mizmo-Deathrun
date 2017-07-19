@@ -51,21 +51,21 @@ function Player:PS_PlayerInitialSpawn()
 		if PS.Config.ShopKey ~= '' then
 			timer.Simple(5, function() -- Give them time to load up
 				if !IsValid(self) then return end
-				self:PS_Notify('Press ' .. PS.Config.ShopKey .. ' to open PointShop!')
+				self:PS_Notify('Press ' .. PS.Config.ShopKey .. ' to open the Shop!')
 			end)
 		end
 
 		if PS.Config.ShopCommand ~= '' then
 			timer.Simple(5, function() -- Give them time to load up
 				if !IsValid(self) then return end
-				self:PS_Notify('Type ' .. PS.Config.ShopCommand .. ' in console to open PointShop!')
+				self:PS_Notify('Type ' .. PS.Config.ShopCommand .. ' in console to open the Shop!')
 			end)
 		end
 
 		if PS.Config.ShopChatCommand ~= '' then
 			timer.Simple(5, function() -- Give them time to load up
 				if !IsValid(self) then return end
-				self:PS_Notify('Type ' .. PS.Config.ShopChatCommand .. ' in chat to open PointShop!')
+				self:PS_Notify('Type ' .. PS.Config.ShopChatCommand .. ' in chat to open the Shop!')
 			end)
 		end
 
@@ -161,6 +161,14 @@ function Player:PS_HasPoints(points)
 end
 
 function Player:PS_HasLevel(level)
+	if (self:IsAdmin() or self:IsSuperAdmin()) then
+		return true;
+	end
+
+	if (self:GetSetting(PlayerSettings.Enums.TAG_NAME.Name) == "Donator") then
+		return true;
+	end
+
 	return Experience.GetCurrentLevel(self) >= level
 end
 

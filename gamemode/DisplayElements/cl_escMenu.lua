@@ -14,5 +14,5 @@ hook.Add("PreRender", "emenu_render", function()
 end)
 
 function EscapeMenu.CreateMenu()
-	EscapeMenu.Panel = vgui.Create("DMizmoMainMenu");
+	--EscapeMenu.Panel = vgui.Create("DMizmoMainMenu");
 end

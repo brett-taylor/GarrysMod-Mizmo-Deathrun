@@ -24,7 +24,7 @@ local invalidplayeritems = {}
 -- menu stuff
 
 function PS:ToggleMenu()
-	if not PS.ShopMenu then
+	/*if not PS.ShopMenu then
 		PS.ShopMenu = vgui.Create('DMizmoShopFrame')
 		return;
 	end
@@ -32,6 +32,17 @@ function PS:ToggleMenu()
 	if PS.ShopMenu:IsVisible() then
 		PS.ShopMenu:Remove();
 		PS.ShopMenu = nil;
+	end*/
+
+	if (!IsValid(PS.ShopMenu)) then
+		PS.ShopMenu = vgui.Create('DMizmoShopFrame')
+		return;
+	end
+	
+	if PS.ShopMenu:IsVisible() then
+		PS.ShopMenu:Hide();
+	else
+		PS.ShopMenu:Show();
 	end
 end
 
@@ -55,7 +66,7 @@ end
 
 function PS:ShowColorChooser(item, modifications)
 	-- TODO: Do this
-	local chooser = vgui.Create('DPointShopColorChooser')
+	local chooser = vgui.Create('DPointShopColorChooser', PS.ShopMenu)
 	chooser:SetColor(modifications.color)
 	
 	chooser.OnChoose = function(color)
@@ -133,7 +144,10 @@ end)
 
 net.Receive('PS_SendNotification', function(length)
 	local str = net.ReadString()
-	notification.AddLegacy(str, NOTIFY_GENERIC, 5)
+
+	if (PS.ShopMenu.Alerts ~= nil) then
+		table.insert(PS.ShopMenu.Alerts, str);
+	end
 end)
 
 -- hooks

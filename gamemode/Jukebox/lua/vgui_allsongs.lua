@@ -232,7 +232,7 @@ end
 function JukeBox.VGUI.Pages.AllSongs:QueuePopup( parent, name, artist, id, length )
 	local text = "Are you sure you wish to queue:\n\n"..artist.." - "..name.."\n\nIt will cost you "
 	if JukeBox.Settings.UsePointshop then
-		text = text..JukeBox.Settings.PointsCost.." PointShop points."
+		text = text..JukeBox.Settings.PointsCost.." Mizmos."
 	elseif JukeBox.Settings.UsePointshop2 then
 		text = text..JukeBox.Settings.PointsCost.." standard PointShop2 points."
 	elseif JukeBox.Settings.UseDarkRPCash then

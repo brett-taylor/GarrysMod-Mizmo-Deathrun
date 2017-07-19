@@ -141,3 +141,15 @@ surface.CreateFont("MizmoGaming-Button-Large", {
 	size = 50,
 	weight = 50;
 });
+
+surface.CreateFont("MizmoGaming-Shop-ItemIcon-Name", {
+	font = "Roboto Light",
+	size = 15,
+	weight = 50;
+});
+
+surface.CreateFont("MizmoGaming-Shop-ItemIcon-Text", {
+	font = "Roboto Light",
+	size = 18,
+	weight = 50;
+});
