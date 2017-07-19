@@ -129,6 +129,7 @@ include("CameraController/sv_cutsceneULXCommands.lua")
 include("ThirdPersonSystem/sv_thirdPersonSystem.lua");
 
 include("Playtime/sv_playtime.lua");
+include("Playtime/sv_giveVeteran.lua");
 
 include("Pointshop/sv_init.lua");
 
