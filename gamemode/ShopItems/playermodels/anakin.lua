@@ -4,6 +4,7 @@ ITEM.Model = 'models/kriegsyntax/sw_752/anakin_est.mdl'
 ITEM.Desc = "I HATE YOU!"
 ITEM.Grade = 'Classified'
 ITEM.Level = 38
+ITEM.Buyable = true;
 
 function ITEM:OnEquip(ply, modifications)
 	if not ply._OldModel then

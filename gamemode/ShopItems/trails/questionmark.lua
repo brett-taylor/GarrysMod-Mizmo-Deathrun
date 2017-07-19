@@ -2,6 +2,7 @@ ITEM.Name = 'Ask A Question'
 ITEM.Price = 500
 ITEM.Material = 'trails/question.vmt'
 ITEM.Grade = 'Consumer'
+ITEM.Buyable = true;
 
 function ITEM:OnEquip(ply, modifications)
 	ply.QMTrail = util.SpriteTrail(ply, 0, modifications.color, false, 15, 1, 4, 0.125, self.Material)

@@ -4,6 +4,7 @@ ITEM.Model = 'models/risenshine/gang_beast.mdl'
 ITEM.Desc = 'Gang Beast character'
 ITEM.Grade = 'Classified'
 ITEM.Level = 40
+ITEM.Buyable = true;
 
 function ITEM:OnEquip(ply, modifications)
 	if not ply._OldModel then

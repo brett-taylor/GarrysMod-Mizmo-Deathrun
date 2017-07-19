@@ -4,6 +4,7 @@ ITEM.Model = 'models/kriegsyntax/sw_752/plokoon_est.mdl'
 ITEM.Desc = 'Who even is this.'
 ITEM.Grade = 'Classified'
 ITEM.Level = 38
+ITEM.Buyable = true;
 
 function ITEM:OnEquip(ply, modifications)
 	if not ply._OldModel then

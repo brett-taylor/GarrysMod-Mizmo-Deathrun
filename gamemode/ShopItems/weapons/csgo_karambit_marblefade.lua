@@ -4,6 +4,7 @@ ITEM.Model = 'models/weapons/w_csgo_karambit.mdl'
 ITEM.Skin = 13
 ITEM.WeaponClass = 'csgo_karambit_marblefade'
 ITEM.Grade = 'Exceedingly Rare'
+ITEM.Buyable = false;
 
 function ITEM:OnEquip(ply)
 	ply:Give(self.WeaponClass)

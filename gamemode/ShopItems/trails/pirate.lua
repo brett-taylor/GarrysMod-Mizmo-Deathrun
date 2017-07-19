@@ -2,6 +2,7 @@ ITEM.Name = 'Pirates'
 ITEM.Price = 0
 ITEM.Material = 'trails/pirateship.vmt'
 ITEM.Grade = 'Consumer'
+ITEM.Buyable = true;
 
 function ITEM:OnEquip(ply, modifications)
 	ply.TubeTrail = util.SpriteTrail(ply, 0, modifications.color, false, 15, 1, 4, 0.125, self.Material)

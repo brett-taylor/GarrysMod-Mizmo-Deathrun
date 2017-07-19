@@ -2,6 +2,7 @@ ITEM.Name = 'Aviators'
 ITEM.Price = 200
 ITEM.Model = 'models/gmod_tower/aviators.mdl'
 ITEM.Attachment = 'eyes'
+ITEM.Buyable = true;
 
 function ITEM:OnEquip(ply, modifications)
 	ply:PS_AddClientsideModel(self.ID)

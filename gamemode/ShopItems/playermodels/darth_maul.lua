@@ -4,6 +4,7 @@ ITEM.Model = 'models/player/darth/maul.mdl'
 ITEM.Desc = "Needed more screentime so here you go people."
 ITEM.Grade = 'Covert'
 ITEM.Level = 45
+ITEM.Buyable = true;
 
 function ITEM:OnEquip(ply, modifications)
 	if not ply._OldModel then

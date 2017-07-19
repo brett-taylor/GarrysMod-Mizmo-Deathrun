@@ -3,6 +3,7 @@ ITEM.Price = 3000
 ITEM.Material = 'trails/kappa.vmt'
 ITEM.Desc = 'A trail of Kappa123s'
 ITEM.Grade = 'Classified'
+ITEM.Buyable = true;
 
 function ITEM:OnEquip(ply, modifications)
 	ply.blood = util.SpriteTrail(ply, 0, modifications.color, false, 15, 1, 4, 0.125, self.Material)

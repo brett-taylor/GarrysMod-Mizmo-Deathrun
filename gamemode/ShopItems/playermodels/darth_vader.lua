@@ -4,6 +4,7 @@ ITEM.Model = 'models/player/b4p/b4p_vader.mdl'
 ITEM.Desc = "I am your father."
 ITEM.Grade = 'Covert'
 ITEM.Level = 45
+ITEM.Buyable = true;
 
 function ITEM:OnEquip(ply, modifications)
 	if not ply._OldModel then

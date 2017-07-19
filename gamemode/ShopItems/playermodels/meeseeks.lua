@@ -4,6 +4,7 @@ ITEM.Model = 'models/player/meeseeks/meeseeks.mdl'
 ITEM.Desc = "HEYY I'M MR. MEESEEKS LOOK AT ME"
 ITEM.Grade = 'Classified'
 ITEM.Level = 45
+ITEM.Buyable = true;
 
 function ITEM:OnEquip(ply, modifications)
 	if not ply._OldModel then

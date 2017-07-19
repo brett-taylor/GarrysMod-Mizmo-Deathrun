@@ -1,3 +1,5 @@
 CATEGORY.Name = 'Trails'
-CATEGORY.Icon = 'rainbow'
 CATEGORY.AllowedEquipped = 1;
+CATEGORY.Colour = Color(231, 76, 60)
+CATEGORY.Icon = 'trailcat'
+CATEGORY.ShowInShop = true;

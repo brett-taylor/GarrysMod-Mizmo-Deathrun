@@ -4,6 +4,7 @@ ITEM.Model = 'models/aileri/fnaf1/bonnie.mdl'
 ITEM.Desc = "Bonnie from the Five Nights at Freddies franchise."
 ITEM.Grade = 'Covert'
 ITEM.Level = 60
+ITEM.Buyable = true;
 
 function ITEM:OnEquip(ply, modifications)
 	if not ply._OldModel then

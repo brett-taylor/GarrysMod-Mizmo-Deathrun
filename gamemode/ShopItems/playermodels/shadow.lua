@@ -4,6 +4,7 @@ ITEM.Model = 'models/_tails_ models/characters/sonic heroes/shadow/shadow.mdl'
 ITEM.Desc = 'Shadow from SEGA.'
 ITEM.Grade = 'Exceedingly Rare'
 ITEM.Level = 65
+ITEM.Buyable = true;
 
 function ITEM:OnEquip(ply, modifications)
 	if not ply._OldModel then

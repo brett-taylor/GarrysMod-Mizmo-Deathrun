@@ -4,6 +4,7 @@ ITEM.Model = 'models/dav0r/hoverball.mdl'
 ITEM.Attachment = 'eyes'
 ITEM.Desc = 'iBuyPowers favourite style.'
 ITEM.Grade = 'Restricted'
+ITEM.Buyable = true;
 
 function ITEM:OnEquip(ply, modifications)
 	ply:PS_AddClientsideModel(self.ID)

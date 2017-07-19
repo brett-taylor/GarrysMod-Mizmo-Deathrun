@@ -1,3 +1,5 @@
 CATEGORY.Name = 'Hats'
-CATEGORY.Icon = 'emoticon_smile'
-CATEGORY.AllowedEquipped = 2
+CATEGORY.AllowedEquipped = 1
+CATEGORY.Colour = Color(46, 204, 113);
+CATEGORY.Icon = 'hatcat'
+CATEGORY.ShowInShop = true;

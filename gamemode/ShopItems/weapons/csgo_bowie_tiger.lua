@@ -4,6 +4,7 @@ ITEM.Model = 'models/weapons/w_csgo_bowie.mdl'
 ITEM.Skin = 7
 ITEM.WeaponClass = 'csgo_bowie_tiger'
 ITEM.Grade = 'Exceedingly Rare'
+ITEM.Buyable = false;
 
 function ITEM:OnEquip(ply)
 	ply:Give(self.WeaponClass)

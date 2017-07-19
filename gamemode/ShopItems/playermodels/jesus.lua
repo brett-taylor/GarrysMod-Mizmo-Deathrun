@@ -4,6 +4,7 @@ ITEM.Model = 'models/player/jesus/jesus.mdl'
 ITEM.Desc = "This makes us a Christian server for sure."
 ITEM.Grade = 'Classified.'
 ITEM.Level = 38
+ITEM.Buyable = true;
 
 function ITEM:OnEquip(ply, modifications)
 	if not ply._OldModel then

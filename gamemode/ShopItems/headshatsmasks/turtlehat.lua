@@ -2,6 +2,7 @@ ITEM.Name = 'Turtle Hat'
 ITEM.Price = 100
 ITEM.Model = 'models/props/de_tides/Vending_turtle.mdl'
 ITEM.Attachment = 'eyes'
+ITEM.Buyable = true;
 
 function ITEM:OnEquip(ply, modifications)
 	ply:PS_AddClientsideModel(self.ID)

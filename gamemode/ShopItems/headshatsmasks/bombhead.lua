@@ -2,6 +2,7 @@ ITEM.Name = 'Bomb Head'
 ITEM.Price = 100
 ITEM.Model = 'models/Combine_Helicopter/helicopter_bomb01.mdl'
 ITEM.Attachment = 'eyes'
+ITEM.Buyable = true;
 
 function ITEM:OnEquip(ply, modifications)
 	ply:PS_AddClientsideModel(self.ID)

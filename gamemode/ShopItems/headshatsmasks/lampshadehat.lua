@@ -2,6 +2,7 @@ ITEM.Name = 'Lampshade Hat'
 ITEM.Price = 100
 ITEM.Model = 'models/props_c17/lampShade001a.mdl'
 ITEM.Attachment = 'eyes'
+ITEM.Buyable = true;
 
 function ITEM:OnEquip(ply, modifications)
 	ply:PS_AddClientsideModel(self.ID)
