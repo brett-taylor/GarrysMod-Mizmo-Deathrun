@@ -25,12 +25,14 @@ resource.AddFile("materials/Mizmo-Gaming-Downloads/shop/modelcat.png");
 resource.AddFile("materials/Mizmo-Gaming-Downloads/shop/petcat.png");
 resource.AddFile("materials/Mizmo-Gaming-Downloads/shop/trailcat.png");
 resource.AddFile("materials/Mizmo-Gaming-Downloads/shop/weaponcat.png");
+resource.AddFile("materials/Mizmo-Gaming-Downloads/shop/customisationcat.png");
 resource.AddFile("materials/Mizmo-Gaming-Downloads/shop/buy.png");
 resource.AddFile("materials/Mizmo-Gaming-Downloads/shop/equip.png");
 resource.AddFile("materials/Mizmo-Gaming-Downloads/shop/holster.png");
 resource.AddFile("materials/Mizmo-Gaming-Downloads/shop/modify.png");
 resource.AddFile("materials/Mizmo-Gaming-Downloads/shop/sell.png");
 resource.AddFile("materials/Mizmo-Gaming-Downloads/shop/padlock.png");
+resource.AddFile("materials/Mizmo-Gaming-Downloads/shop/equipped.png");
 
 -- Pointshop trails
 resource.AddWorkshop("161466256"); -- Custom Trails Pack 1

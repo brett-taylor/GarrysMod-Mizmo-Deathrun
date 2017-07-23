@@ -11,7 +11,10 @@ function PANEL:Init()
 	self.IsInItemPopup = false;
 	self.Radius = 72;
 	self.CanBuy = true;
+	self.IsEquipped = true;
 	self.PadLock = Material("Mizmo-Gaming-Downloads/shop/padlock.png");
+	self.EquippedIcon = Material("Mizmo-Gaming-Downloads/shop/equipped.png");
+	self.UpdateTimer = 1;
 
 	local i = math.random(1, 2);
 	if (i == 1) then
@@ -285,25 +288,8 @@ function PANEL:SetData(data)
 		self.TextVariant:SetRadius(self.Radius);
 	end
 
-	if (self.Data.Level == 0) then
-		self.Data.Level = 1;
-	end
-
-	if (!LocalPlayer():PS_HasPoints(self.Data.Price)) then
-		self.CanBuy = false;
-	end
-
-	if (!LocalPlayer():PS_HasLevel(self.Data.Level)) then
-		self.CanBuy = false;
-	end
-
-	if (self.Data.Buyable == false) then
-		self.CanBuy = false;
-	end
-
-	if (LocalPlayer():PS_HasItem(self.Data.ID) == true) then
-		self.CanBuy = true;
-	end
+	self:UpdateItemBuyable();
+	self:UpdateItemEquipped();	
 end
 
 function PANEL:PaintOver(w, h)
@@ -317,6 +303,50 @@ function PANEL:PaintOver(w, h)
 			surface.SetMaterial(self.PadLock);
 			surface.DrawTexturedRect(w / 2 - 15, h - 40, 30, 30);
 		end
+	end
+
+	if (self.IsEquipped == true) then
+		//surface.SetDrawColor(255, 255, 255, self.PadLockAlpha);
+		surface.SetDrawColor(ColorAlpha(self.CurrentBGColour, self.PadLockAlpha));
+		surface.SetMaterial(self.EquippedIcon);
+		surface.DrawTexturedRect(w / 2 - 15, h - 40, 30, 30);
+	end
+end
+
+function PANEL:UpdateItemBuyable()
+	self.CanBuy = true;
+	if (LocalPlayer():PS_HasPoints(self.Data.Price) == false) then
+		self.CanBuy = false;
+	end
+
+	if (LocalPlayer():PS_HasLevel(self.Data.Level) == false) then
+		self.CanBuy = false;
+	end
+
+	if (self.Data.Buyable == false) then
+		self.CanBuy = false;
+	end
+
+	if (LocalPlayer():PS_HasItem(self.Data.ID) == true) then
+		self.CanBuy = true;
+	end
+end
+
+function PANEL:UpdateItemEquipped()
+	if (LocalPlayer():PS_HasItemEquipped(self.Data.ID) == true) then
+		self.IsEquipped = true;
+		return;
+	end
+
+	self.IsEquipped = false;
+end
+
+function PANEL:Think()
+	self.UpdateTimer = self.UpdateTimer - FrameTime();
+	if (self.UpdateTimer < 0) then
+		self.UpdateTimer = 1;
+		self:UpdateItemBuyable();
+		self:UpdateItemEquipped();
 	end
 end
 
