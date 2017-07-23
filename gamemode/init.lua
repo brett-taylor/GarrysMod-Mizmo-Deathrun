@@ -161,6 +161,9 @@ include( "Jukebox/lua/server_saving.lua" )
 
 include( "LevelSystem/sv_levelsystem.lua" )
 
+include("RollTheDice/sv_rtd.lua")
+include("RollTheDice/sv_rtdCommand.lua")
+
 util.AddNetworkString("DeathrunChatMessage")
 util.AddNetworkString("DeathrunSyncMutelist")
 util.AddNetworkString("DeathrunNotification")
