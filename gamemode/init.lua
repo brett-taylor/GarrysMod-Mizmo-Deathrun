@@ -9,6 +9,7 @@ AddCSLuaFile("Util/sh_playerTags.lua");
 AddCSLuaFile("Util/sh_groups.lua");
 AddCSLuaFile("Util/sh_itemRarity.lua");
 AddCSLuaFile("Util/cl_DisplayStuff.lua");
+AddCSLuaFile("Util/sh_ChatColours.lua");
 
 AddCSLuaFile("PlayerSettings/sh_playerSettingsEnums.lua")
 
@@ -104,6 +105,7 @@ include("Util/sh_sendMessage.lua");
 include("Util/sh_playerTags.lua");
 include("Util/sh_groups.lua");
 include("Util/sh_itemRarity.lua");
+include("Util/sh_ChatColours.lua");
 
 include("ButtonClaiming/sv_buttonClaiming.lua");
 

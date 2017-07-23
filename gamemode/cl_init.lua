@@ -5,6 +5,7 @@ include("Util/sh_playerTags.lua");
 include("Util/sh_groups.lua");
 include("Util/sh_itemRarity.lua");
 include("Util/cl_DisplayStuff.lua");
+include("Util/sh_ChatColours.lua");
 
 include("PlayerSettings/sh_playerSettingsEnums.lua")
 
