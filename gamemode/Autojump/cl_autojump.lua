@@ -1,10 +1,15 @@
 AutoJumpClient = {};
 AutoJumpClient.Enabled = true;
+AutoJumpClient.EnabledEnhanced = true;
 AutoJumpClient.Notifiy = false;
 AutoJumpClient.UniqueRoundNoJump = false;
 
 function AutoJumpClient.RecievedUpdate(bool, alert)
 	AutoJumpClient.Enabled = bool;
+	if (tonumber(LocalPlayer():GetNWString(PlayerSettings.Enums.ENHANCED_AUTOJUMP.Name)) ~= 0) then
+		return;
+	end
+
 	if (alert == true) then
 		AutoJumpClient.StartAlert();
 	else
@@ -12,13 +17,35 @@ function AutoJumpClient.RecievedUpdate(bool, alert)
 	end
 end
 
-net.Receive("UpdateAutoJumpStatus", function() 
+function AutoJumpClient.RecievedUpdateEnhanced(bool, alert)
+	AutoJumpClient.EnabledEnhanced = bool;
+	if (tonumber(LocalPlayer():GetNWString(PlayerSettings.Enums.ENHANCED_AUTOJUMP.Name)) ~= 1) then
+		return;
+	end
+
+	if (alert == true) then
+		AutoJumpClient.StartAlertEnhanced();
+	else
+		AutoJumpClient.Notifiy = false;
+	end
+end
+
+net.Receive("MizmoUpdateAutoJumpStatus", function() 
 	AutoJumpClient.RecievedUpdate(net.ReadBool(), net.ReadBool()); 
+end);
+
+net.Receive("MizmoUpdateAutoJumpStatusEnhanced", function() 
+	AutoJumpClient.RecievedUpdateEnhanced(net.ReadBool(), net.ReadBool()); 
 end);
 
 function AutoJumpClient.StartAlert()
 	AutoJumpClient.Notifiy = true;
 	timer.Create("MizmoServerAutoJumpTempDisabledClient", 59, 1, function() AutoJumpClient.CountdownExpired() end);
+end
+
+function AutoJumpClient.StartAlertEnhanced()
+	AutoJumpClient.Notifiy = true;
+	timer.Create("MizmoServerAutoJumpTempDisabledClient", 29, 1, function() AutoJumpClient.CountdownExpired() end);
 end
 
 function AutoJumpClient.CountdownExpired()
@@ -27,6 +54,8 @@ function AutoJumpClient.CountdownExpired()
 end
 
 function AutoJumpClient.HUDPaint()
+	draw.SimpleTextOutlined("1 "..tostring(AutoJumpClient.Enabled), "MizmoGaming-AutoJump-Notifier", ScrW() - 5, 20, Colours.TextWhite, TEXT_ALIGN_RIGHT, TEXT_ALIGN_BOTTOM, 2, Color(0, 0, 0))
+	draw.SimpleTextOutlined("2 "..tostring(AutoJumpClient.EnabledEnhanced), "MizmoGaming-AutoJump-Notifier", ScrW() - 5, 60, Colours.TextWhite, TEXT_ALIGN_RIGHT, TEXT_ALIGN_BOTTOM, 2, Color(0, 0, 0))
 	if (AutoJumpClient.Notifiy == false) then
 		return;
 	end

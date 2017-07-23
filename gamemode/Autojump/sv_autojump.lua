@@ -1,17 +1,23 @@
-util.AddNetworkString("UpdateAutoJumpStatus");
+util.AddNetworkString("MizmoUpdateAutoJumpStatus");
+util.AddNetworkString("MizmoUpdateAutoJumpStatusEnhanced");
 AutoJumpServer = {};
 AutoJumpServer.Enabled = true;
+AutoJumpServer.EnabledEnhanced = true;
 AutoJumpServer.UniqueRoundNoJump = false;
 
 function AutoJumpServer.RoundStarted()
 	AutoJumpServer.ChangeAutoJump(false, true);
+	AutoJumpServer.ChangeAutoJumpEnhanced(false, true);
 	timer.Create("MizmoServerAutoJumpTempDisabled", 59, 0, function() AutoJumpServer.ChangeAutoJump(true, false) end);
+	timer.Create("MizmoServerAutoJumpTempDisabledEnhanced", 29, 0, function() AutoJumpServer.ChangeAutoJumpEnhanced(true, false) end);
 end
 hook.Add("DeathrunBeginActive", "MizmoDisableAutojumpStartServer", AutoJumpServer.RoundStarted);
 
 function AutoJumpServer.RoundEnded()
 	timer.Stop("MizmoServerAutoJumpTempDisabled");
+	timer.Stop("MizmoServerAutoJumpTempDisabledEnhanced");
 	AutoJumpServer.ChangeAutoJump(true, false);
+	AutoJumpServer.ChangeAutoJumpEnhanced(true, false);
 end
 hook.Add("DeathrunBeginOver", "MizmoDisableAutojumpEndServer", AutoJumpServer.RoundEnded);
 hook.Add("DeathrunBeginWaiting", "MizmoDisableAutojumpEndServerWaiting", AutoJumpServer.RoundEnded);
@@ -19,8 +25,16 @@ hook.Add("DeathrunBeginPrep", "MizmoDisableAutojumpEndServerBeginActive", AutoJu
 
 function AutoJumpServer.ChangeAutoJump(enabled, countdown)
 	AutoJumpServer.Enabled = enabled;
-	net.Start("UpdateAutoJumpStatus");
+	net.Start("MizmoUpdateAutoJumpStatus");
 		net.WriteBool(AutoJumpServer.Enabled);
+		net.WriteBool(countdown);
+	net.Broadcast();
+end
+
+function AutoJumpServer.ChangeAutoJumpEnhanced(enabled, countdown)
+	AutoJumpServer.EnabledEnhanced = enabled;
+	net.Start("MizmoUpdateAutoJumpStatusEnhanced");
+		net.WriteBool(AutoJumpServer.EnabledEnhanced);
 		net.WriteBool(countdown);
 	net.Broadcast();
 end

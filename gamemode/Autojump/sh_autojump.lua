@@ -27,6 +27,26 @@ function AutoHop( ply, data )
 				return;
 			end
 		end
+	elseif (tonumber(ply:GetNWString(PlayerSettings.Enums.ENHANCED_AUTOJUMP.Name)) == 1) then
+		if CLIENT then
+			if (AutoJumpClient.EnabledEnhanced == false && AutoJumpClient.UniqueRoundNoJump == false && ply:Team() == TEAM_RUNNER) then
+				return;
+			end
+
+			if (AutoJumpClient.UniqueRoundNoJump == true && ply:Team() == TEAM_RUNNER) then
+				return;
+			end
+		end
+
+		if SERVER then
+			if (AutoJumpServer.EnabledEnhanced == false && AutoJumpServer.UniqueRoundNoJump == false && ply:Team() == TEAM_RUNNER) then
+				return;
+			end
+
+			if (AutoJumpServer.UniqueRoundNoJump == true && ply:Team() == TEAM_RUNNER) then
+				return;
+			end
+		end
 	end
 	
 	local ButtonData = data:GetButtons()
