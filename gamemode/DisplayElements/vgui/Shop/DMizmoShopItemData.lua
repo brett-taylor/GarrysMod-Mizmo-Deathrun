@@ -52,19 +52,21 @@ function PANEL:SetData(item)
 	self.Desc:SetWrap(true);
 
 	if (LocalPlayer():PS_HasItem(self.Data.ID) == true) then
-		self.SellButton = vgui.Create("DMizmoShopFunctionButton", self.Background);
-		self.SellButton:Settext("Sell");
-		self.SellButton:SetAccentColour(self.Colour);
-		self.SellButton:SetMaterial("sell");
-		self.SellButton.OnClicked = function()
-			self:CancelClicks(self.SellButton);
-		end
-		self.SellButton.Execute = function()
-			LocalPlayer():PS_SellItem(self.Data.ID);
-			timer.Simple(0.25, function() 
-				PS.ShopMenu:OpenInventoryTab(PS.ShopMenu.LastItemDataOpened.CategoryID)
-				self:Remove();
-			end);
+		if (self.Data.Buyable == nil || self.Data.Buyable == true) then
+			self.SellButton = vgui.Create("DMizmoShopFunctionButton", self.Background);
+			self.SellButton:Settext("Sell");
+			self.SellButton:SetAccentColour(self.Colour);
+			self.SellButton:SetMaterial("sell");
+			self.SellButton.OnClicked = function()
+				self:CancelClicks(self.SellButton);
+			end
+			self.SellButton.Execute = function()
+				LocalPlayer():PS_SellItem(self.Data.ID);
+				timer.Simple(0.25, function() 
+					PS.ShopMenu:OpenInventoryTab(PS.ShopMenu.LastItemDataOpened.CategoryID)
+					self:Remove();
+				end);
+			end
 		end
 
 		if (LocalPlayer():PS_HasItemEquipped(self.Data.ID) == true) then
@@ -171,15 +173,27 @@ function PANEL:InvalidateLayout()
 	end
 
 	if (self.HolsterButton ~= nil) then
-		self.HolsterButton:SetPos(465, 85);
+		if (self.SellButton == nil) then
+			self.HolsterButton:SetPos(530, 85);
+		else
+			self.HolsterButton:SetPos(465, 85);
+		end
 	end
 
 	if (self.EquipButton ~= nil) then
-		self.EquipButton:SetPos(465, 85);
+		if (self.SellButton == nil) then
+			self.EquipButton:SetPos(530, 85);
+		else
+			self.EquipButton:SetPos(465, 85);
+		end
 	end
 
 	if (self.ModifyButton ~= nil) then
-		self.ModifyButton:SetPos(400, 85);
+		if (self.SellButton == nil) then
+			self.ModifyButton:SetPos(465, 85);
+		else
+			self.ModifyButton:SetPos(400, 85);
+		end
 	end
 end
 

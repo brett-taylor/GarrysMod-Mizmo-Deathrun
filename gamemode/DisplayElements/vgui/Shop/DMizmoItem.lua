@@ -36,6 +36,10 @@ function PANEL:DoItemPopup()
 	if (self.MaterialVariant) then
 		self.MaterialVariant:DoItemPopup();
 	end
+
+	if (self.TextVariant) then
+		self.TextVariant:DoItemPopup();
+	end
 end
 
 function PANEL:InvalidateLayout()
@@ -271,10 +275,14 @@ function PANEL:SetData(data)
 	if (self.Data.Model) then
 		self.ModelVariant = vgui.Create("DMizmoItemModelVariant", self);
 		self.ModelVariant:SetData(data, self);
-	else
+	elseif (self.Data.Material) then
 		self.MaterialVariant = vgui.Create("DMizmoItemMaterialVariant", self);
 		self.MaterialVariant:SetData(data, self);
 		self.MaterialVariant:SetRadius(self.Radius);
+	elseif (self.Data.Text) then
+		self.TextVariant = vgui.Create("DMizmoItemTextVariant", self);
+		self.TextVariant:SetData(data, self);
+		self.TextVariant:SetRadius(self.Radius);
 	end
 
 	if (self.Data.Level == 0) then
@@ -300,9 +308,15 @@ end
 
 function PANEL:PaintOver(w, h)
 	if (self.CanBuy == false) then
-		surface.SetDrawColor(255, 255, 255, self.PadLockAlpha);
-		surface.SetMaterial(self.PadLock);
-		surface.DrawTexturedRect(w / 2 - 30, h / 2 - 30, 60, 60);
+		if (self.Data.Text == nil) then
+			surface.SetDrawColor(255, 255, 255, self.PadLockAlpha);
+			surface.SetMaterial(self.PadLock);
+			surface.DrawTexturedRect(w / 2 - 30, h / 2 - 30, 60, 60);
+		else
+			surface.SetDrawColor(255, 255, 255, self.PadLockAlpha);
+			surface.SetMaterial(self.PadLock);
+			surface.DrawTexturedRect(w / 2 - 15, h - 40, 30, 30);
+		end
 	end
 end
 

@@ -71,6 +71,13 @@ PlayerSettings.Enums.CHAT_COLOUR = {
 	IsNetworked = true;
 };
 
+PlayerSettings.Enums.HUD_COLOUR = {
+	Name = "HUD_COLOUR";
+	ID = 11;
+	Default = "223-163-0";
+	IsNetworked = true;
+};
+
 for k, v in pairs(PlayerSettings.Enums) do
 	PlayerSettings.Enums[v.ID] = v;
 	PlayerSettings.Enums[k] = v;

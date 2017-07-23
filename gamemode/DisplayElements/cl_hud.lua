@@ -22,7 +22,8 @@ HUD.Health = {};
 HUD.Health.This = 0;
 HUD.Health.Last = 0;
 
-HUD.FilledHealthBarColour = Colours.Gold;
+HUD.DisplayColour = Colours.Gold;
+HUD.FilledHealthBarColour = HUD.DisplayColour;
 HUD.EmptyHealthBarColour = Colours.Grey;
 
 HUD.HealthElements = {};
@@ -114,9 +115,9 @@ function HUD.GetPlayer() //The variable is told whether the player is alive or s
 end
 
 function HUD.DrawBasicElements()
-    draw.RoundedBox(2, HUD.Anchor.X, (HUD.Size.H / 2) + HUD.Anchor.Y, HUD.Size.W, 3, Color(223, 163, 0)); //Middle Horizontal line of HUD
-    draw.RoundedBox(2, HUD.Anchor.X + 16, (HUD.Size.H / 2) + 3 + HUD.Anchor.Y, 3, HUD.Size.H/2 - 15, Color(223, 163, 0)); //vertical line going down near left of HUD
-    draw.RoundedBox(2, HUD.Anchor.X + 23, (HUD.Size.H / 2) + 3 + (HUD.Size.H/2 - 15)/2 + HUD.Anchor.Y, (HUD.Size.W - (HUD.Anchor.X + 16)) + 18, 2, Color(223, 163, 0)); //Horizontal line between the labels
+    draw.RoundedBox(2, HUD.Anchor.X, (HUD.Size.H / 2) + HUD.Anchor.Y, HUD.Size.W, 3, HUD.DisplayColour); //Middle Horizontal line of HUD
+    draw.RoundedBox(2, HUD.Anchor.X + 16, (HUD.Size.H / 2) + 3 + HUD.Anchor.Y, 3, HUD.Size.H/2 - 15, HUD.DisplayColour); //vertical line going down near left of HUD
+    draw.RoundedBox(2, HUD.Anchor.X + 23, (HUD.Size.H / 2) + 3 + (HUD.Size.H/2 - 15)/2 + HUD.Anchor.Y, (HUD.Size.W - (HUD.Anchor.X + 16)) + 18, 2, HUD.DisplayColour); //Horizontal line between the labels
 end
 
 function HUD.DrawHUDText()
@@ -125,15 +126,15 @@ function HUD.DrawHUDText()
     	return
     end
     draw.SimpleTextOutlined(HUD.PlayerData:Health(), "HealthFont", ((16 + ((HUD.Size.W-16)/4)*3) - 5) + (HUD.Size.W - ((16 + ((HUD.Size.W-16)/4)*3) - 5))/2 + HUD.Anchor.X, (HUD.Size.H / 2) + 6 + HUD.Anchor.Y, HUD.FilledHealthBarColour, TEXT_ALIGN_CENTER, TEXT_ALIGN_BOTTOM, 1, Color(0, 0, 0, 255));
-    draw.SimpleTextOutlined("Mizmos", "HUDLabelfont", (HUD.Anchor.X + 26) + ((HUD.Size.W - (HUD.Anchor.X + 16)) + 18)/8, HUD.Size.H/2 + 4 + HUD.Anchor.Y, Color( 223, 163, 0, 255 ), TEXT_ALIGN_CENTER, TEXT_ALIGN_TOP, 1, Color(0, 0, 0, 255));
-    draw.SimpleTextOutlined("Level", "HUDLabelfont", (HUD.Anchor.X + 26) + (((HUD.Size.W - (HUD.Anchor.X + 16)) + 18)/8) * 3, HUD.Size.H/2 + 4 + HUD.Anchor.Y, Color( 223, 163, 0, 255 ), TEXT_ALIGN_CENTER, TEXT_ALIGN_TOP, 1, Color(0, 0, 0, 255));
-    draw.SimpleTextOutlined("Current XP", "HUDLabelfont", (HUD.Anchor.X + 26) + (((HUD.Size.W - (HUD.Anchor.X + 16)) + 18)/8) * 5, HUD.Size.H/2 + 4 + HUD.Anchor.Y, Color( 223, 163, 0, 255 ), TEXT_ALIGN_CENTER, TEXT_ALIGN_TOP, 1, Color(0, 0, 0, 255));
-    draw.SimpleTextOutlined("XP Req", "HUDLabelfont", (HUD.Anchor.X + 26) + (((HUD.Size.W - (HUD.Anchor.X + 16)) + 18)/8) * 7, HUD.Size.H/2 + 4 + HUD.Anchor.Y, Color( 223, 163, 0, 255 ), TEXT_ALIGN_CENTER, TEXT_ALIGN_TOP, 1, Color(0, 0, 0, 255));
-    draw.SimpleTextOutlined(HUD.PlayerData:PS_GetPoints(), "HUDLabelfont", (HUD.Anchor.X + 26) + ((HUD.Size.W - (HUD.Anchor.X + 16)) + 18)/8, (HUD.Size.H / 2) + 3 + (HUD.Size.H/2 - 15)/2 + 3 + HUD.Anchor.Y, Color( 223, 163, 0, 255 ), TEXT_ALIGN_CENTER, TEXT_ALIGN_TOP, 1, Color(0, 0, 0, 255));
-    draw.SimpleTextOutlined(tostring(HUD.PlayerData:GetCurrentLevel()), "HUDLabelfont", (HUD.Anchor.X + 26) + (((HUD.Size.W - (HUD.Anchor.X + 16)) + 18)/8) * 3, (HUD.Size.H / 2) + 3 + (HUD.Size.H/2 - 15)/2 + 3 + HUD.Anchor.Y, Color( 223, 163, 0, 255 ), TEXT_ALIGN_CENTER, TEXT_ALIGN_TOP, 1, Color(0, 0, 0, 255));
-    draw.SimpleTextOutlined(tostring(HUD.PlayerData:GetCurrentExp()), "HUDLabelfont", (HUD.Anchor.X + 26) + (((HUD.Size.W - (HUD.Anchor.X + 16)) + 18)/8) * 5, (HUD.Size.H / 2) + 3 + (HUD.Size.H/2 - 15)/2 + 3 + HUD.Anchor.Y, Color( 223, 163, 0, 255 ), TEXT_ALIGN_CENTER, TEXT_ALIGN_TOP, 1, Color(0, 0, 0, 255));
-    draw.SimpleTextOutlined(tostring(HUD.PlayerData:GetExpRequired()), "HUDLabelfont", (HUD.Anchor.X + 26) + (((HUD.Size.W - (HUD.Anchor.X + 16)) + 18)/8) * 7, (HUD.Size.H / 2) + 3 + (HUD.Size.H/2 - 15)/2 + 3 + HUD.Anchor.Y, Color( 223, 163, 0, 255 ), TEXT_ALIGN_CENTER, TEXT_ALIGN_TOP, 1, Color(0, 0, 0, 255));
-    draw.SimpleTextOutlined(HUD.PlayerData:GetName(), "NameFont", HUD.Anchor.X + 40, HUD.Anchor.Y, Color( 223, 163, 0, 255 ), TEXT_ALIGN_LEFT, TEXT_ALIGN_TOP, 1, Color(0, 0, 0, 255));
+    draw.SimpleTextOutlined("Mizmos", "HUDLabelfont", (HUD.Anchor.X + 26) + ((HUD.Size.W - (HUD.Anchor.X + 16)) + 18)/8, HUD.Size.H/2 + 4 + HUD.Anchor.Y, HUD.DisplayColour, TEXT_ALIGN_CENTER, TEXT_ALIGN_TOP, 1, Color(0, 0, 0, 255));
+    draw.SimpleTextOutlined("Level", "HUDLabelfont", (HUD.Anchor.X + 26) + (((HUD.Size.W - (HUD.Anchor.X + 16)) + 18)/8) * 3, HUD.Size.H/2 + 4 + HUD.Anchor.Y, HUD.DisplayColour, TEXT_ALIGN_CENTER, TEXT_ALIGN_TOP, 1, Color(0, 0, 0, 255));
+    draw.SimpleTextOutlined("Current XP", "HUDLabelfont", (HUD.Anchor.X + 26) + (((HUD.Size.W - (HUD.Anchor.X + 16)) + 18)/8) * 5, HUD.Size.H/2 + 4 + HUD.Anchor.Y, HUD.DisplayColour, TEXT_ALIGN_CENTER, TEXT_ALIGN_TOP, 1, Color(0, 0, 0, 255));
+    draw.SimpleTextOutlined("XP Req", "HUDLabelfont", (HUD.Anchor.X + 26) + (((HUD.Size.W - (HUD.Anchor.X + 16)) + 18)/8) * 7, HUD.Size.H/2 + 4 + HUD.Anchor.Y, HUD.DisplayColour, TEXT_ALIGN_CENTER, TEXT_ALIGN_TOP, 1, Color(0, 0, 0, 255));
+    draw.SimpleTextOutlined(HUD.PlayerData:PS_GetPoints(), "HUDLabelfont", (HUD.Anchor.X + 26) + ((HUD.Size.W - (HUD.Anchor.X + 16)) + 18)/8, (HUD.Size.H / 2) + 3 + (HUD.Size.H/2 - 15)/2 + 3 + HUD.Anchor.Y, HUD.DisplayColour, TEXT_ALIGN_CENTER, TEXT_ALIGN_TOP, 1, Color(0, 0, 0, 255));
+    draw.SimpleTextOutlined(tostring(HUD.PlayerData:GetCurrentLevel()), "HUDLabelfont", (HUD.Anchor.X + 26) + (((HUD.Size.W - (HUD.Anchor.X + 16)) + 18)/8) * 3, (HUD.Size.H / 2) + 3 + (HUD.Size.H/2 - 15)/2 + 3 + HUD.Anchor.Y, HUD.DisplayColour, TEXT_ALIGN_CENTER, TEXT_ALIGN_TOP, 1, Color(0, 0, 0, 255));
+    draw.SimpleTextOutlined(tostring(HUD.PlayerData:GetCurrentExp()), "HUDLabelfont", (HUD.Anchor.X + 26) + (((HUD.Size.W - (HUD.Anchor.X + 16)) + 18)/8) * 5, (HUD.Size.H / 2) + 3 + (HUD.Size.H/2 - 15)/2 + 3 + HUD.Anchor.Y, HUD.DisplayColour, TEXT_ALIGN_CENTER, TEXT_ALIGN_TOP, 1, Color(0, 0, 0, 255));
+    draw.SimpleTextOutlined(tostring(HUD.PlayerData:GetExpRequired()), "HUDLabelfont", (HUD.Anchor.X + 26) + (((HUD.Size.W - (HUD.Anchor.X + 16)) + 18)/8) * 7, (HUD.Size.H / 2) + 3 + (HUD.Size.H/2 - 15)/2 + 3 + HUD.Anchor.Y, HUD.DisplayColour, TEXT_ALIGN_CENTER, TEXT_ALIGN_TOP, 1, Color(0, 0, 0, 255));
+    draw.SimpleTextOutlined(HUD.PlayerData:GetName(), "NameFont", HUD.Anchor.X + 40, HUD.Anchor.Y, HUD.DisplayColour, TEXT_ALIGN_LEFT, TEXT_ALIGN_TOP, 1, Color(0, 0, 0, 255));
 end
 
 function HUD.DrawHUD()
@@ -164,7 +165,7 @@ function HUD.TakeDamageAnim()
 end
 
 function HUD.LerpColors()
-    HUD.FilledHealthBarColour = Util.LerpColour(FrameTime() * 3, HUD.FilledHealthBarColour, Colours.Gold);
+    HUD.FilledHealthBarColour = Util.LerpColour(FrameTime() * 3, HUD.FilledHealthBarColour, HUD.DisplayColour);
     HUD.EmptyHealthBarColour = Util.LerpColour(FrameTime() * 3, HUD.EmptyHealthBarColour, Colours.Grey);
 end
 
@@ -175,7 +176,7 @@ function HUD.DrawElements()
         surface.DrawPoly(outlineTable);
     end
 
-    surface.SetDrawColor(223, 163, 0, 255);
+    surface.SetDrawColor(HUD.DisplayColour);
     for key, elementTable in pairs(HUD.Elements) do
         surface.DrawPoly(elementTable);
     end
@@ -212,7 +213,7 @@ end
 
 function HUD.CreateTimer()
 	draw.RoundedBox(8, ScrW()/2 - 120/2, HUD.TimerY - 20, 120, 56, Color(Colours.Grey.r, Colours.Grey.g, Colours.Grey.b, 200))
-	draw.SimpleTextOutlined(string.ToMinutesSeconds(math.Clamp(ROUND:GetTimer(), 0, 99999)), "TimerFont", ScrW()/2 + 18, 36/2 + HUD.TimerY, Colours.Gold, TEXT_ALIGN_CENTER, TEXT_ALIGN_CENTER, 1, Color(0, 0, 0))
+	draw.SimpleTextOutlined(string.ToMinutesSeconds(math.Clamp(ROUND:GetTimer(), 0, 99999)), "TimerFont", ScrW()/2 + 18, 36/2 + HUD.TimerY, HUD.DisplayColour, TEXT_ALIGN_CENTER, TEXT_ALIGN_CENTER, 1, Color(0, 0, 0))
 
 	local clock = Material("mizmo-gaming-downloads/icons/clock32.png")
 
@@ -299,7 +300,15 @@ function HUD.DrawCrosshair()
     end
 end
 
-
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////HUD Colour////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+function HUD.CorrectHUDColour()
+    if (IsValid(HUD.PlayerData)) then
+        HUD.DisplayColour = Util.GetHUDColour(HUD.PlayerData);
+    end
+end
+timer.Create("MizmoDoCorrectHUDColour", 1, 0, HUD.CorrectHUDColour)
 
 hook.Add("DeathrunBeginPrep", "TimerIn", HUD.TimerIn)
 hook.Add("DeathrunBeginOver", "TimerOut", HUD.TimerOut)

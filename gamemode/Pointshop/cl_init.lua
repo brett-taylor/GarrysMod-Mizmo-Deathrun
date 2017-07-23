@@ -24,7 +24,7 @@ local invalidplayeritems = {}
 -- menu stuff
 
 function PS:ToggleMenu()
-	/*if not PS.ShopMenu then
+	if not PS.ShopMenu then
 		PS.ShopMenu = vgui.Create('DMizmoShopFrame')
 		return;
 	end
@@ -32,9 +32,9 @@ function PS:ToggleMenu()
 	if PS.ShopMenu:IsVisible() then
 		PS.ShopMenu:Remove();
 		PS.ShopMenu = nil;
-	end*/
+	end
 
-	if (!IsValid(PS.ShopMenu)) then
+	/*if (!IsValid(PS.ShopMenu)) then
 		PS.ShopMenu = vgui.Create('DMizmoShopFrame')
 		return;
 	end
@@ -43,7 +43,7 @@ function PS:ToggleMenu()
 		PS.ShopMenu:Hide();
 	else
 		PS.ShopMenu:Show();
-	end
+	end*/
 end
 
 function PS:SetHoverItem(item_id)

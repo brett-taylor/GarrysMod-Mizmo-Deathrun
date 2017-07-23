@@ -130,7 +130,7 @@ function PS:LoadItems()
 					elseif not ITEM.Level then
 						ErrorNoHalt("[POINTSHOP] Item missing level: " .. category .. '/' .. name .. "\n")
 						continue
-					elseif not ITEM.Model and not ITEM.Material then
+					elseif not ITEM.Model and not ITEM.Material and not ITEM.Text then
 						ErrorNoHalt("[POINTSHOP] Item missing model or material: " .. category .. '/' .. name .. "\n")
 						continue
 					end

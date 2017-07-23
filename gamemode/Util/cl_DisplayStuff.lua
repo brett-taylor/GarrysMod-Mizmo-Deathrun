@@ -38,3 +38,17 @@ function Util.DrawRotatedText(text, x, y, color, font, ang)
 	render.PopFilterMag()
 	render.PopFilterMin()
 end
+
+function Util.GetHUDColour(ply)
+	local colourString = ply:GetNWString(PlayerSettings.Enums.HUD_COLOUR.Name);
+	colourString = string.Split(colourString, "-");
+	if (#colourString == 3) then
+		if (isnumber(tonumber(colourString[1])) && isnumber(tonumber(colourString[2])) && isnumber(tonumber(colourString[3]))) then
+			return Color(tonumber(colourString[1]), tonumber(colourString[2]), tonumber(colourString[3]));
+		else
+			return Colours.Gold;
+		end
+	else
+		return Colours.Gold;
+	end
+end

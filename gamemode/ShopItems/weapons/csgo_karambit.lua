@@ -5,6 +5,7 @@ ITEM.Skin = 0
 ITEM.WeaponClass = 'csgo_karambit'
 ITEM.Grade = 'Covert'
 ITEM.Buyable = false;
+ITEM.Sellable = false;
 
 function ITEM:OnEquip(ply)
 	ply:Give(self.WeaponClass)

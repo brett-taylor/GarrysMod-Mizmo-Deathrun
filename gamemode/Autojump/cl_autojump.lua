@@ -54,8 +54,6 @@ function AutoJumpClient.CountdownExpired()
 end
 
 function AutoJumpClient.HUDPaint()
-	draw.SimpleTextOutlined("1 "..tostring(AutoJumpClient.Enabled), "MizmoGaming-AutoJump-Notifier", ScrW() - 5, 20, Colours.TextWhite, TEXT_ALIGN_RIGHT, TEXT_ALIGN_BOTTOM, 2, Color(0, 0, 0))
-	draw.SimpleTextOutlined("2 "..tostring(AutoJumpClient.EnabledEnhanced), "MizmoGaming-AutoJump-Notifier", ScrW() - 5, 60, Colours.TextWhite, TEXT_ALIGN_RIGHT, TEXT_ALIGN_BOTTOM, 2, Color(0, 0, 0))
 	if (AutoJumpClient.Notifiy == false) then
 		return;
 	end
