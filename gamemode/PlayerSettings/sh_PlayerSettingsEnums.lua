@@ -64,6 +64,13 @@ PlayerSettings.Enums.NEVER_DEATH = {
 	IsNetworked = false;
 };
 
+PlayerSettings.Enums.CHAT_COLOUR = {
+	Name = "CHAT_COLOUR";
+	ID = 10;
+	Default = "255-255-255";
+	IsNetworked = true;
+};
+
 for k, v in pairs(PlayerSettings.Enums) do
 	PlayerSettings.Enums[v.ID] = v;
 	PlayerSettings.Enums[k] = v;

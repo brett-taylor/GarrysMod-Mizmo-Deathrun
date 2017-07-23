@@ -58,7 +58,7 @@ function ChatSystem.AddPrefix(ply)
 	table.insert(prefix, Colours.White);
 	table.insert(prefix, ": ");
 
-	table.insert(prefix, Colours.White);
+	table.insert(prefix, Util.GetChatColour(ply));
 
 	return prefix;
 end

@@ -13,11 +13,9 @@ function Util.GetTagColour(ply)
 		if (isnumber(tonumber(colourString[1])) && isnumber(tonumber(colourString[2])) && isnumber(tonumber(colourString[3]))) then
 			return Color(tonumber(colourString[1]), tonumber(colourString[2]), tonumber(colourString[3]));
 		else
-			print("called 2");
 			return Color(255, 255, 255);
 		end
 	else
-		print("called 1");
 		return Color(255, 255, 255);
 	end
 end
