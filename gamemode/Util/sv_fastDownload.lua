@@ -34,6 +34,10 @@ resource.AddFile("materials/Mizmo-Gaming-Downloads/shop/sell.png");
 resource.AddFile("materials/Mizmo-Gaming-Downloads/shop/padlock.png");
 resource.AddFile("materials/Mizmo-Gaming-Downloads/shop/equipped.png");
 
+-- Soviet Union and Russian Trails
+resource.AddFile("materials/Mizmo-Gaming-Downloads/trails/mizmo_russia.vmt");
+resource.AddFile("materials/Mizmo-Gaming-Downloads/trails/mizmo_soviet_union.vmt");
+
 -- Pointshop trails
 resource.AddWorkshop("161466256"); -- Custom Trails Pack 1
 resource.AddWorkshop("171222056"); -- Custom Trails Pack 2
