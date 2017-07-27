@@ -1,6 +1,7 @@
 ITEM.Name = 'Russian Flag'
 ITEM.Price = 150
 ITEM.Material = 'mizmo-gaming-downloads/trails/mizmo_russia.vmt'
+ITEM.Desc = 'Have you visited the MOTHERLAND? Ehh this trail is not as great as the MOTHERLAND but its a decent replacement.';
 ITEM.Grade = 'Covert'
 ITEM.Buyable = true;
 

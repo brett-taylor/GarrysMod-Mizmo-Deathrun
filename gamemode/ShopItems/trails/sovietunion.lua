@@ -1,6 +1,7 @@
 ITEM.Name = 'Soviet Union Flag'
 ITEM.Price = 150
 ITEM.Material = 'mizmo-gaming-downloads/trails/mizmo_soviet_union.vmt'
+ITEM.Desc = 'NATO > Soviet Union? NATO < Soviet Union? Well theres no NATO flag on this server so...';
 ITEM.Grade = 'Covert'
 ITEM.Buyable = true;
 
