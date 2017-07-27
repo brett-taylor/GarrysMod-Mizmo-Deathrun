@@ -5,11 +5,11 @@ ITEM.Grade = 'Consumer'
 ITEM.Buyable = true;
 
 function ITEM:OnEquip(ply, modifications)
-	ply.AF = util.SpriteTrail(ply, 0, modifications.color, false, 15, 1, 4, 0.125, self.Material)
+	ply.AmericanFlag = util.SpriteTrail(ply, 0, modifications.color, false, 15, 1, 4, 0.125, self.Material)
 end
 
 function ITEM:OnHolster(ply)
-	SafeRemoveEntity(ply.AF)
+	SafeRemoveEntity(ply.AmericanFlag)
 end
 
 function ITEM:Modify(modifications)
@@ -17,6 +17,6 @@ function ITEM:Modify(modifications)
 end
 
 function ITEM:OnModify(ply, modifications)
-	SafeRemoveEntity(ply.AF)
+	SafeRemoveEntity(ply.AmericanFlag)
 	self:OnEquip(ply, modifications)
 end

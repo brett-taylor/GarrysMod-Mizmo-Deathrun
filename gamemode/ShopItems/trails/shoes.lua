@@ -6,11 +6,11 @@ ITEM.Grade = 'Consumer'
 ITEM.Buyable = true;
 
 function ITEM:OnEquip(ply, modifications)
-	ply.ShoesTrail = util.SpriteTrail(ply, 0, modifications.color, false, 15, 1, 4, 0.125, self.Material)
+	ply.GentlemnaShoesTrail = util.SpriteTrail(ply, 0, modifications.color, false, 15, 1, 4, 0.125, self.Material)
 end
 
 function ITEM:OnHolster(ply)
-	SafeRemoveEntity(ply.ShoesTrail)
+	SafeRemoveEntity(ply.GentlemnaShoesTrail)
 end
 
 function ITEM:Modify(modifications)
@@ -18,6 +18,6 @@ function ITEM:Modify(modifications)
 end
 
 function ITEM:OnModify(ply, modifications)
-	SafeRemoveEntity(ply.ShoesTrail)
+	SafeRemoveEntity(ply.GentlemnaShoesTrail)
 	self:OnEquip(ply, modifications)
 end

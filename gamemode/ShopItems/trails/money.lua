@@ -5,11 +5,11 @@ ITEM.Grade = 'Consumer'
 ITEM.Buyable = true;
 
 function ITEM:OnEquip(ply, modifications)
-	ply.Monayy = util.SpriteTrail(ply, 0, modifications.color, false, 15, 1, 4, 0.125, self.Material)
+	ply.MoneyTrail = util.SpriteTrail(ply, 0, modifications.color, false, 15, 1, 4, 0.125, self.Material)
 end
 
 function ITEM:OnHolster(ply)
-	SafeRemoveEntity(ply.Monayy)
+	SafeRemoveEntity(ply.MoneyTrail)
 end
 
 function ITEM:Modify(modifications)
@@ -17,6 +17,6 @@ function ITEM:Modify(modifications)
 end
 
 function ITEM:OnModify(ply, modifications)
-	SMonayyeRemoveEntity(ply.Monayy)
+	SMonayyeRemoveEntity(ply.MoneyTrail)
 	self:OnEquip(ply, modifications)
 end
