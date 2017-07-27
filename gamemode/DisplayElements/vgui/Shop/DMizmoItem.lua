@@ -288,6 +288,10 @@ function PANEL:SetData(data)
 		self.TextVariant:SetRadius(self.Radius);
 	end
 
+	if (self.Data.Level == nil || self.Data.Level == 0) then
+		self.Data.Level = 1;
+	end
+
 	self:UpdateItemBuyable();
 	self:UpdateItemEquipped();	
 end

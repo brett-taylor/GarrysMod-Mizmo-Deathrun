@@ -34,7 +34,7 @@ function PS:ToggleMenu()
 		PS.ShopMenu = nil;
 	end*/
 
-	if (!IsValid(PS.ShopMenu)) then
+	if not PS.ShopMenu then
 		PS.ShopMenu = vgui.Create('DMizmoShopFrame')
 		return;
 	end
